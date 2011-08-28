@@ -1,6 +1,7 @@
 /* cascading style sheet for jiminy-cricket */
 
 a:active
+/* an active link */
 {
 	color: #5CCCCC;
 	text-decoration: none;
