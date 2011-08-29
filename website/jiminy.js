@@ -1,3 +1,5 @@
+// Team Jiminy Cricket
+
 function randomBackground(inputID)
 // Randomly picks a Jiminy Cricket image as the background image
 // at the bottom right corner of the page.
