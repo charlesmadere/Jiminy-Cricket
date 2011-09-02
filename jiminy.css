@@ -39,7 +39,15 @@ h2
 	text-align: center;
 }
 
+h3
+{
+	text-align: center;
+}
+
 p
+/*
+	styling for <p></p> html tags
+*/
 {
 	font-size: medium;
 	margin: 16px;
@@ -75,7 +83,6 @@ p
 #logo
 {
 	background-attachment: fixed;
-	background-image: url('images/logo1.jpg');
 	background-position: right bottom;
 	background-repeat: no-repeat;
 }
