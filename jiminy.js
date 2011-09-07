@@ -1,6 +1,6 @@
-// Team Jiminy Cricket
-
 function mainCanvasInit(canvasID)
+// Draws the canvas. Drawing code for shapes and squares
+// and other shit should go here.
 {
 	var canvas = document.getElementById(canvasID);
 
@@ -16,7 +16,8 @@ function mainCanvasInit(canvasID)
 		canvasContext.fillRect(30, 30, 55, 50);
 	}
 	else
-	// canvas un-supported code here
+	// canvas un-supported code here. I'm not sure exactly
+	// what this is really for yet.
 	{
 		
 	}
@@ -32,3 +33,6 @@ function randomBackground(inputID)
 
 	document.getElementById(inputID).style.backgroundImage = "url(images/logo" + Math.floor((Math.random() * imageCount) + 1) + ".jpg)";
 }
+
+
+// Team Jiminy Cricket
