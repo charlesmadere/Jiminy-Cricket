@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--
-	team jiminy cricket
-	that above line is required for every html5 file. don't leave it out!
--->
+
 <html>
 
 	<head>
@@ -12,20 +9,16 @@
 		<title>Index @ Jiminy Cricket</title>
 	</head>
 
-	<body class="centeredpage" id="logo" onload="randomBackground('logo')">
+	<body class="centeredpage" id="logo" onload="mainCanvasInit('mainCanvas'); randomBackground('logo')">
 		<div class="box">
 			<div class="header">
 				<h1>Jiminy Cricket</h1>
 				<h2>A CMPS 401 HTML5 Team Project</h2>
-				<h3><a href="canvas.html">Canvas testing ground...</a></h3>
 			</div>
 			<div class="content">
-				<p>Hello, World!</p>
-				<p><a href="https://www.youtube.com/watch?v=xdhLQCYQ-nQ" target="_blank">wat</a></p>
-				<p><a href="http://www.youtube.com/watch?v=P1Ukfvy6-4o"> Classic </a></p>
-				<p><a href="http://www.youtube.com/watch?v=qRuNxHqwazs&ob=av3n"> This is greatness </a></p>
-				<p><a href="http://www.youtube.com/watch?v=9QS0q3mGPGg&feature=relmfu"> This Is Winning </a></p>
-				<p><a href="http://www.dorkly.com/article/20671/gamebook-superman-finds-a-new-arch-enemy"> Bonus Article </a></p>
+				<canvas height="480" id="mainCanvas" width="640">
+					Sorry, but you are using a browser that does not support HTML5.
+				</canvas>
 			</div>
 		</div>
 	</body>
