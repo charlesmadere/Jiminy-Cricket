@@ -1,0 +1,84 @@
+#content
+{
+	margin-top: 16px;
+}
+
+#contentLeft
+{
+	width: 500px;
+}
+
+#contentRight
+{
+	content-right: 
+}
+
+#header
+{
+	background-image: header.png;
+	background-repeat: repeat-x;
+	padding: 8px;
+}
+
+#logo
+{
+	background-image: wepaint.png;
+	background-repeat: no-repeat;
+}
+
+a:active
+{
+	color: #FFA82A;
+	text-decoration: none;
+}
+
+a:hover
+{
+	color: #D58C23;
+	text-decoration: underline;
+}
+
+a:link
+{
+	color: #FF9700;
+	text-decoration: none;
+}
+
+a:visited
+{
+	color: #C47400;
+	text-decoration: none;
+}
+
+body
+{
+	margin-left: 0px;
+	margin-top: 0px;
+	text-align: center;
+}
+
+h1
+{
+	font-family: Segoe UI Semibold, sans-serif;
+	text-align: center;
+}
+
+h2
+{
+	font-family: Segoe UI, sans-serif;
+	text-align: center;
+}
+
+h3
+{
+	font-family: Segoe UI Light, sans-serif;
+	text-align: center;
+}
+
+p
+{
+	font-family: Calibri, Arial, sans-serif;
+	text-align: left;
+}
+
+/* Team Jiminy Cricket */
