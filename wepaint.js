@@ -23,15 +23,20 @@ function mainCanvasInit(canvasID)
 	}
 }
 
-function randomBackground(inputID)
-// Randomly picks a Jiminy Cricket image as the background image
-// at the bottom right corner of the page.
-{
-	// the number of Jiminy images. They need to be named properly
-	// for this to work. "logo1.jpg", "logo2.jpg", ...
-	var imageCount = 3;
 
-	document.getElementById(inputID).style.backgroundImage = "url(images/logo" + Math.floor((Math.random() * imageCount) + 1) + ".jpg)";
+function imgMouseOn(input)
+// this function is used with the mouseover tag.
+// the id of the tag must be passed to this function.
+{
+	document.getElementById(input).src = "images/nav/" + input + "-on.png";
+}
+
+
+function imgMouseOff(input)
+// this function is used with the mouseout tag.
+// the id of the tag must be passed to this function.
+{
+	document.getElementById(input).src = "images/nav/" + input + ".png";
 }
 
 

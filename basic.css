@@ -1,3 +1,9 @@
+.bottomBorder
+{
+	border-bottom-style: solid;
+	border-width: 1px;
+}
+
 #content
 /* this code centers the page */
 {
@@ -7,63 +13,17 @@
 	width: 1024px;
 }
 
-#content div
-{
-	float: left;
-}
-
-#contentLeft
-{
-	border-style: solid;
-	border-width: 1px;
-	width: 700px;
-}
-
-#contentRight
-{
-	border-bottom-style: solid;
-	border-right-style: solid;
-	border-top-style: solid;
-	border-width: 1px;
-	height: 500px;
-	width: 300px;
-}
-
-#currentWord
-{
-	border-bottom-style: solid;
-	border-width: 1px;
-	height: 64px;
-}
-
-#everything
-{
-	margin: auto;
-	text-align: center;
-}
-
 #header
 {
-	background-image: header.png;
+	background-image: url('images/header.png');
 	background-repeat: repeat-x;
+	height: 92px;
 }
 
 #logo
 {
-	background-image: wepaint.png;
+	background-image: url('images/wepaint.png');
 	background-repeat: no-repeat;
-}
-
-#paintArea
-{
-	border-bottom-style: solid;
-	border-width: 1px;
-	height: 550px;
-}
-
-#toolBox
-{
-	
 }
 
 a:active
@@ -92,7 +52,9 @@ a:visited
 
 body
 {
+	font-family: Calibri, Arial, sans-serif;
 	margin-left: 0px;
+	margin-right: 0px;
 	margin-top: 0px;
 }
 
@@ -113,7 +75,7 @@ h3
 
 p
 {
-	font-family: Calibri, Arial, sans-serif;
+	margin-top: 8px;
 }
 
 /* Team Jiminy Cricket */
