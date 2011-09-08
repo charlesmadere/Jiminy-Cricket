@@ -10,7 +10,17 @@
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 16px;
+	position: relative;
 	width: 1024px;
+}
+
+#footer
+{
+	background-image: url('images/footer.png');
+	background-repeat: repeat-x;
+	bottom: 0;
+	height: 12px;
+	position: absolute;
 }
 
 #header
