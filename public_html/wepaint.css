@@ -1,0 +1,119 @@
+#content
+/* this code centers the page */
+{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 16px;
+	width: 1024px;
+}
+
+#content div
+{
+	float: left;
+}
+
+#contentLeft
+{
+	border-style: solid;
+	border-width: 1px;
+	width: 700px;
+}
+
+#contentRight
+{
+	border-bottom-style: solid;
+	border-right-style: solid;
+	border-top-style: solid;
+	border-width: 1px;
+	height: 500px;
+	width: 300px;
+}
+
+#currentWord
+{
+	border-bottom-style: solid;
+	border-width: 1px;
+	height: 64px;
+}
+
+#everything
+{
+	margin: auto;
+	text-align: center;
+}
+
+#header
+{
+	background-image: header.png;
+	background-repeat: repeat-x;
+}
+
+#logo
+{
+	background-image: wepaint.png;
+	background-repeat: no-repeat;
+}
+
+#paintArea
+{
+	border-bottom-style: solid;
+	border-width: 1px;
+	height: 550px;
+}
+
+#toolBox
+{
+	
+}
+
+a:active
+{
+	color: #FFA82A;
+	text-decoration: none;
+}
+
+a:hover
+{
+	color: #D58C23;
+	text-decoration: underline;
+}
+
+a:link
+{
+	color: #FF9700;
+	text-decoration: none;
+}
+
+a:visited
+{
+	color: #C47400;
+	text-decoration: none;
+}
+
+body
+{
+	margin-left: 0px;
+	margin-top: 0px;
+}
+
+h1
+{
+	font-family: Segoe UI Semibold, sans-serif;
+}
+
+h2
+{
+	font-family: Segoe UI, sans-serif;
+}
+
+h3
+{
+	font-family: Segoe UI Light, sans-serif;
+}
+
+p
+{
+	font-family: Calibri, Arial, sans-serif;
+}
+
+/* Team Jiminy Cricket */
