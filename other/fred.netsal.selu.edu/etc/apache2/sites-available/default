@@ -1,0 +1,8 @@
+<VirtualHost *:80>
+	ServerAdmin charles.madere@selu.edu
+
+	ServerName www.wepaint.us
+	ServerAlias wepaint.us *.wepaint.us
+
+	DocumentRoot /home/wepaint/public_html
+</VirtualHost>
