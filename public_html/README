@@ -1,4 +1,7 @@
-This directory should contain an exact working copy of how the exact
+This directory should contain an exact working copy of the exact
 structure of our website and nothing more. This file is the only
-exception to that rule. Our website can be found at
-http://www.wepaint.us/
+exception to that rule. If you put a file in here then it should
+be pretty much immediately uploaded via SFTP to the server's
+public_html folder and if a file exists on the server then it
+should also definitely be in here.
+Our website can be found at http://www.wepaint.us/
