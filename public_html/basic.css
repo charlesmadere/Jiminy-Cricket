@@ -4,6 +4,11 @@
 	border-width: 1px;
 }
 
+.noBorder
+{
+	border: 0;
+}
+
 #content
 /* this code centers the page */
 {
@@ -12,6 +17,11 @@
 	margin-top: 16px;
 	position: relative;
 	width: 1024px;
+}
+
+#content div
+{
+	float: left;
 }
 
 #footer
@@ -28,12 +38,6 @@
 	background-image: url('images/nav/header.png');
 	background-repeat: repeat-x;
 	height: 92px;
-}
-
-#logo
-{
-	background-image: url('images/wepaint.png');
-	background-repeat: no-repeat;
 }
 
 a:active
@@ -70,17 +74,21 @@ body
 
 h1
 {
-	font-family: Segoe UI Semibold, sans-serif;
+	font-family: "Segoe UI Semibold", sans-serif;
+	font-weight: normal;
+	margin-top: 4px;
 }
 
 h2
 {
-	font-family: Segoe UI, sans-serif;
+	font-family: "Segoe UI", sans-serif;
+	font-weight: normal;
 }
 
 h3
 {
-	font-family: Segoe UI Light, sans-serif;
+	font-family: "Segoe UI Light", sans-serif;
+	font-weight: normal;
 }
 
 p
