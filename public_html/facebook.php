@@ -1,3 +1,12 @@
+<?php
+
+
+	include 'chat.php';
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -23,7 +23,7 @@
 					currentWord
 				</div>
 				<div class="bottomBorder" id="paintArea">
-					<canvas id="paintCanvas" height="529" width="700"></canvas>
+					<canvas id="paintCanvas" height="440" width="700"></canvas>
 				</div>
 				<div id="toolBox">
 					toolBox
