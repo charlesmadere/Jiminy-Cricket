@@ -7,7 +7,7 @@
 		<meta charset="UTF-8" />
 		<script src="canvas.js" type="text/javascript"></script>
 		<script src="wepaint.js" type="text/javascript"></script>
-		<title>We Paint.us</title>
+		<title>Index @ We Paint.us</title>
 	</head>
 
 	<body onload="paintCanvasStart('paintCanvas')">
@@ -15,7 +15,7 @@
 			<img src="images/wepaint.png" alt="WePaint.us" />
 			<img src="images/nav/divider.png" />
 			<img src="images/nav/spacer.png" />
-			<a href="facebook.html"><img src="images/nav/facebook.png" alt="Facebook" class="noBorder" id="facebook" onmouseout="imgMouseOff('facebook')" onmouseover="imgMouseOn('facebook')" /></a>
+			<a href="facebook.php"><img src="images/nav/facebook.png" alt="Facebook" class="noBorder" id="facebook" onmouseout="imgMouseOff('facebook')" onmouseover="imgMouseOn('facebook')" /></a>
 		</div>
 		<div id="content">
 			<div id="contentLeft">

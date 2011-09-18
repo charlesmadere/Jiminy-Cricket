@@ -6,7 +6,7 @@
 		<link href="paint.css" rel="stylesheet" type="text/css" />
 		<meta charset="UTF-8" />
 		<script src="wepaint.js" type="text/javascript"></script>
-		<title>We Paint.us</title>
+		<title>Facebook @ We Paint.us</title>
 	</head>
 
 	<body>
@@ -14,7 +14,7 @@
 			<img src="images/wepaint.png" alt="WePaint.us" />
 			<img src="images/nav/divider.png" />
 			<img src="images/nav/spacer.png" />
-			<a href="index.html"><img src="images/nav/canvas.png" alt="Canvas" class="noBorder" id="canvas" onmouseout="imgMouseOff('canvas')" onmouseover="imgMouseOn('canvas')" /></a>
+			<a href="index.php"><img src="images/nav/canvas.png" alt="Canvas" class="noBorder" id="canvas" onmouseout="imgMouseOff('canvas')" onmouseover="imgMouseOn('canvas')" /></a>
 		</div>
 		<div id="content">
 			<div id="contentLeft">
