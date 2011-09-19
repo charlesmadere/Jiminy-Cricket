@@ -12,10 +12,11 @@
 
 	<head>
 		<link href="basic.css" rel="stylesheet" type="text/css" />
+		<link href="facebook.css" rel="stylesheet" type="text/css" />
 		<link href="paint.css" rel="stylesheet" type="text/css" />
 		<meta charset="UTF-8" />
-		<script src="canvas.js" type="text/javascript"></script>
-		<script src="wepaint.js" type="text/javascript"></script>
+		<script src="basic.js" type="text/javascript"></script>
+		<script src="paint.js" type="text/javascript"></script>
 		<title>Chat @ We Paint.us</title>
 	</head>
 
