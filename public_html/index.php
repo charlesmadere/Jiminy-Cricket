@@ -15,7 +15,7 @@
 			<img src="images/wepaint.png" alt="WePaint.us" />
 			<img src="images/nav/divider.png" />
 			<img src="images/nav/spacer.png" />
-			<a href="facebook.php"><img src="images/nav/facebook.png" alt="Facebook" class="noBorder" id="facebook" onmouseout="imgMouseOff('facebook')" onmouseover="imgMouseOn('facebook')" /></a>
+			<a href="chat.php"><img src="images/nav/facebook.png" alt="Facebook" class="noBorder" id="facebook" onmouseout="imgMouseOff('facebook')" onmouseover="imgMouseOn('facebook')" /></a>
 		</div>
 		<div id="content">
 			<div id="contentLeft">

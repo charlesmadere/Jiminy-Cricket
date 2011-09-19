@@ -4,6 +4,11 @@
 	border-width: 1px;
 }
 
+.fb-root
+{
+	margin-top: 0px;
+}
+
 .noBorder
 {
 	border: 0;
