@@ -1,21 +1,37 @@
-<!DOCTYPE html>
+<?php
+
+
+	
+
+
+?>
+
+
+<!doctype html>
 <html lang="en">
 
 	<head>
 		<link href="basic.css" rel="stylesheet" type="text/css" />
+		<link href="facebook.css" rel="stylesheet" type="text/css" />
 		<link href="paint.css" rel="stylesheet" type="text/css" />
 		<meta charset="UTF-8" />
 		<script src="basic.js" type="text/javascript"></script>
+		<script src="debugger.js" type="text/javascript"></script>
+		<script src="facebook.js" type="text/javascript"></script>
+		<script src="modernizr.js" type="text/javascript"></script>
 		<script src="paint.js" type="text/javascript"></script>
+		<script src="popup.js" type="text/javascript"></script>
 		<title>Index @ We Paint.us</title>
 	</head>
 
-	<body onload="paintCanvasStart('paintCanvas')">
+	<body>
 		<div id="header">
 			<img src="images/wepaint.png" alt="WePaint.us" />
 			<img src="images/nav/divider.png" />
 			<img src="images/nav/spacer.png" />
-			<a href="chat.php"><img src="images/nav/facebook.png" alt="Facebook" class="noBorder" id="facebook" onmouseout="imgMouseOff('facebook')" onmouseover="imgMouseOn('facebook')" /></a>
+			<a href="chat.php">
+				<img src="images/nav/facebook.png" alt="Facebook" class="noBorder" id="facebook" onmouseout="imgMouseOff('facebook')" onmouseover="imgMouseOn('facebook')" />
+			</a>
 		</div>
 		<div id="content">
 			<div id="contentLeft">
@@ -44,6 +60,9 @@
 				</div>
 			</div>
 		</div>
+
+		<div id="footer"></div>
+
 	</body>
 
 </html>

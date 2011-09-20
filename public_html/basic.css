@@ -4,11 +4,6 @@
 	border-width: 1px;
 }
 
-.fb-root
-{
-	margin-top: 0px;
-}
-
 .noBorder
 {
 	border: 0;
@@ -29,13 +24,31 @@
 	float: left;
 }
 
+#contentLeft
+{
+	border-style: solid;
+	border-width: 1px;
+	width: 700px;
+}
+
+#contentRight
+{
+	border-bottom-style: solid;
+	border-right-style: solid;
+	border-top-style: solid;
+	border-width: 1px;
+	width: 300px;
+}
+
 #footer
 {
-	background-image: url('images/footer.png');
+	background-image: url('images/barLow.png');
+	background-position: bottom;
 	background-repeat: repeat-x;
-	bottom: 0;
+	bottom: 0px;
 	height: 12px;
 	position: absolute;
+	width: 100%;
 }
 
 #header
@@ -43,6 +56,73 @@
 	background-image: url('images/nav/header.png');
 	background-repeat: repeat-x;
 	height: 92px;
+	width: 100%;
+}
+
+#blanket
+{
+	background-color: #C0C0C0;
+	opacity: 0.65;
+	filter: alpha(opacity=65);
+	left: 0px;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	z-index: 9001;
+}
+
+#popUpContent
+{
+	height: 436px;
+	margin-left: 16px;
+	margin-right: 16px;
+	margin-top: 24px;
+	position: relative;
+	width: 608px;
+}
+
+#popUpContent div
+{
+	float: left;
+}
+
+#popUpContentBottom
+{
+	height: 204px;
+	margin-left: 16px;
+	margin-right: 16px;
+	margin-top: 16px;
+	
+	width: 576px;
+}
+
+#popUpContentLeft
+{
+	height: 176px;
+	margin-left: 20px;
+	margin-top: 40px;
+	width: 172px;
+}
+
+#popUpContentRight
+{
+	height: 200px;
+	margin-top: 16px;
+	margin-right: 16px;
+	width: 400px;
+}
+
+#popUpDiv
+{
+	background-color: #FFFFFF;
+	background-image: url('images/barHigh.png');
+	background-position: top;
+	background-repeat: repeat-x;
+	box-shadow: 5px 5px 5px #666666;
+	position: absolute;
+	height: 480px;
+	width: 640px;
+	z-index: 9002;
 }
 
 a:active
@@ -100,5 +180,12 @@ p
 {
 	margin-top: 8px;
 }
+
+p.bigMargin
+{
+	margin-left: 8px;
+	margin-top: 20px;
+}
+
 
 /* Team Jiminy Cricket */

@@ -7,7 +7,7 @@
 ?>
 
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 	<head>
@@ -16,29 +16,26 @@
 		<link href="paint.css" rel="stylesheet" type="text/css" />
 		<meta charset="UTF-8" />
 		<script src="basic.js" type="text/javascript"></script>
+		<script src="debugger.js" type="text/javascript"></script>
+		<script src="facebook.js" type="text/javascript"></script>
+		<script src="modernizr.js" type="text/javascript"></script>
 		<script src="paint.js" type="text/javascript"></script>
+		<script src="popup.js" type="text/javascript"></script>
 		<title>Chat @ We Paint.us</title>
 	</head>
 
-	<body onload="paintCanvasStart('paintCanvas')">
+	<body>
 		<div id="header">
 			<img src="images/wepaint.png" alt="WePaint.us" />
 			<img src="images/nav/divider.png" />
 			<img src="images/nav/spacer.png" />
-			<a href="index.php"><img src="images/nav/canvas.png" alt="Canvas" class="noBorder" id="canvas" onmouseout="imgMouseOff('canvas')" onmouseover="imgMouseOn('canvas')" /></a>
-			<span id="fb-root"></span>
-			<script>
-				(function(d, s, id)
-				{
-					var js, fjs = d.getElementsByTagName(s)[0];
-					if (d.getElementById(id)) {return;}
-					js = d.createElement(s); js.id = id;
-					js.src = "//connect.facebook.net/en_US/all.js#appId=211936785535748&xfbml=1";
-					fjs.parentNode.insertBefore(js, fjs);
-				}(document, 'script', 'facebook-jssdk'));
-			</script>
-
-		<div class="fb-login-button" data-show-faces="true" data-width="200" data-max-rows="1"></div>
+			<a href="index.php">
+				<img src="images/nav/canvas.png" alt="Canvas" class="noBorder" id="canvas" onmouseout="imgMouseOff('canvas')" onmouseover="imgMouseOn('canvas')" />
+			</a>
+			<img src="images/nav/spacer.png" />
+			<a href="#" onclick="popup('popUpDiv')">
+				<img src="images/nav/login.png" alt="Login with Facebook" class="noBorder" id="login" onmouseout="imgMouseOff('login')" onmouseover="imgMouseOn('login')" />
+			</a>
 		</div>
 		<div id="content">
 			<div id="contentLeft">
@@ -67,6 +64,35 @@
 				</div>
 			</div>
 		</div>
+
+		<div id="footer"></div>
+
+		<div id="blanket" style="display: none;"></div>
+		<div id="popUpDiv" style="display: none;">
+		<!-- the code within this div is displayed only when the
+		please login to facebook popup shows. -->
+			<div id="popUpContent">
+				<div id="popUpContentLeft">
+					<img src="images/icons/inform/inform-128.png" />
+				</div>
+				<div id="popUpContentRight">
+					<h2>You need to login to Facebook to use WePaint! Please connect your Facebook account below.</h2>
+				</div>
+				<div id="popUpContentBottom">
+					<div id="fb-root"></div>
+					<script src="http://connect.facebook.net/en_US/all.js"></script>
+					<script>
+						FB.init({ 
+							appId:'YOUR_APP_ID', cookie:true, 
+							status:true, xfbml:true 
+						});
+					</script>
+					<fb:login-button>Login with Facebook</fb:login-button>
+					<a href="#" onclick="popup('popUpDiv')">bottom</a>
+				</div>
+			</div>
+		</div>
+
 	</body>
 
 </html>

@@ -9,22 +9,6 @@
 	float: left;
 }
 
-#contentLeft
-{
-	border-style: solid;
-	border-width: 1px;
-	width: 700px;
-}
-
-#contentRight
-{
-	border-bottom-style: solid;
-	border-right-style: solid;
-	border-top-style: solid;
-	border-width: 1px;
-	width: 300px;
-}
-
 #currentWord
 {
 	height: 64px;
