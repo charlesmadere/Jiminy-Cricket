@@ -12,6 +12,7 @@
 #content
 /* this code centers the page */
 {
+	height: 605px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 16px;
@@ -88,11 +89,22 @@
 
 #popUpContentBottom
 {
+	border-top-style: dashed;
+	border-width: 1px;
 	height: 204px;
 	margin-left: 16px;
 	margin-right: 16px;
 	margin-top: 16px;
-	
+	width: 576px;
+}
+
+#popUpContentBottomContent
+{
+	height: 164px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 40px;
+	text-align: center;
 	width: 576px;
 }
 
@@ -179,12 +191,6 @@ h3
 p
 {
 	margin-top: 8px;
-}
-
-p.bigMargin
-{
-	margin-left: 8px;
-	margin-top: 20px;
 }
 
 

@@ -64,8 +64,9 @@
 				</div>
 			</div>
 		</div>
-
-		<div id="footer"></div>
+		<div id="fbookLike">
+			<iframe src="https://www.facebook.com/plugins/like.php?href=http://www.wepaint.us/" frameborder="0" height="32" scrolling="no"></iframe>
+		</div>
 
 		<div id="blanket" style="display: none;"></div>
 		<div id="popUpDiv" style="display: none;">
@@ -76,23 +77,22 @@
 					<img src="images/icons/inform/inform-128.png" />
 				</div>
 				<div id="popUpContentRight">
-					<h2>You need to login to Facebook to use WePaint! Please connect your Facebook account below.</h2>
+					<h2>You need to login to Facebook to use WePaint! Please connect your Facebook account to continue.</h2>
 				</div>
 				<div id="popUpContentBottom">
-					<div id="fb-root"></div>
-					<script src="http://connect.facebook.net/en_US/all.js"></script>
-					<script>
-						FB.init({ 
-							appId:'YOUR_APP_ID', cookie:true, 
-							status:true, xfbml:true 
-						});
-					</script>
-					<fb:login-button>Login with Facebook</fb:login-button>
-					<a href="#" onclick="popup('popUpDiv')">bottom</a>
+					<div id="popUpContentBottomContent">
+						<div id="fb-root"></div>
+						<script src="http://connect.facebook.net/en_US/all.js"></script>
+						<script>
+							FB.init({appId:'211936785535748', cookie:true, status:true, xfbml:true});
+						</script>
+						<fb:login-button>Login with Facebook</fb:login-button>
+						<br />
+						<a href="#" onclick="popup('popUpDiv')">[x]</a>
+					</div>
 				</div>
 			</div>
 		</div>
-
 	</body>
 
 </html>
