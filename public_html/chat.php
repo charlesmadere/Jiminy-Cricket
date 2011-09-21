@@ -24,7 +24,7 @@
 		<title>Chat @ We Paint.us</title>
 	</head>
 
-	<body>
+	<body onload="popup('popUpDiv')">
 		<div id="header">
 			<img src="images/wepaint.png" alt="WePaint.us" />
 			<img src="images/nav/divider.png" />
@@ -65,7 +65,19 @@
 			</div>
 		</div>
 		<div id="fbookLike">
-			<iframe src="https://www.facebook.com/plugins/like.php?href=http://www.wepaint.us/" frameborder="0" height="32" scrolling="no"></iframe>
+			<div id="fb-root"></div>
+			<script>
+				(function(d, s, id)
+				{
+					var js, fjs = d.getElementsByTagName(s)[0];
+					if (d.getElementById(id)) {return;}
+					js = d.createElement(s); js.id = id;
+					js.src = "//connect.facebook.net/en_US/all.js#appId=211936785535748&xfbml=1";
+					fjs.parentNode.insertBefore(js, fjs);
+				}
+				(document, 'script', 'facebook-jssdk'));
+			</script>
+			<div class="fb-like" data-href="http://www.wepaint.us/" data-send="false" data-width="450" data-show-faces="false"></div>
 		</div>
 
 		<div id="blanket" style="display: none;"></div>
@@ -81,13 +93,21 @@
 				</div>
 				<div id="popUpContentBottom">
 					<div id="popUpContentBottomContent">
-						<div id="fb-root"></div>
-						<script src="http://connect.facebook.net/en_US/all.js"></script>
-						<script>
-							FB.init({appId:'211936785535748', cookie:true, status:true, xfbml:true});
-						</script>
-						<fb:login-button>Login with Facebook</fb:login-button>
-						<br />
+						<div id="fbookLogin">
+							<div id="fb-root"></div>
+							<script>
+								(function(d, s, id)
+								{
+									var js, fjs = d.getElementsByTagName(s)[0];
+									if (d.getElementById(id)) {return;}
+									js = d.createElement(s); js.id = id;
+									js.src = "//connect.facebook.net/en_US/all.js#appId=211936785535748&xfbml=1";
+									fjs.parentNode.insertBefore(js, fjs);
+								}
+								(document, 'script', 'facebook-jssdk'));
+							</script>
+							<div class="fb-login-button" data-show-faces="true" data-width="224" data-max-rows="2"></div>
+						</div>
 						<a href="#" onclick="popup('popUpDiv')">[x]</a>
 					</div>
 				</div>
