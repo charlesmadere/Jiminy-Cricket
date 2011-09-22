@@ -15,26 +15,27 @@
 		<link href="facebook.css" rel="stylesheet" type="text/css" />
 		<link href="paint.css" rel="stylesheet" type="text/css" />
 		<meta charset="UTF-8" />
-		<script src="basic.js" type="text/javascript"></script>
 		<script src="debugger.js" type="text/javascript"></script>
-		<script src="facebook.js" type="text/javascript"></script>
+		<script src="popup.js" type="text/javascript"></script>
+		<script src="basic.js" type="text/javascript"></script>
 		<script src="modernizr.js" type="text/javascript"></script>
 		<script src="paint.js" type="text/javascript"></script>
-		<script src="popup.js" type="text/javascript"></script>
 		<title>Chat @ We Paint.us</title>
 	</head>
 
-	<body onload="popup('popUpDiv')">
+	<body>
+		<div id="fb-root"></div>
+		<script src="facebook.js" type="text/javascript"></script>
 		<div id="header">
 			<img src="images/wepaint.png" alt="WePaint.us" />
 			<img src="images/nav/divider.png" />
 			<img src="images/nav/spacer.png" />
 			<a href="index.php">
-				<img src="images/nav/canvas.png" alt="Canvas" class="noBorder" id="canvas" onmouseout="imgMouseOff('canvas')" onmouseover="imgMouseOn('canvas')" />
+				<img src="images/nav/canvas.png" alt="Canvas" class="noBorder" id="canvas" onmouseout="imgMouseOff('nav', 'canvas')" onmouseover="imgMouseOn('nav', 'canvas')" />
 			</a>
 			<img src="images/nav/spacer.png" />
 			<a href="#" onclick="popup('popUpDiv')">
-				<img src="images/nav/login.png" alt="Login with Facebook" class="noBorder" id="login" onmouseout="imgMouseOff('login')" onmouseover="imgMouseOn('login')" />
+				<img src="images/nav/login.png" alt="Login with Facebook" class="noBorder" id="login" onmouseout="imgMouseOff('nav', 'login')" onmouseover="imgMouseOn('nav', 'login')" />
 			</a>
 		</div>
 		<div id="content">
@@ -65,18 +66,6 @@
 			</div>
 		</div>
 		<div id="fbookLike">
-			<div id="fb-root"></div>
-			<script>
-				(function(d, s, id)
-				{
-					var js, fjs = d.getElementsByTagName(s)[0];
-					if (d.getElementById(id)) {return;}
-					js = d.createElement(s); js.id = id;
-					js.src = "//connect.facebook.net/en_US/all.js#appId=211936785535748&xfbml=1";
-					fjs.parentNode.insertBefore(js, fjs);
-				}
-				(document, 'script', 'facebook-jssdk'));
-			</script>
 			<div class="fb-like" data-href="http://www.wepaint.us/" data-send="false" data-width="450" data-show-faces="false"></div>
 		</div>
 
@@ -90,25 +79,16 @@
 				</div>
 				<div id="popUpContentRight">
 					<h2>You need to login to Facebook to use WePaint! Please connect your Facebook account to continue.</h2>
+					<div class="error" id="errorDiv"></div>
 				</div>
 				<div id="popUpContentBottom">
 					<div id="popUpContentBottomContent">
 						<div id="fbookLogin">
-							<div id="fb-root"></div>
-							<script>
-								(function(d, s, id)
-								{
-									var js, fjs = d.getElementsByTagName(s)[0];
-									if (d.getElementById(id)) {return;}
-									js = d.createElement(s); js.id = id;
-									js.src = "//connect.facebook.net/en_US/all.js#appId=211936785535748&xfbml=1";
-									fjs.parentNode.insertBefore(js, fjs);
-								}
-								(document, 'script', 'facebook-jssdk'));
-							</script>
 							<div class="fb-login-button" data-show-faces="true" data-width="224" data-max-rows="2"></div>
 						</div>
-						<a href="#" onclick="popup('popUpDiv')">[x]</a>
+						<div id="popUpContentBottomContentRight">
+							<a href="#" onclick="popup('popUpDiv')"><img src="images/buttons/continue.png" class="noBorder" id="continue" onmouseout="imgMouseOff('buttons', 'continue')" onmouseover="imgMouseOn('buttons', 'continue')" /></a>
+						</div>
 					</div>
 				</div>
 			</div>

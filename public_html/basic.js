@@ -1,16 +1,16 @@
-function imgMouseOn(input)
+function imgMouseOn(folder, id)
 // this function is used with the onmouseover tag.
-// the id of the tag must be passed to this function.
+// the id of the html tag must be passed to this function.
 {
-	document.getElementById(input).src = "images/nav/" + input + "-on.png";
+	document.getElementById(id).src = "images/" + folder + "/" + id + "-on.png";
 }
 
 
-function imgMouseOff(input)
+function imgMouseOff(folder, id)
 // this function is used with the onmouseout tag.
-// the id of the tag must be passed to this function.
+// the id of the html tag must be passed to this function.
 {
-	document.getElementById(input).src = "images/nav/" + input + ".png";
+	document.getElementById(id).src = "images/" + folder + "/" + id + ".png";
 }
 
 

@@ -4,6 +4,7 @@ window.addEventListener("load", eventWindowLoaded, false);
 function eventWindowLoaded()
 {
 	paintApp();
+	popup('popUpDiv');
 }
 
 

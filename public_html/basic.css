@@ -4,6 +4,11 @@
 	border-width: 1px;
 }
 
+.error
+{
+	color: #DC143C;
+}
+
 .noBorder
 {
 	border: 0;
@@ -15,7 +20,7 @@
 	height: 605px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 16px;
+	margin-top: 12px;
 	position: relative;
 	width: 1024px;
 }
@@ -106,6 +111,18 @@
 	margin-top: 40px;
 	text-align: center;
 	width: 576px;
+}
+
+#popUpContentBottomContent
+{
+	float: left;
+}
+
+#popUpContentBottomContentRight
+{
+	height: 144px;
+	margin-top: 20px;
+	width: 320px;
 }
 
 #popUpContentLeft

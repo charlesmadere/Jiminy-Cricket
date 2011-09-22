@@ -1,3 +1,7 @@
+var isOpen = new Boolean();
+isOpen = false;
+
+
 function toggle(div_id)
 // toggles the inserted div name from being displayed
 // (display: block) to being hidden (display: none)
@@ -97,10 +101,44 @@ function popup(windowname)
 // this function contains the above three to make life
 // simple in the html file
 {
-	blanket_size(windowname);
-	window_pos(windowname);
-	toggle('blanket');
-	toggle(windowname);
+	FB.getLoginStatus
+	(
+		function(response)
+		{
+			Debugger.log("response: " + response.authResponse);
+			if (response.authResponse)
+			// logged in and connected user, someone you know.
+			// login popup is not shown
+			{
+				if (isOpen)
+				{
+					isOpen = false;
+					blanket_size(windowname);
+					window_pos(windowname);
+					toggle('blanket');
+					toggle(windowname);
+				}
+			}
+			else
+			// no user session available, someone you don't know
+			{
+				if (!isOpen)
+				{
+					isOpen = true;
+					blanket_size(windowname);
+					window_pos(windowname);
+					toggle('blanket');
+					toggle(windowname);
+				}
+				else
+				// the user clicked continue but they are still
+				// not logged into facebook
+				{
+					document.getElementById("errorDiv").innerHTML = "You are still not logged in to Facebook! You can't continue until you are fully logged in.";
+				}
+			}
+		}
+	);
 }
 
 
