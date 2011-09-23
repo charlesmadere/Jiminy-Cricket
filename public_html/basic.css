@@ -30,6 +30,49 @@
 	float: left;
 }
 
+#contentLite
+/* this code centers the page */
+{
+	height: 480px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 32px;
+	position: relative;
+	width: 640px;
+}
+
+#contentLite div
+{
+	float: left;
+}
+
+#contentLiteLeft
+{
+	height: 208px;
+	margin-left: 32px;
+	margin-top: 32px;
+	text-align: center;
+	width: 213px;
+}
+
+#contentLiteRight
+{
+	height: 176px;
+	margin-left: 24px;
+	margin-right: 16px;
+	margin-top: 64px;
+	text-align: center;
+	width: 355px;
+}
+
+#contentLiteBottom
+{
+	height: 240px;
+	margin-left: 24px;
+	margin-right: 24px;
+	width: 592px;
+}
+
 #contentLeft
 {
 	border-style: solid;
@@ -62,6 +105,14 @@
 	background-image: url('images/nav/header.png');
 	background-repeat: repeat-x;
 	height: 92px;
+	width: 100%;
+}
+
+#headerLite
+{
+	background-image: url('images/barHigh.png');
+	background-repeat: repeat-x;
+	height: 12px;
 	width: 100%;
 }
 
@@ -188,7 +239,7 @@ body
 
 h1
 {
-	font-family: "Segoe UI Semibold", sans-serif;
+	font-family: "Segoe UI Semibold", "Segoe UI", sans-serif;
 	font-weight: normal;
 	margin-top: 4px;
 }
@@ -201,7 +252,7 @@ h2
 
 h3
 {
-	font-family: "Segoe UI Light", sans-serif;
+	font-family: "Segoe UI Light", "Segoe UI", sans-serif;
 	font-weight: normal;
 }
 

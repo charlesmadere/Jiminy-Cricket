@@ -1,0 +1,17 @@
+{
+	"topic" : "Pokemon",
+	"entries" :
+	[
+		"Bulbasaur",
+		"Ivysaur",
+		"Venusaur",
+		"Charmander",
+		"Charmeleon",
+		"Charizard",
+		"Squirtle",
+		"Wartortle",
+		"Blastoise",
+		"Pikachu",
+		"Mewtwo"
+	]
+}
