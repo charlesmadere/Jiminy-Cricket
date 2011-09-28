@@ -1,48 +1,76 @@
-window.addEventListener("load", eventWindowLoaded, false);
+var canvas;
+var canvasContext;
+var currentTool;
 
 
-function eventWindowLoaded()
+function paintCanvasInit()
 {
-	paintApp();
-	popup('popUpDiv');
-}
-
-
-function canvasSupport()
-{
-	return Modernizr.canvas;
-}
-
-
-function paintApp()
-// Draws the canvas. Drawing code for shapes and squares
-// and other shit should go here.
-{
-	if (!canvasSupport())
-	// check that the browser has Modernizr support. Modernizr
-	// is a javascript library that checks browsers for HTML5
-	// features. Basically this makes our web design job a lot
-	// easier
+	if (!Modernizr.canvas)
 	{
 		return;
 	}
 
-	var canvas = document.getElementById("paintCanvas");
-	var canvasContext = canvas.getContext("2d");
+	canvas = document.getElementById("paintCanvas");
+	canvasContext = canvas.getContext("2d");
 
-	// debugger test write
-	Debugger.log("Drawing canvas...");
+	tool = new toolPencil();
 
-	function drawScreen()
-	// drawing code goes in here!
+	canvas.addEventListener("mousedown", canvasMouseEvent, false);
+	canvas.addEventListener("mousemove", canvasMouseEvent, false);
+	canvas.addEventListener("mouseup", canvasMouseEvent, false);
+}
+
+
+function toolPencil()
+{
+	currentTool = this;
+	this.currentlyPainting = false;
+
+	this.mousedown = function(e)
 	{
-		canvasContext.fillStyle = "#000000";
-		canvasContext.font = "32px _sans";
-		canvasContext.textBaseline = "top";
-		canvasContext.fillText("Hello, World!", 195, 80);
+		canvasContext.beginPath();
+		canvasContext.moveTo(e._x, e._y);
+		currentTool.currentlyPainting = true;
+	};
+
+	this.mousemove = function(e)
+	{
+		if (currentTool.currentlyPainting)
+		{
+			canvasContext.lineTo(e._x, e._y);
+			canvasContext.stroke();
+		}
+	};
+
+	this.mouseup = function(e)
+	{
+		if (currentTool.currentlyPainting)
+		{
+			currentTool.mousemove(e);
+			currentTool.currentlyPainting = false;
+		}
+	};
+}
+
+
+function canvasMouseEvent(e)
+{
+	if (e.layerX || e.layerX == 0)
+	{
+		e._x = e.layerX;
+		e._y = e.layerY;
+	}
+	else if (e.offsetX || e.offsetX == 0)
+	{
+		e._x = e.offsetX;
+		e._y = e.offsetY;
 	}
 
-	drawScreen();
+	var func = currentTool[e.type];
+	if (func)
+	{
+		func(e);
+	}
 }
 
 
