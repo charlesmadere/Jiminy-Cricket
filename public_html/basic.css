@@ -192,6 +192,19 @@
 	width: 400px;
 }
 
+#popUpFacebookDiv
+{
+	background-color: #FFFFFF;
+	background-image: url('images/barHigh.png');
+	background-position: top;
+	background-repeat: repeat-x;
+	box-shadow: 5px 5px 5px #666666;
+	position: absolute;
+	height: 480px;
+	width: 640px;
+	z-index: 10;
+}
+
 #popUpDiv
 {
 	background-color: #FFFFFF;

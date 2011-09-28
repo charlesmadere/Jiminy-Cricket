@@ -25,8 +25,6 @@
 	</head>
 
 	<body>
-		<div id="fb-root"></div>
-		<script src="facebook.js" type="text/javascript"></script>
 		<div id="header">
 			<img src="images/wepaint.png" alt="WePaint.us" />
 			<img src="images/nav/divider.png" />
@@ -68,7 +66,7 @@
 		</div>
 
 		<div id="blanket" style="display: none;"></div>
-		<div id="popUpDiv" style="display: none;">
+		<div id="popUpFacebookDiv" style="display: none;">
 		<!-- the code within this div is displayed only when the
 		please login to facebook popup shows. -->
 			<div id="popUpContent">
@@ -77,20 +75,27 @@
 				</div>
 				<div id="popUpContentRight">
 					<h2>You need to login to Facebook to use WePaint! Please connect your Facebook account to continue.</h2>
-					<div class="error" id="errorDiv"></div>
+					<div class="error" id="errorFacebookDiv"></div>
 				</div>
 				<div id="popUpContentBottom">
 					<div id="popUpContentBottomContent">
 						<div id="fbookLogin">
-							<div class="fb-login-button" data-show-faces="true" data-width="224" data-max-rows="2"></div>
+							<a href="#" onclick="fbPop()">
+								<img src="images/buttons/fbLogin.png" alt="Login with Facebook" class="noBorder" id="fbLogin" onmouseout="imgMouseOff('buttons', 'fbLogin')" onmouseover="imgMouseOn('buttons', 'fbLogin')" />
+							</a>
+							<!--<div class="fb-login-button" data-show-faces="true" data-width="224" data-max-rows="2"></div>-->
 						</div>
 						<div id="popUpContentBottomContentRight">
-							<a href="#" onclick="popup('popUpDiv')"><img src="images/buttons/continue.png" class="noBorder" id="continue" onmouseout="imgMouseOff('buttons', 'continue')" onmouseover="imgMouseOn('buttons', 'continue')" /></a>
+							<a href="#" onclick="popupFacebook('popUpFacebookDiv')"><img src="images/buttons/continue.png" class="noBorder" id="continue" onmouseout="imgMouseOff('buttons', 'continue')" onmouseover="imgMouseOn('buttons', 'continue')" /></a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+
+		<div id="fb-root"></div>
+		<script src="//connect.facebook.net/en_US/all.js" type="text/javascript"></script>
+		<script src="facebook.js" type="text/javascript"></script>
 	</body>
 
 </html>

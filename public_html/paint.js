@@ -29,7 +29,7 @@ function toolPencil()
 	this.mousedown = function(e)
 	{
 		canvasContext.beginPath();
-		canvasContext.moveTo(e._x, e._y);
+		canvasContext.moveTo(e._x, (e._y - 64));
 		currentTool.currentlyPainting = true;
 	};
 
@@ -37,7 +37,7 @@ function toolPencil()
 	{
 		if (currentTool.currentlyPainting)
 		{
-			canvasContext.lineTo(e._x, e._y);
+			canvasContext.lineTo(e._x, (e._y - 64));
 			canvasContext.stroke();
 		}
 	};

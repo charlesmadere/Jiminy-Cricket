@@ -1,9 +1,10 @@
-window.addEventListener("load", main, false);
+//window.addEventListener("load", main, false);
 
 
 function main()
 {
-	popup('popUpDiv');
+	Debugger.log("main");
+	popupFacebook('popUpFacebookDiv');
 	paintCanvasInit();
 }
 

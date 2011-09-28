@@ -1,5 +1,4 @@
-var isOpen = new Boolean();
-isOpen = false;
+var isOpen;
 
 
 function toggle(div_id)
@@ -97,48 +96,52 @@ function window_pos(popUpDivVar)
 }
 
 
+function popupFacebook(windowname)
+// this function contains the above three to make life
+// simple in the html file
+{
+	if (facebookLoggedIn)
+	// logged in and connected user, someone you know.
+	// login popup is not shown
+	{
+		if (isOpen)
+		{
+			isOpen = false;
+			blanket_size(windowname);
+			window_pos(windowname);
+			toggle('blanket');
+			toggle(windowname);
+		}
+	}
+	else
+	// no user session available, someone you don't know
+	{
+		if (!isOpen)
+		{
+			isOpen = true;
+			blanket_size(windowname);
+			window_pos(windowname);
+			toggle('blanket');
+			toggle(windowname);
+		}
+		else
+		// the user clicked continue but they are still
+		// not logged into facebook
+		{
+			document.getElementById("errorFacebookDiv").innerHTML = "You are still not logged in to Facebook! You can't continue until you are fully logged in.";
+		}
+	}
+}
+
+
 function popup(windowname)
 // this function contains the above three to make life
 // simple in the html file
 {
-	FB.getLoginStatus
-	(
-		function(response)
-		{
-			Debugger.log("response: " + response.authResponse);
-			if (response.authResponse)
-			// logged in and connected user, someone you know.
-			// login popup is not shown
-			{
-				if (isOpen)
-				{
-					isOpen = false;
-					blanket_size(windowname);
-					window_pos(windowname);
-					toggle('blanket');
-					toggle(windowname);
-				}
-			}
-			else
-			// no user session available, someone you don't know
-			{
-				if (!isOpen)
-				{
-					isOpen = true;
-					blanket_size(windowname);
-					window_pos(windowname);
-					toggle('blanket');
-					toggle(windowname);
-				}
-				else
-				// the user clicked continue but they are still
-				// not logged into facebook
-				{
-					document.getElementById("errorDiv").innerHTML = "You are still not logged in to Facebook! You can't continue until you are fully logged in.";
-				}
-			}
-		}
-	);
+	blanket_size(windowname);
+	window_pos(windowname);
+	toggle('blanket');
+	toggle(windowname);
 }
 
 
