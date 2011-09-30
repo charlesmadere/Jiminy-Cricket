@@ -1,7 +1,7 @@
 <?php
 
 
-	
+	include("facebookInit.php");
 
 
 ?>
@@ -43,7 +43,36 @@
 					<canvas id="paintCanvas" height="440" width="700"></canvas>
 				</div>
 				<div id="toolBox">
-					toolBox
+					<table cellpadding="2" cellspacing="2">
+						<tr>
+							<td><img src="images/paint/colors/black.png" alt="Black" /></td>
+							<td><img src="images/paint/colors/grey.png" alt="Grey" /></td>
+							<td><img src="images/paint/colors/maroon.png" alt="Maroon" /></td>
+							<td><img src="images/paint/colors/red.png" alt="Red" /></td>
+							<td><img src="images/paint/colors/orange.png" alt="Orange" /></td>
+							<td><img src="images/paint/colors/yellow.png" alt="Yellow" /></td>
+							<td><img src="images/paint/colors/green.png" alt="Green" /></td>
+							<td><img src="images/paint/colors/lightBlue.png" alt="Light Blue" /></td>
+							<td><img src="images/paint/colors/blue.png" alt="Blue" /></td>
+							<td><img src="images/paint/colors/purple.png" alt="Purple" /></td>
+							<td rowspan="2"><img src="images/paint/tools/brush/brush-64.png" alt="Brush Tool" /></td>
+							<td rowspan="2"><img src="images/paint/tools/pencil/pencil-64.png" alt="Pencil Tool" /></td>
+							<td rowspan="2"><img src="images/paint/tools/bucket/bucket-64.png" alt="Bucket Tool" /></td>
+							<td rowspan="2"><img src="images/paint/tools/eraser/eraser-64.png" alt="Eraser Tool" /></td>
+						</tr>
+						<tr>
+							<td><img src="images/paint/colors/white.png" alt="White" /></td>
+							<td><img src="images/paint/colors/lightGrey.png" alt="Light Grey" /></td>
+							<td><img src="images/paint/colors/brown.png" alt="Brown" /></td>
+							<td><img src="images/paint/colors/pink.png" alt="Pink" /></td>
+							<td><img src="images/paint/colors/yellowOrange.png" alt="Yellow Orange" /></td>
+							<td><img src="images/paint/colors/tan.png" alt="Tan" /></td>
+							<td><img src="images/paint/colors/yellowGreen.png" alt="Yellow Green" /></td>
+							<td><img src="images/paint/colors/skyBlue.png" alt="Sky Blue" /></td>
+							<td><img src="images/paint/colors/royalBlue.png" alt="Royal Blue" /></td>
+							<td><img src="images/paint/colors/lightPurple.png" alt="Light Purple" /></td>
+						</tr>
+					</table>
 				</div>
 			</div>
 			<div id="contentRight">
@@ -83,7 +112,6 @@
 							<a href="#" onclick="fbPop()">
 								<img src="images/buttons/fbLogin.png" alt="Login with Facebook" class="noBorder" id="fbLogin" onmouseout="imgMouseOff('buttons', 'fbLogin')" onmouseover="imgMouseOn('buttons', 'fbLogin')" />
 							</a>
-							<!--<div class="fb-login-button" data-show-faces="true" data-width="224" data-max-rows="2"></div>-->
 						</div>
 						<div id="popUpContentBottomContentRight">
 							<a href="#" onclick="popupFacebook('popUpFacebookDiv')"><img src="images/buttons/continue.png" class="noBorder" id="continue" onmouseout="imgMouseOff('buttons', 'continue')" onmouseover="imgMouseOn('buttons', 'continue')" /></a>
