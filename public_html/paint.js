@@ -10,6 +10,7 @@ var currentTool = "null";
 
 var currentDrawTool;
 var drawColor = "null";
+var drawTool = "null";
 
 
 function paintCanvasInit()
@@ -80,9 +81,12 @@ function toolPencil()
 	// when the user clicks and holds it down in the paintArea
 	// canvas
 	{
-		currentDrawTool.currentlyPainting = true;
-		canvasContext.beginPath();
-		canvasContext.moveTo(e._x, (e._y - 64));
+		if (drawColor != "null")
+		{
+			currentDrawTool.currentlyPainting = true;
+			canvasContext.beginPath();
+			canvasContext.moveTo(e._x, (e._y - 64));
+		}
 	};
 
 	this.mousemove = function(e)
@@ -173,81 +177,91 @@ function paintColorOnClick(id)
 	// color the user clicked on in the toolBox
 	{
 		case "colorBlack":
-			
+			drawColor = "#000000";
 			break;
 
 		case "colorGrey":
-			
+			drawColor = "#7F7F7F";
+			break;
+
+		case "colorMaroon":
+			drawColor = "#880016";
 			break;
 
 		case "colorRed":
-			
+			drawColor = "#ED1B24";
 			break;
 
 		case "colorOrange":
-			
+			drawColor = "#FF7F26";
 			break;
 
 		case "colorYellow":
-			
+			drawColor = "#FEF200";
 			break;
 
 		case "colorGreen":
-			
+			drawColor = "#23B14D";
 			break;
 
 		case "colorLightBlue":
-			
+			drawColor = "#00A3E8";
 			break;
 
 		case "colorBlue":
-			
+			drawColor = "#3F47CC";
 			break;
 
 		case "colorPurple":
-			
+			drawColor = "#A349A3";
 			break;
 
 		case "colorWhite":
-			
+			drawColor = "#FFFFFF";
 			break;
 
 		case "colorLightGrey":
-			
+			drawColor = "#C3C3C3";
+			break;
+
+		case "colorBrown":
+			drawColor = "#B97A57";
 			break;
 
 		case "colorPink":
-			
+			drawColor = "#FEAEC9";
 			break;
 
 		case "colorYellowOrange":
-			
+			drawColor = "#FFC90D";
 			break;
 
 		case "colorTan":
-			
+			drawColor = "#EFE3AF";
 			break;
 
 		case "colorYellowGreen":
-			
+			drawColor = "#B5E51D";
 			break;
 
 		case "colorSkyBlue":
-			
+			drawColor = "#9AD9EA";
 			break;
 
 		case "colorRoyalBlue":
-			
+			drawColor = "#7092BF";
 			break;
 
 		case "colorLightPurple":
-			
+			drawColor = "#C7BFE6";
 			break;
 
 		default:
-			
+			drawColor = "#000000";
 			break;
 	}
+
+	canvasContext.strokeStyle = drawColor;
 }
 
 
@@ -297,24 +311,24 @@ function paintToolOnClick(id)
 	// change the user's drawing tool depending on which tool
 	// the user clicked on in the toolBox
 	{
-		case "toolBrush":
-			
+		case "toolPencil":
+			drawTool = "toolPencil";
 			break;
 
-		case "toolPencil":
-			
+		case "toolBrush":
+			drawTool = "toolBrush";
 			break;
 
 		case "toolBucket":
-			
+			drawTool = "toolBucket";
 			break;
 
 		case "toolEraser":
-			
+			drawTool = "toolEraser";
 			break;
 
 		default:
-			
+			drawTool = "toolPencil";
 			break;
 	}
 }

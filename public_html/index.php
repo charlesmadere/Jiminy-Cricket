@@ -79,8 +79,8 @@
 							<td><img src="images/paint/colors/colorLightBlue.png" id="colorLightBlue" alt="Light Blue" onmouseout="paintColorOnMouseOut('colorLightBlue')" onmouseover="paintColorOnMouseOver('colorLightBlue')" onclick="paintColorOnClick('colorLightBlue')" /></td>
 							<td><img src="images/paint/colors/colorBlue.png" id="colorBlue" alt="Blue" onmouseout="paintColorOnMouseOut('colorBlue')" onmouseover="paintColorOnMouseOver('colorBlue')" onclick="paintColorOnClick('colorBlue')" /></td>
 							<td><img src="images/paint/colors/colorPurple.png" id="colorPurple" alt="Purple" onmouseout="paintColorOnMouseOut('colorPurple')" onmouseover="paintColorOnMouseOver('colorPurple')" onclick="paintColorOnClick('colorPurple')" /></td>
-							<td rowspan="2"><img src="images/paint/tools/toolBrush.png" id="toolBrush" onmouseout="paintToolOnMouseOut('toolBrush')" onmouseover="paintToolOnMouseOver('toolBrush')" onclick="paintToolOnClick('toolBrush')" alt="Brush Tool" /></td>
 							<td rowspan="2"><img src="images/paint/tools/toolPencil.png" id="toolPencil" onmouseout="paintToolOnMouseOut('toolPencil')" onmouseover="paintToolOnMouseOver('toolPencil')" onclick="paintToolOnClick('toolPencil')" alt="Pencil Tool" /></td>
+							<td rowspan="2"><img src="images/paint/tools/toolBrush.png" id="toolBrush" onmouseout="paintToolOnMouseOut('toolBrush')" onmouseover="paintToolOnMouseOver('toolBrush')" onclick="paintToolOnClick('toolBrush')" alt="Brush Tool" /></td>
 							<td rowspan="2"><img src="images/paint/tools/toolBucket.png" id="toolBucket" onmouseout="paintToolOnMouseOut('toolBucket')" onmouseover="paintToolOnMouseOver('toolBucket')" onclick="paintToolOnClick('toolBucket')" alt="Bucket Tool" /></td>
 							<td rowspan="2"><img src="images/paint/tools/toolEraser.png" id="toolEraser" onmouseout="paintToolOnMouseOut('toolEraser')" onmouseover="paintToolOnMouseOver('toolEraser')" onclick="paintToolOnClick('toolEraser')" alt="Eraser Tool" /></td>
 						</tr>
