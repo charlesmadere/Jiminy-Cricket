@@ -1,5 +1,6 @@
 var facebookLoggedIn = false;
 
+FB._https = true;
 
 FB.init
 ({
@@ -81,7 +82,7 @@ function fbPop()
 		}
 	},
 	{
-		scope: 'email'
+		scope: 'user_about_me'
 	});
 }
 

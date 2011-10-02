@@ -9,6 +9,7 @@ var currentColor = "null";
 var currentTool = "null";
 
 var currentDrawTool;
+var drawColor = "null";
 
 
 function paintCanvasInit()
@@ -88,7 +89,6 @@ function toolPencil()
 	// when the user moves the cursor around in the paintArea
 	// canvas
 	{
-		Debugger.log("move1");
 		if (currentDrawTool.currentlyPainting)
 		{
 			canvasContext.lineTo(e._x, (e._y - 64));
@@ -105,7 +105,6 @@ function toolPencil()
 	this.mouseup = function(e)
 	// when the user releases the click in the paintArea canvas
 	{
-		Debugger.log("up1");
 		if (currentDrawTool.currentlyPainting)
 		{
 			currentDrawTool.currentlyPainting = false;
@@ -168,6 +167,87 @@ function paintColorOnClick(id)
 
 	// change the id's image src to the active style image
 	document.getElementById(currentColor).src = "images/paint/colors/" + currentColor + "-active.png";
+
+	switch (currentColor)
+	// change the current stroke color depending on which
+	// color the user clicked on in the toolBox
+	{
+		case "colorBlack":
+			
+			break;
+
+		case "colorGrey":
+			
+			break;
+
+		case "colorRed":
+			
+			break;
+
+		case "colorOrange":
+			
+			break;
+
+		case "colorYellow":
+			
+			break;
+
+		case "colorGreen":
+			
+			break;
+
+		case "colorLightBlue":
+			
+			break;
+
+		case "colorBlue":
+			
+			break;
+
+		case "colorPurple":
+			
+			break;
+
+		case "colorWhite":
+			
+			break;
+
+		case "colorLightGrey":
+			
+			break;
+
+		case "colorPink":
+			
+			break;
+
+		case "colorYellowOrange":
+			
+			break;
+
+		case "colorTan":
+			
+			break;
+
+		case "colorYellowGreen":
+			
+			break;
+
+		case "colorSkyBlue":
+			
+			break;
+
+		case "colorRoyalBlue":
+			
+			break;
+
+		case "colorLightPurple":
+			
+			break;
+
+		default:
+			
+			break;
+	}
 }
 
 
@@ -212,6 +292,31 @@ function paintToolOnClick(id)
 
 	// change the id's image src to the active style image
 	document.getElementById(currentTool).src = "images/paint/tools/" + currentTool + "-active.png";
+
+	switch (currentTool)
+	// change the user's drawing tool depending on which tool
+	// the user clicked on in the toolBox
+	{
+		case "toolBrush":
+			
+			break;
+
+		case "toolPencil":
+			
+			break;
+
+		case "toolBucket":
+			
+			break;
+
+		case "toolEraser":
+			
+			break;
+
+		default:
+			
+			break;
+	}
 }
 
 

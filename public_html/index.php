@@ -1,14 +1,37 @@
 <?php
 
 
-	include("facebookInit.php");
+	require("facebook.php");
+
+	$facebook = new Facebook(array
+	(
+		'appId' => '211936785535748',
+		'secret' => '760f613bc10ba7bb970b3b4df4c1ff87',
+	));
+
+	// See if there is a user from a cookie
+	$user = $facebook->getUser();
+
+	if ($user)
+	{
+		try
+		{
+			// Proceed knowing you have a logged in user who's authenticated.
+			$user_profile = $facebook->api("/me");
+		}
+		catch (FacebookApiException $e)
+		{
+			echo "<pre>" . htmlspecialchars(print_r($e, true)) . "</pre>";
+			$user = null;
+		}
+	}
 
 
 ?>
 
 
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
 
 	<head>
 		<link href="basic.css" rel="stylesheet" type="text/css" />
@@ -25,6 +48,7 @@
 	</head>
 
 	<body>
+		<div id="fb-root"></div>
 		<div id="header">
 			<img src="images/wepaint.png" alt="WePaint.us" />
 			<img src="images/nav/divider.png" />
@@ -36,14 +60,14 @@
 		</div>
 		<div id="content">
 			<div id="contentLeft">
-				<div class="bottomBorder" id="currentWord">
-					currentWord
+				<div class="bottomBorder" id="currentWordAndTimeLeft">
+					currentWordAndTimeLeft
 				</div>
 				<div class="bottomBorder" id="paintArea">
-					<canvas id="paintCanvas" height="440" width="700"></canvas>
+					<canvas id="paintCanvas" height="470" width="700"></canvas>
 				</div>
 				<div id="toolBox">
-					<table cellpadding="2" cellspacing="2">
+					<table id="toolBoxTable">
 						<tr>
 							<td><img src="images/paint/colors/colorBlack.png" id="colorBlack" alt="Black" onmouseout="paintColorOnMouseOut('colorBlack')" onmouseover="paintColorOnMouseOver('colorBlack')" onclick="paintColorOnClick('colorBlack')" /></td>
 							<td><img src="images/paint/colors/colorGrey.png" id="colorGrey" alt="Grey" onmouseout="paintColorOnMouseOut('colorGrey')" onmouseover="paintColorOnMouseOver('colorGrey')" onclick="paintColorOnClick('colorGrey')" /></td>
@@ -76,14 +100,11 @@
 				</div>
 			</div>
 			<div id="contentRight">
-				<div class="bottomBorder" id="topicAndTime">
-					topicAndTime
+				<div class="bottomBorder" id="currentTopic">
+					currentTopic
 				</div>
 				<div class="bottomBorder" id="whoIsPlaying">
 					whoIsPlaying
-				</div>
-				<div class="bottomBorder" id="linkToInvite">
-					linkToInvite
 				</div>
 				<div id="chatArea">
 					chatArea
@@ -109,9 +130,10 @@
 				<div id="popUpContentBottom">
 					<div id="popUpContentBottomContent">
 						<div id="fbookLogin">
-							<a href="#" onclick="fbPop()">
+							<fb:login-button></fb:login-button>
+							<!--<a href="#" onclick="fbPop()">
 								<img src="images/buttons/fbLogin.png" alt="Login with Facebook" class="noBorder" id="fbLogin" onmouseout="imgMouseOff('buttons', 'fbLogin')" onmouseover="imgMouseOn('buttons', 'fbLogin')" />
-							</a>
+							</a>-->
 						</div>
 						<div id="popUpContentBottomContentRight">
 							<a href="#" onclick="popupFacebook('popUpFacebookDiv')"><img src="images/buttons/continue.png" class="noBorder" id="continue" onmouseout="imgMouseOff('buttons', 'continue')" onmouseover="imgMouseOn('buttons', 'continue')" /></a>
@@ -121,7 +143,6 @@
 			</div>
 		</div>
 
-		<div id="fb-root"></div>
 		<script src="//connect.facebook.net/en_US/all.js" type="text/javascript"></script>
 		<script src="facebook.js" type="text/javascript"></script>
 	</body>

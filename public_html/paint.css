@@ -9,9 +9,15 @@
 	float: left;
 }
 
-#currentWord
+#currentTopic
 {
-	height: 64px;
+	height: 48px;
+	width: 300px;
+}
+
+#currentWordAndTimeLeft
+{
+	height: 48px;
 	width: 700px;
 }
 
@@ -23,26 +29,34 @@
 
 #paintArea
 {
-	height: 439px;
+	height: 470px;
 	width: 700px;
 }
 
 #toolBox
 {
-	height: 98px;
+	height: 82px;
 	width: 700px;
 }
 
-#topicAndTime
+#toolBoxTable
 {
-	height: 64px;
-	width: 300px;
+	height: 82px;
+	text-align: center;
+	width: 700px;
+}
+
+#toolBoxTableCell
+{
+	border-style: solid;
+	border-width: 1px;
 }
 
 #whoIsPlaying
 {
-	height: 144px;
+	height: 224px;
 	width: 300px;
 }
+
 
 /* Team Jiminy Cricket */
