@@ -8,97 +8,34 @@ var currentColor = "null";
 // stores the user's current tool
 var currentTool = "null";
 
+var currentDrawTool;
+
 
 function paintCanvasInit()
 // the "main method" for this file. this initializes our different paint
 // tools and their settings.
 {
-	if (Modernizr.canvas)
-	// if the browser has canvas support. continue running this javascript
-	// like normal
+	if (!Modernizr.canvas)
+	// if the browser has canvas support return and do not run the
+	// canvas code
+	{
+		return;
+	}
+	else
 	{
 		canvas = document.getElementById("paintCanvas");
 		canvasContext = canvas.getContext("2d");
 
-		tool = new toolPencil();
+		var brush = new toolBrush();
+		var pencil = new toolPencil();
+		var bucket = new toolBucket();
+		var eraser = new toolEraser();
 
 		canvas.addEventListener("mousedown", canvasMouseEvent, false);
 		canvas.addEventListener("mousemove", canvasMouseEvent, false);
 		canvas.addEventListener("mouseup", canvasMouseEvent, false);
 		canvas.addEventListener("mouseout", canvasMouseEvent, false);
 	}
-	else
-	// the browser does not have canvas support. none of this javascript
-	// will run.
-	{
-		return;
-	}
-}
-
-
-function toolBrush()
-// 
-{
-	
-}
-
-
-function toolPencil()
-// The function for the Pencil Tool.
-{
-	pencil = this;
-	this.currentlyPainting = false;
-
-	/*this.mouseout = function(e)
-	// when the mouse cursor leaves the paintArea canvas
-	{
-		pencil.currentlyPainting = false;
-	};*/
-
-	this.mousedown = function(e)
-	// when the user clicks and holds it down in the paintArea
-	// canvas
-	{
-		pencil.currentlyPainting = true;
-		canvasContext.beginPath();
-		canvasContext.moveTo(e._x, (e._y - 64));
-	};
-
-	this.mousemove = function(e)
-	// when the user moves the cursor around in the paintArea
-	// canvas
-	{
-		if (pencil.currentlyPainting)
-		{
-			canvasContext.lineTo(e._x, (e._y - 64));
-			canvasContext.stroke();
-		}
-	};
-
-	this.mouseup = function(e)
-	// when the user releases the click in the paintArea canvas
-	{
-		if (pencil.currentlyPainting)
-		{
-			pencil.currentlyPainting = false;
-			pencil.mousemove(e);
-		}
-	};
-
-}
-
-
-function toolBucket()
-// 
-{
-	
-}
-
-
-function toolEraser()
-// 
-{
-	
 }
 
 
@@ -117,11 +54,78 @@ function canvasMouseEvent(e)
 		e._y = e.offsetY;
 	}
 
-	var func = currentTool[e.type];
+	var func = currentDrawTool[e.type];
 	if (func)
 	{
 		func(e);
 	}
+}
+
+
+function toolBrush()
+// 
+{
+	
+}
+
+
+function toolPencil()
+// The function for the Pencil Tool.
+{
+	currentDrawTool = this;
+	this.currentlyPainting = false;
+
+	this.mousedown = function(e)
+	// when the user clicks and holds it down in the paintArea
+	// canvas
+	{
+		currentDrawTool.currentlyPainting = true;
+		canvasContext.beginPath();
+		canvasContext.moveTo(e._x, (e._y - 64));
+	};
+
+	this.mousemove = function(e)
+	// when the user moves the cursor around in the paintArea
+	// canvas
+	{
+		Debugger.log("move1");
+		if (currentDrawTool.currentlyPainting)
+		{
+			canvasContext.lineTo(e._x, (e._y - 64));
+			canvasContext.stroke();
+		}
+	};
+
+	/*this.mouseout = function(e)
+	// when the mouse cursor leaves the paintArea canvas
+	{
+		currentDrawTool.currentlyPainting = false;
+	};*/
+
+	this.mouseup = function(e)
+	// when the user releases the click in the paintArea canvas
+	{
+		Debugger.log("up1");
+		if (currentDrawTool.currentlyPainting)
+		{
+			currentDrawTool.currentlyPainting = false;
+			currentDrawTool.mousemove(e);
+		}
+	};
+}
+
+
+function toolBucket()
+// 
+{
+	
+}
+
+
+function toolEraser()
+// 
+{
+	
 }
 
 
