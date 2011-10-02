@@ -3,7 +3,6 @@
 
 function main()
 {
-	Debugger.log("main");
 	popupFacebook('popUpFacebookDiv');
 	paintCanvasInit();
 }
