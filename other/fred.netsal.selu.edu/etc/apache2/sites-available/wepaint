@@ -5,4 +5,6 @@
 	ServerAlias wepaint.us *.wepaint.us
 
 	DocumentRoot /home/wepaint/public_html
+
+	ErrorDocument 404 /404.html
 </VirtualHost>
