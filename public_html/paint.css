@@ -29,6 +29,7 @@
 
 #paintArea
 {
+	cursor: crosshair;
 	height: 470px;
 	width: 700px;
 }
