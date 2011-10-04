@@ -12,7 +12,7 @@
 	// See if there is a user from a cookie
 	$user = $facebook->getUser();
 
-	if ($user)
+	/*if ($user)
 	{
 		try
 		{
@@ -24,7 +24,10 @@
 			echo "<pre>" . htmlspecialchars(print_r($e, true)) . "</pre>";
 			$user = null;
 		}
-	}
+	}*/
+
+
+	// Team Jiminy Cricket
 
 
 ?>
@@ -53,10 +56,9 @@
 			<img src="images/wepaint.png" alt="WePaint.us" />
 			<img src="images/nav/divider.png" />
 			<img src="images/nav/spacer.png" />
-			<!-- EXAMPLE LINK
-			<a href="http://www.google.com/">
-				<img src="images/nav/login.png" alt="Login with Facebook" class="noBorder" id="login" onmouseout="imgMouseOff('nav', 'login')" onmouseover="imgMouseOn('nav', 'login')" />
-			</a>-->
+			<a href="#">
+				<img src="images/nav/about.png" alt="About" class="noBorder" id="about" onmouseout="imgMouseOff('nav', 'about')" onmouseover="imgMouseOn('nav', 'about')" />
+			</a>
 		</div>
 		<div id="content">
 			<div id="contentLeft">

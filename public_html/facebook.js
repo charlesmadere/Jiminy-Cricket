@@ -1,6 +1,5 @@
 var facebookLoggedIn = false;
 
-FB._https = true;
 
 FB.init
 ({
@@ -30,13 +29,11 @@ FB.getLoginStatus(function(response)
 	if (response.authResponse)
 	// user is logged in
 	{
-		Debugger.log("login");
 		facebookLoggedIn = true;
 	}
 	else
 	// user is not logged in
 	{
-		Debugger.log("logout");
 		facebookLoggedIn = false;
 	}
 
@@ -47,44 +44,14 @@ FB.getLoginStatus(function(response)
 
 FB.Event.subscribe('auth.login', function(response)
 {
-	Debugger.log("login");
 	facebookLoggedIn = true;
 });
 
 
 FB.Event.subscribe('auth.logout', function(response)
 {
-	Debugger.log("logout");
 	facebookLoggedIn = false;
 });
-
-
-function fbPop()
-// pops up a window asking the user to login to facebook
-{
-	FB.login(function(response)
-	{
-		if (response.authResponse)
-		{
-			Debugger.log('Welcome! Fetching your information...');
-			FB.api('/me', function(response)
-			{
-				Debugger.log('Good to see you, ' + response.name + '.');
-				FB.logout(function(response)
-				{
-					Debugger.log('Logged out.');
-				});
-			});
-		}
-		else
-		{
-			Debugger.log('User cancelled login or did not fully authorize.');
-		}
-	},
-	{
-		scope: 'user_about_me'
-	});
-}
 
 
 // Team Jiminy Cricket
