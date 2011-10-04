@@ -25,6 +25,8 @@ function paintCanvasInit()
 	{
 		canvas = document.getElementById("paintCanvas");
 		canvasContext = canvas.getContext("2d");
+		canvasContext.fillStyle = "#FFFFFF";
+		canvasContext.fillRect(0, 0, 700, 470);
 
 		canvas.addEventListener("mousedown", canvasMouseEvent, false);
 		canvas.addEventListener("mousemove", canvasMouseEvent, false);
@@ -91,7 +93,7 @@ function toolBrush()
 
 			// the (e._y - X) on this line corrects for the
 			// browser offsets
-			canvasContext.moveTo(e._x, (e._y - 50));
+			canvasContext.moveTo(e._x, (e._y - 49));
 		}
 	};
 
@@ -103,7 +105,7 @@ function toolBrush()
 		{
 			// the (e._y - X) on this line corrects for the
 			// browser offsets
-			canvasContext.lineTo(e._x, (e._y - 50));
+			canvasContext.lineTo(e._x, (e._y - 49));
 			canvasContext.stroke();
 		}
 	};
@@ -134,6 +136,11 @@ function toolBucket()
 {
 	currentDrawToolFunction = this;
 	this.currentlyPainting = false;
+
+	this.mousedown = function(e)
+	{
+		
+	}
 }
 
 
@@ -153,7 +160,7 @@ function toolEraser()
 		{
 			currentDrawToolFunction.currentlyPainting = true;
 			canvasContext.beginPath();
-			canvasContext.moveTo(e._x, (e._y - 50));
+			canvasContext.moveTo(e._x, (e._y - 49));
 		}
 	};
 
@@ -163,7 +170,7 @@ function toolEraser()
 	{
 		if (currentDrawToolFunction.currentlyPainting)
 		{
-			canvasContext.lineTo(e._x, (e._y - 50));
+			canvasContext.lineTo(e._x, (e._y - 49));
 			canvasContext.stroke();
 		}
 	};
@@ -205,7 +212,7 @@ function toolPencil()
 		{
 			currentDrawToolFunction.currentlyPainting = true;
 			canvasContext.beginPath();
-			canvasContext.moveTo(e._x, (e._y - 64));
+			canvasContext.moveTo(e._x, (e._y - 49));
 		}
 	};
 
@@ -215,7 +222,7 @@ function toolPencil()
 	{
 		if (currentDrawToolFunction.currentlyPainting)
 		{
-			canvasContext.lineTo(e._x, (e._y - 64));
+			canvasContext.lineTo(e._x, (e._y - 49));
 			canvasContext.stroke();
 		}
 	};
@@ -449,6 +456,8 @@ function paintToolOnClick(id)
 		case "toolBucket":
 			currentDrawTool = "toolBucket";
 			currentDrawToolFunction = new toolBucket();
+			canvasContext.fillStyle = "#FFFFFF";
+			canvasContext.fillRect(0, 0, 700, 470);
 			break;
 
 		case "toolEraser":
