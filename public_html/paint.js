@@ -12,13 +12,19 @@ var previousDrawColor = "null";
 var currentDrawTool = "null";
 var previousDrawTool = "null";
 
+// stores the user's current draw tool function
+var currentDrawToolFunction = "null";
+
 // the Y axis offset for the drawing tool. This number
 // is subtracted from the e._y variable in our mouse
 // button listeners
 var drawToolOffset = 49;
 
-// stores the user's current draw tool function
-var currentDrawToolFunction = "null";
+// the height of the canvas (paintCanvas)
+var canvasHeight = 470;
+
+// the width of the canvas (paintCanvas)
+var canvasWidth = 700;
 
 
 function paintCanvasInit()
@@ -135,6 +141,12 @@ function toolBrush()
 }
 
 
+/*function matchStartColor(canvasDataPosition)
+{
+	return (colorLayer.data[canvasDataPosition] == 
+}*/
+
+
 function toolBucket()
 // The function for the Bucket Tool on the paintArea toolbox.
 // What is the Bucket Tool? The Bucket Tool is the most complex
@@ -145,15 +157,36 @@ function toolBucket()
 	this.currentlyPainting = false;
 
 	this.mousedown = function(e)
-	// 
+	// when the user clicks and holds it down in the paintArea
+	// canvas
 	{
-		
+		if (currentDrawColor != "null")
+		{
+			currentDrawToolFunction.currentlyPainting = true;
+			/*var canvasData = canvasContext.getImageData(0, 0, canvasWidth, canvasHeight);
+			var canvasDataStack = [[e._x, (e._y - drawToolOffset)]];
+			while (canvasDataStack.length)
+			{
+				var canvasDataPosition = canvasDataStack.pop();
+				var canvasDataPositionX = canvasDataPosition[0];
+				var canvasDataPositionY = canvasDataPosition[1];
+				var canvasPixelPosition = (canvasDataPositionY * canvasWidth + canvasDataPositionX) * 4;
+
+				for ( ; canvasDataPositionY < canvasHeight - 1 && ; --canvasDataPositionY)
+				{
+					
+				}
+			}*/
+		}
 	}
 
 	this.mouseup = function(e)
-	// 
+	// when the user releases the click in the paintArea canvas
 	{
-		
+		if (currentDrawToolFunction.currentlyPainting)
+		{
+			currentDrawToolFunction.currentlyPainting = false;
+		}
 	}
 }
 
@@ -264,9 +297,7 @@ function clearPaintCanvas()
 // across the entire area of it
 {
 	canvasContext.fillStyle = "#FFFFFF";
-
-	// 700 is the width of our canvas and 470 is the height
-	canvasContext.fillRect(0, 0, 700, 470);
+	canvasContext.fillRect(0, 0, canvasWidth, canvasHeight);
 }
 
 
@@ -480,12 +511,41 @@ function paintToolOnClick(id)
 
 		case "toolBucket":
 			currentDrawToolFunction = new toolBucket();
-			clearPaintCanvas();
 			break;
 
 		case "toolEraser":
 			currentDrawToolFunction = new toolEraser();;
 			paintColorOnClick("colorWhite");
+			break;
+
+		case "toolNuke":
+			// we don't want the nuke tool to be a tool that can be
+			// continuously used. It should just be clicked once and
+			// then done with. This below code will immediately
+			// switch the user back to the tool they used before the
+			// nuke tool. If they did not already use any tool then
+			// the pencil tool will be automatically activated
+			if (previousDrawTool != "null")
+			{
+				if (confirm("Are you sure you want to clear the canvas?"))
+				// Ask the user if they're sure that they want to delete
+				// the contents of the canvas by popping up a simple
+				// "OK" or "Cancel" modal dialog. This if statement
+				// should be inside of the above if statement because
+				// if the previousDrawTool is in fact == "null" then
+				// they haven't even drawn anything and therefore there
+				// is no need to prompt them to clear the canvas
+				{
+					clearPaintCanvas();
+				}
+
+				paintToolOnClick(previousDrawTool);
+			}
+			else
+			{
+				paintToolOnClick("toolPencil");
+			}
+
 			break;
 	}
 }

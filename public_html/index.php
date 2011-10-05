@@ -85,6 +85,7 @@
 							<td rowspan="2"><img src="images/paint/tools/toolBrush.png" id="toolBrush" onmouseout="paintToolOnMouseOut('toolBrush')" onmouseover="paintToolOnMouseOver('toolBrush')" onclick="paintToolOnClick('toolBrush')" alt="Brush Tool" /></td>
 							<td rowspan="2"><img src="images/paint/tools/toolBucket.png" id="toolBucket" onmouseout="paintToolOnMouseOut('toolBucket')" onmouseover="paintToolOnMouseOver('toolBucket')" onclick="paintToolOnClick('toolBucket')" alt="Bucket Tool" /></td>
 							<td rowspan="2"><img src="images/paint/tools/toolEraser.png" id="toolEraser" onmouseout="paintToolOnMouseOut('toolEraser')" onmouseover="paintToolOnMouseOver('toolEraser')" onclick="paintToolOnClick('toolEraser')" alt="Eraser Tool" /></td>
+							<td rowspan="2"><img src="images/paint/tools/toolNuke.png" id="toolNuke" onmouseout="paintToolOnMouseOut('toolNuke')" onmouseover="paintToolOnMouseOver('toolNuke')" onclick="paintToolOnClick('toolNuke')" alt="Nuke Tool" /></td>
 						</tr>
 						<tr>
 							<td><img src="images/paint/colors/colorWhite.png" id="colorWhite" alt="White" onmouseout="paintColorOnMouseOut('colorWhite')" onmouseover="paintColorOnMouseOver('colorWhite')" onclick="paintColorOnClick('colorWhite')" /></td>
@@ -133,9 +134,6 @@
 					<div id="popUpContentBottomContent">
 						<div id="fbookLogin">
 							<fb:login-button></fb:login-button>
-							<!--<a href="#" onclick="fbPop()">
-								<img src="images/buttons/fbLogin.png" alt="Login with Facebook" class="noBorder" id="fbLogin" onmouseout="imgMouseOff('buttons', 'fbLogin')" onmouseover="imgMouseOn('buttons', 'fbLogin')" />
-							</a>-->
 						</div>
 						<div id="popUpContentBottomContentRight">
 							<a href="#" onclick="popupFacebook('popUpFacebookDiv')"><img src="images/buttons/continue.png" class="noBorder" id="continue" onmouseout="imgMouseOff('buttons', 'continue')" onmouseover="imgMouseOn('buttons', 'continue')" /></a>
