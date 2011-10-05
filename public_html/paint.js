@@ -12,6 +12,11 @@ var previousDrawColor = "null";
 var currentDrawTool = "null";
 var previousDrawTool = "null";
 
+// the Y axis offset for the drawing tool. This number
+// is subtracted from the e._y variable in our mouse
+// button listeners
+var drawToolOffset = 49;
+
 // stores the user's current draw tool function
 var currentDrawToolFunction = "null";
 
@@ -25,8 +30,10 @@ function paintCanvasInit()
 	{
 		canvas = document.getElementById("paintCanvas");
 		canvasContext = canvas.getContext("2d");
-		canvasContext.fillStyle = "#FFFFFF";
-		canvasContext.fillRect(0, 0, 700, 470);
+
+		// clear the paintCanvas by placing a white rectangle on the
+		// area of it
+		clearPaintCanvas();
 
 		canvas.addEventListener("mousedown", canvasMouseEvent, false);
 		canvas.addEventListener("mousemove", canvasMouseEvent, false);
@@ -93,7 +100,7 @@ function toolBrush()
 
 			// the (e._y - X) on this line corrects for the
 			// browser offsets
-			canvasContext.moveTo(e._x, (e._y - 49));
+			canvasContext.moveTo(e._x, (e._y - drawToolOffset));
 		}
 	};
 
@@ -105,7 +112,7 @@ function toolBrush()
 		{
 			// the (e._y - X) on this line corrects for the
 			// browser offsets
-			canvasContext.lineTo(e._x, (e._y - 49));
+			canvasContext.lineTo(e._x, (e._y - drawToolOffset));
 			canvasContext.stroke();
 		}
 	};
@@ -138,6 +145,13 @@ function toolBucket()
 	this.currentlyPainting = false;
 
 	this.mousedown = function(e)
+	// 
+	{
+		
+	}
+
+	this.mouseup = function(e)
+	// 
 	{
 		
 	}
@@ -160,7 +174,7 @@ function toolEraser()
 		{
 			currentDrawToolFunction.currentlyPainting = true;
 			canvasContext.beginPath();
-			canvasContext.moveTo(e._x, (e._y - 49));
+			canvasContext.moveTo(e._x, (e._y - drawToolOffset));
 		}
 	};
 
@@ -170,7 +184,7 @@ function toolEraser()
 	{
 		if (currentDrawToolFunction.currentlyPainting)
 		{
-			canvasContext.lineTo(e._x, (e._y - 49));
+			canvasContext.lineTo(e._x, (e._y - drawToolOffset));
 			canvasContext.stroke();
 		}
 	};
@@ -212,7 +226,7 @@ function toolPencil()
 		{
 			currentDrawToolFunction.currentlyPainting = true;
 			canvasContext.beginPath();
-			canvasContext.moveTo(e._x, (e._y - 49));
+			canvasContext.moveTo(e._x, (e._y - drawToolOffset));
 		}
 	};
 
@@ -222,7 +236,7 @@ function toolPencil()
 	{
 		if (currentDrawToolFunction.currentlyPainting)
 		{
-			canvasContext.lineTo(e._x, (e._y - 49));
+			canvasContext.lineTo(e._x, (e._y - drawToolOffset));
 			canvasContext.stroke();
 		}
 	};
@@ -242,6 +256,17 @@ function toolPencil()
 			currentDrawToolFunction.mousemove(e);
 		}
 	};
+}
+
+
+function clearPaintCanvas()
+// clear the paintCanvas by placing a big white rectangle
+// across the entire area of it
+{
+	canvasContext.fillStyle = "#FFFFFF";
+
+	// 700 is the width of our canvas and 470 is the height
+	canvasContext.fillRect(0, 0, 700, 470);
 }
 
 
@@ -296,7 +321,9 @@ function paintColorOnClick(id)
 
 	switch (currentDrawColor)
 	// change the current stroke color depending on which
-	// color the user clicked on in the toolBox
+	// color the user clicked on in the toolBox. You can find
+	// this color information in this word document on our 
+	// github: /resources/website/paint/colors/colors.doc
 	{
 		case "colorBlack":
 			canvasContext.strokeStyle = "#000000";
@@ -444,24 +471,19 @@ function paintToolOnClick(id)
 	// the user clicked on in the toolBox
 	{
 		case "toolPencil":
-			currentDrawTool = "toolPencil";
 			currentDrawToolFunction = new toolPencil();
 			break;
 
 		case "toolBrush":
-			currentDrawTool = "toolBrush";
 			currentDrawToolFunction = new toolBrush();
 			break;
 
 		case "toolBucket":
-			currentDrawTool = "toolBucket";
 			currentDrawToolFunction = new toolBucket();
-			canvasContext.fillStyle = "#FFFFFF";
-			canvasContext.fillRect(0, 0, 700, 470);
+			clearPaintCanvas();
 			break;
 
 		case "toolEraser":
-			currentDrawTool = "toolEraser";
 			currentDrawToolFunction = new toolEraser();;
 			paintColorOnClick("colorWhite");
 			break;
