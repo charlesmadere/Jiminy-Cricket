@@ -141,12 +141,6 @@ function toolBrush()
 }
 
 
-/*function matchStartColor(canvasDataPosition)
-{
-	return (colorLayer.data[canvasDataPosition] == 
-}*/
-
-
 function toolBucket()
 // The function for the Bucket Tool on the paintArea toolbox.
 // What is the Bucket Tool? The Bucket Tool is the most complex
@@ -163,20 +157,6 @@ function toolBucket()
 		if (currentDrawColor != "null")
 		{
 			currentDrawToolFunction.currentlyPainting = true;
-			/*var canvasData = canvasContext.getImageData(0, 0, canvasWidth, canvasHeight);
-			var canvasDataStack = [[e._x, (e._y - drawToolOffset)]];
-			while (canvasDataStack.length)
-			{
-				var canvasDataPosition = canvasDataStack.pop();
-				var canvasDataPositionX = canvasDataPosition[0];
-				var canvasDataPositionY = canvasDataPosition[1];
-				var canvasPixelPosition = (canvasDataPositionY * canvasWidth + canvasDataPositionX) * 4;
-
-				for ( ; canvasDataPositionY < canvasHeight - 1 && ; --canvasDataPositionY)
-				{
-					
-				}
-			}*/
 		}
 	}
 

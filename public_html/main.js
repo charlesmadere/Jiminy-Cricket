@@ -3,7 +3,7 @@
 
 function main()
 {
-	popupFacebook('popUpFacebookDiv');
+	//popupFacebook('popUpFacebookDiv');
 	paintCanvasInit();
 }
 
