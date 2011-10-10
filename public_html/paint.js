@@ -150,13 +150,33 @@ function toolBucket()
 	currentDrawToolFunction = this;
 	this.currentlyPainting = false;
 
-	this.mousedown = function(e)
+	this.mousedown = function (e)
 	// when the user clicks and holds it down in the paintArea
 	// canvas
 	{
 		if (currentDrawColor != "null")
 		{
 			currentDrawToolFunction.currentlyPainting = true;
+
+			var cell = e._x * e._y * 4;
+			var canvasContextImageData = canvasContext.getImageData(0, 0, canvasWidth, canvasHeight);
+			var colorArray = getRGBACode(currentDrawColor);
+
+			Debugger.log("before: " + canvasContextImageData.data[cell] + " " + canvasContextImageData.data[cell + 1] + " " + canvasContextImageData.data[cell + 2] + " " + canvasContextImageData.data[cell + 3]);
+
+			// the Red value
+			canvasContextImageData.data[cell] = colorArray[0];
+
+			// the Green value
+			canvasContextImageData.data[cell + 1] = colorArray[1];
+
+			// the Blue value
+			canvasContextImageData.data[cell + 2] = colorArray[2];
+
+			// the Alpha value
+			canvasContextImageData.data[cell + 3] = colorArray[3];
+
+			Debugger.log(" after: " + canvasContextImageData.data[cell] + " " + canvasContextImageData.data[cell + 1] + " " + canvasContextImageData.data[cell + 2] + " " + canvasContextImageData.data[cell + 3]);
 		}
 	}
 
@@ -177,7 +197,7 @@ function toolEraser()
 	currentDrawToolFunction = this;
 	this.currentlyPainting = false;
 
-	canvasContext.lineWidth = 16;
+	canvasContext.lineWidth = 20;
 
 	this.mousedown = function(e)
 	// when the user clicks and holds it down in the paintArea
@@ -527,7 +547,179 @@ function paintToolOnClick(id)
 			}
 
 			break;
+
+		default:
+			currentDrawToolFunction = new toolPencil();
+			break;
 	}
+}
+
+
+function getRGBACode(colorString)
+// returns an array of 4 items that are the RGBA color for our
+// colorString
+{
+
+	// array that will hold our R, G, B, and A colors
+	// [0]: Red
+	// [1]: Green
+	// [2]: Blue
+	// [3]: Alpha
+	var RGBAArray = new Array(4);
+
+	switch (currentDrawColor)
+	// 
+	{
+		case "colorBlack":
+			RGBAArray[0] = 0;
+			RGBAArray[1] = 0;
+			RGBAArray[2] = 0;
+			RGBAArray[3] = 255;
+			break;
+
+		case "colorGrey":
+			RGBAArray[0] = 127;
+			RGBAArray[1] = 127;
+			RGBAArray[2] = 127;
+			RGBAArray[3] = 255;
+			break;
+
+		case "colorMaroon":
+			RGBAArray[0] = 136;
+			RGBAArray[1] = 0;
+			RGBAArray[2] = 21;
+			RGBAArray[3] = 255;
+			break;
+
+		case "colorRed":
+			RGBAArray[0] = 237;
+			RGBAArray[1] = 28;
+			RGBAArray[2] = 36;
+			RGBAArray[2] = 255;
+			break;
+
+		case "colorOrange":
+			RGBAArray[0] = 255;
+			RGBAArray[1] = 127;
+			RGBAArray[2] = 39;
+			RGBAArray[3] = 255
+			break;
+
+		case "colorYellow":
+			RGBAArray[0] = 255;
+			RGBAArray[1] = 242;
+			RGBAArray[2] = 0;
+			RGBAArray[3] = 255;
+			break;
+
+		case "colorGreen":
+			RGBAArray[0] = 34;
+			RGBAArray[1] = 177;
+			RGBAArray[2] = 76;
+			RGBAArray[3] = 255;
+			break;
+
+		case "colorLightBlue":
+			RGBAArray[0] = 0;
+			RGBAArray[1] = 162;
+			RGBAArray[2] = 232;
+			RGBAArray[3] = 255;
+			break;
+
+		case "colorBlue":
+			RGBAArray[0] = 63;
+			RGBAArray[1] = 72;
+			RGBAArray[2] = 204;
+			RGBAArray[3] = 255;
+			break;
+
+		case "colorPurple":
+			RGBAArray[0] = 163;
+			RGBAArray[1] = 73;
+			RGBAArray[2] = 164;
+			RGBAArray[3] = 255;
+			break;
+
+		case "colorWhite":
+			RGBAArray[0] = 255;
+			RGBAArray[1] = 255;
+			RGBAArray[2] = 255;
+			RGBAArray[3] = 255;
+			break;
+
+		case "colorLightGrey":
+			RGBAArray[0] = 195;
+			RGBAArray[1] = 195;
+			RGBAArray[2] = 195;
+			RGBAArray[3] = 255;
+			break;
+
+		case "colorBrown":
+			RGBAArray[0] = 185;
+			RGBAArray[1] = 122;
+			RGBAArray[2] = 87;
+			RGBAArray[3] = 255;
+			break;
+
+		case "colorPink":
+			RGBAArray[0] = 255;
+			RGBAArray[1] = 174;
+			RGBAArray[2] = 201;
+			RGBAArray[3] = 255;
+			break;
+
+		case "colorYellowOrange":
+			RGBAArray[0] = 255;
+			RGBAArray[1] = 201;
+			RGBAArray[2] = 14;
+			RGBAArray[3] = 255;
+			break;
+
+		case "colorTan":
+			RGBAArray[0] = 239;
+			RGBAArray[1] = 228;
+			RGBAArray[2] = 176;
+			RGBAArray[3] = 255;
+			break;
+
+		case "colorYellowGreen":
+			RGBAArray[0] = 181;
+			RGBAArray[1] = 230;
+			RGBAArray[2] = 29;
+			RGBAArray[3] = 255;
+			break;
+
+		case "colorSkyBlue":
+			RGBAArray[0] = 153;
+			RGBAArray[1] = 217;
+			RGBAArray[2] = 234;
+			RGBAArray[3] = 255;
+			break;
+
+		case "colorRoyalBlue":
+			RGBAArray[0] = 112;
+			RGBAArray[1] = 146;
+			RGBAArray[2] = 190;
+			RGBAArray[3] = 255;
+			break;
+
+		case "colorLightPurple":
+			RGBAArray[0] = 200;
+			RGBAArray[1] = 191;
+			RGBAArray[2] = 231;
+			RGBAArray[3] = 255;
+			break;
+
+		default:
+		// use black for an unknown color
+			RGBAArray[0] = 0;
+			RGBAArray[1] = 0;
+			RGBAArray[2] = 0;
+			RGBAArray[3] = 255;
+			break;
+	}
+
+	return RGBAArray;
 }
 
 
