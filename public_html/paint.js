@@ -18,13 +18,13 @@ var currentDrawToolFunction = "null";
 // the Y axis offset for the drawing tool. This number
 // is subtracted from the e._y variable in our mouse
 // button listeners
-var drawToolOffset = 49;
+var DRAW_TOOL_OFFSET = 49;
 
 // the height of the canvas (paintCanvas)
-var canvasHeight = 470;
+var CANVAS_HEIGHT = 470;
 
 // the width of the canvas (paintCanvas)
-var canvasWidth = 700;
+var CANVAS_WIDTH = 700;
 
 
 function paintCanvasInit()
@@ -74,6 +74,7 @@ function canvasMouseEvent(e)
 	// draw with.
 	{
 		var func = currentDrawToolFunction[e.type];
+
 		if (func)
 		{
 			func(e);
@@ -106,7 +107,7 @@ function toolBrush()
 
 			// the (e._y - X) on this line corrects for the
 			// browser offsets
-			canvasContext.moveTo(e._x, (e._y - drawToolOffset));
+			canvasContext.moveTo(e._x, (e._y - DRAW_TOOL_OFFSET));
 		}
 	};
 
@@ -118,7 +119,7 @@ function toolBrush()
 		{
 			// the (e._y - X) on this line corrects for the
 			// browser offsets
-			canvasContext.lineTo(e._x, (e._y - drawToolOffset));
+			canvasContext.lineTo(e._x, (e._y - DRAW_TOOL_OFFSET));
 			canvasContext.stroke();
 		}
 	};
@@ -148,44 +149,183 @@ function toolBucket()
 // chosen color.
 {
 	currentDrawToolFunction = this;
-	this.currentlyPainting = false;
+
+	// this will store the pixel data of the paintArea canvas
+	var canvasContextImageData;
+
+	// will store the RGBA color of the pixel that the user
+	// originally clicked on
+	var oldColorArray = new Array(4);
+
+	// will store the RGBA color of the color that the user
+	// has chosen to draw with
+	var newColorArray = new Array(4);
 
 	this.mousedown = function (e)
 	// when the user clicks and holds it down in the paintArea
 	// canvas
 	{
 		if (currentDrawColor != "null")
+		// the user must have a drawing color currently selected in order
+		// for us to actually draw anything!
 		{
-			currentDrawToolFunction.currentlyPainting = true;
+			// get the RGBA code for the color that the user wants to
+			// use the fill tool with. The RGBA code is an array that
+			// is 4 variables long. [0]: Red, [1]: Green, [2]: Blue,
+			// [3]: Alpha
+			newColorArray = getRGBACode(currentDrawColor);
 
-			var cell = e._x * e._y * 4;
-			var canvasContextImageData = canvasContext.getImageData(0, 0, canvasWidth, canvasHeight);
-			var colorArray = getRGBACode(currentDrawColor);
+			// get the x and y pixel locations of the cursor click. Do
+			// modify these variables!
+			var ORIGINAL_X_PIXEL = e._x;
+			var ORIGINAL_Y_PIXEL = e._y - DRAW_TOOL_OFFSET;
 
-			Debugger.log("before: " + canvasContextImageData.data[cell] + " " + canvasContextImageData.data[cell + 1] + " " + canvasContextImageData.data[cell + 2] + " " + canvasContextImageData.data[cell + 3]);
+			// get the exact cell that the user clicked on
+			var ORIGINAL_CELL = (CANVAS_WIDTH * ORIGINAL_Y_PIXEL + ORIGINAL_X_PIXEL) * 4;
 
+			// save the exact pixel data of the paintArea canvas
+			canvasContextImageData = canvasContext.getImageData(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+
+			// the RGBA color of the exact pixel that the user clicked
+			// on. This needs to be stored because later other pixels
+			// will be compared to this one.
+			oldColorArray[0] = canvasContextImageData.data[ORIGINAL_CELL];
+			oldColorArray[1] = canvasContextImageData.data[ORIGINAL_CELL + 1];
+			oldColorArray[2] = canvasContextImageData.data[ORIGINAL_CELL + 2];
+			oldColorArray[3] = canvasContextImageData.data[ORIGINAL_CELL + 3];
+
+			// initialize an array. This array will be used as a stack
+			// so that we can do lots of pushes to it (add data to the
+			// stack) and pops from it (take data away from the stack)
+			var stack = new Array();
+
+			// push the exact pixel coordinates that the user clicked
+			// on onto the stack. Note how we push Y before X. This is
+			// necessary because whenever you do stack.pop() the data
+			// that you recieve will be the most recent thing pushed.
+			// So if we do a stack.pop() right after these two lines
+			// then what we will recieve is the value for
+			// ORIGINAL_X_PIXEL
+			stack.push(ORIGINAL_Y_PIXEL);
+			stack.push(ORIGINAL_X_PIXEL);
+
+			do
+			// enter the main loop. This loop does a lot. see the
+			// comments below for a description of what goes on line
+			// by line. But basically it finds all adjacent pixels
+			// of the same color that the user clicked on and changes
+			// and changes them to the user selected color in the
+			// process. This is NOT recursive. This is 100% my own code.
+			{
+				// retrieve the most coordinates most recently pushed
+				// to the stack
+				var x = stack.pop();
+				var y = stack.pop();
+
+				// figure out what cell we're going to be working with.
+				// This is what position we are on in the array
+				// canvasContextImageData.data
+				var cell = (CANVAS_WIDTH * y + x) * 4;
+
+				// apply the user selected color to the current cell
+				applyNewColor(cell);
+
+				// get the cell that is located directly above the
+				// current one. This is exactly one pixel upwards
+				cell = (CANVAS_WIDTH * (y - 1) + x) * 4;
+
+				if (checkColorsForMatch(cell) && cell >= 0)
+				// the cell is the color that we are replacing and
+				// has an index of >= 0. This is important because
+				// we can have a negative cell
+				{
+					stack.push(y - 1);
+					stack.push(x);
+				}
+
+				// get the cell that is located directly left of
+				// the current one. This is exactly one pixel to
+				// the left.
+				cell = (CANVAS_WIDTH * y + (x - 1)) * 4;
+
+				if (checkColorsForMatch(cell) && cell >= 0)
+				// the cell is the color that we are replacing and
+				// has an index of >= 0. This is important because
+				// we can have a negative cell
+				{
+					stack.push(y);
+					stack.push(x - 1);
+				}
+
+				// get the cell that is located directly below the
+				// current one. This is exactly one pixel down.
+				cell = (CANVAS_WIDTH * (y + 1) + x) * 4;
+
+				if (checkColorsForMatch(cell) && cell >= 0)
+				// the cell is the color that we are replacing and
+				// has an index of >= 0. This is important because
+				// we can have a negative cell
+				{
+					stack.push(y + 1);
+					stack.push(x);
+				}
+
+				// get the cell that is located directly right of
+				// the current one. This is exactly one pixel to
+				// the right.
+				cell = (CANVAS_WIDTH * y + (x + 1)) * 4;
+
+				if (checkColorsForMatch(cell) && cell >= 0)
+				// the cell is the color that we are replacing and
+				// has an index of >= 0. This is important because
+				// we can have a negative cell
+				{
+					stack.push(y);
+					stack.push(x + 1);
+				}
+			}
+			// continue to loop as long as there are more than 0
+			// elements in the stack
+			while (stack.length);
+		}
+
+		// apply our changes to the paintArea canvas
+		canvasContext.putImageData(canvasContextImageData, 0, 0);
+
+		function checkColorsForMatch(cell)
+		// compare the colors in oldColorArray to the colors in the current
+		// cell. if they are equal this function will return true
+		{
+			if (oldColorArray[0] == canvasContextImageData.data[cell]
+				&& oldColorArray[1] == canvasContextImageData.data[cell + 1]
+				&& oldColorArray[2] == canvasContextImageData.data[cell + 2]
+				&& oldColorArray[3] == canvasContextImageData.data[cell + 3])
+			// test to see if each array item is equal. Remember that
+			// [0]: Red, [1]: Green, [2]: Blue, [3]: Alpha
+			{
+				return true;
+			}
+			else
+			// the two arrays are not equal
+			{
+				return false;
+			}
+		}
+
+		function applyNewColor(cell)
+		// apply the user's current drawing color to the current cell
+		{
 			// the Red value
-			canvasContextImageData.data[cell] = colorArray[0];
+			canvasContextImageData.data[cell] = newColorArray[0];
 
 			// the Green value
-			canvasContextImageData.data[cell + 1] = colorArray[1];
+			canvasContextImageData.data[cell + 1] = newColorArray[1];
 
 			// the Blue value
-			canvasContextImageData.data[cell + 2] = colorArray[2];
+			canvasContextImageData.data[cell + 2] = newColorArray[2];
 
 			// the Alpha value
-			canvasContextImageData.data[cell + 3] = colorArray[3];
-
-			Debugger.log(" after: " + canvasContextImageData.data[cell] + " " + canvasContextImageData.data[cell + 1] + " " + canvasContextImageData.data[cell + 2] + " " + canvasContextImageData.data[cell + 3]);
-		}
-	}
-
-	this.mouseup = function(e)
-	// when the user releases the click in the paintArea canvas
-	{
-		if (currentDrawToolFunction.currentlyPainting)
-		{
-			currentDrawToolFunction.currentlyPainting = false;
+			canvasContextImageData.data[cell + 3] = newColorArray[3];
 		}
 	}
 }
@@ -207,7 +347,7 @@ function toolEraser()
 		{
 			currentDrawToolFunction.currentlyPainting = true;
 			canvasContext.beginPath();
-			canvasContext.moveTo(e._x, (e._y - drawToolOffset));
+			canvasContext.moveTo(e._x, (e._y - DRAW_TOOL_OFFSET));
 		}
 	};
 
@@ -217,7 +357,7 @@ function toolEraser()
 	{
 		if (currentDrawToolFunction.currentlyPainting)
 		{
-			canvasContext.lineTo(e._x, (e._y - drawToolOffset));
+			canvasContext.lineTo(e._x, (e._y - DRAW_TOOL_OFFSET));
 			canvasContext.stroke();
 		}
 	};
@@ -259,7 +399,7 @@ function toolPencil()
 		{
 			currentDrawToolFunction.currentlyPainting = true;
 			canvasContext.beginPath();
-			canvasContext.moveTo(e._x, (e._y - drawToolOffset));
+			canvasContext.moveTo(e._x, (e._y - DRAW_TOOL_OFFSET));
 		}
 	};
 
@@ -269,7 +409,7 @@ function toolPencil()
 	{
 		if (currentDrawToolFunction.currentlyPainting)
 		{
-			canvasContext.lineTo(e._x, (e._y - drawToolOffset));
+			canvasContext.lineTo(e._x, (e._y - DRAW_TOOL_OFFSET));
 			canvasContext.stroke();
 		}
 	};
@@ -297,7 +437,7 @@ function clearPaintCanvas()
 // across the entire area of it
 {
 	canvasContext.fillStyle = "#FFFFFF";
-	canvasContext.fillRect(0, 0, canvasWidth, canvasHeight);
+	canvasContext.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 }
 
 
@@ -557,7 +697,9 @@ function paintToolOnClick(id)
 
 function getRGBACode(colorString)
 // returns an array of 4 items that are the RGBA color for our
-// colorString
+// colorString. You can find this color information in this
+// word document on our github:
+// /resources/website/paint/colors/colors.doc
 {
 
 	// array that will hold our R, G, B, and A colors
@@ -568,7 +710,7 @@ function getRGBACode(colorString)
 	var RGBAArray = new Array(4);
 
 	switch (currentDrawColor)
-	// 
+	// set the array to the RGBA color values.
 	{
 		case "colorBlack":
 			RGBAArray[0] = 0;
@@ -595,7 +737,7 @@ function getRGBACode(colorString)
 			RGBAArray[0] = 237;
 			RGBAArray[1] = 28;
 			RGBAArray[2] = 36;
-			RGBAArray[2] = 255;
+			RGBAArray[3] = 255;
 			break;
 
 		case "colorOrange":
