@@ -1,0 +1,57 @@
+#chatArea
+{
+	height: 328px;
+	width: 300px;
+}
+
+#content div
+{
+	float: left;
+}
+
+#currentTopic
+{
+	height: 48px;
+	width: 300px;
+}
+
+#currentWordAndTimeLeft
+{
+	height: 48px;
+	width: 700px;
+}
+
+#linkToInvite
+{
+	height: 64px;
+	width: 300px;
+}
+
+#paintArea
+{
+	cursor: crosshair;
+	height: 470px;
+	width: 700px;
+}
+
+#toolBox
+{
+	height: 82px;
+	width: 700px;
+}
+
+#toolBoxTable
+{
+	height: 82px;
+	text-align: center;
+	width: 700px;
+}
+
+#whoIsPlaying
+{
+	height: 224px;
+	width: 300px;
+}
+
+
+/* Team Jiminy Cricket */
