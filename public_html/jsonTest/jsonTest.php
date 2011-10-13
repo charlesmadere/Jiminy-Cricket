@@ -28,6 +28,9 @@
 		<p>
 			<?php loadTopics("CartoonCharacters.json"); ?>
 		</p>
+		<p>
+			<?php loadTopics("Animals.json"); ?>
+		</p>
 	</body>
 
 </html>
