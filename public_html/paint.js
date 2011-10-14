@@ -4,16 +4,24 @@ var canvas;
 // stores the canvas.getContext("2d") for the paintCanvas
 var canvasContext;
 
-// stores the user's current color
+// stores the user's current color as well as their
+// previous one so that we can switch them back to it
+// when they're done using the eraser tool
 var currentDrawColor = "null";
 var previousDrawColor = "null";
 
-// stores the user's current draw tool
+// stores the user's current draw tool as well as their
+// previous one so that we can switch them back to it
+// when they do a canvas clear or an undo
 var currentDrawTool = "null";
 var previousDrawTool = "null";
 
 // stores the user's current draw tool function
 var currentDrawToolFunction = "null";
+
+// stores previous versions of the canvas for the undo
+// button
+var canvasUndoStates = new Array();
 
 // the Y axis offset for the drawing tool. This number
 // is subtracted from the e._y variable in our mouse
@@ -108,6 +116,9 @@ function toolBrush()
 			// the (e._y - X) on this line corrects for the
 			// browser offsets
 			canvasContext.moveTo(e._x, (e._y - DRAW_TOOL_OFFSET));
+
+			// 
+			addToUndo();
 		}
 	};
 
@@ -169,6 +180,10 @@ function toolBucket()
 		// the user must have a drawing color currently selected in order
 		// for us to actually draw anything!
 		{
+
+			// 
+			addToUndo();
+
 			// get the RGBA code for the color that the user wants to
 			// use the fill tool with. The RGBA code is an array that
 			// is 4 variables long. [0]: Red, [1]: Green, [2]: Blue,
@@ -298,8 +313,7 @@ function toolBucket()
 		{
 			if (oldColorArray[0] == canvasContextImageData.data[cell]
 				&& oldColorArray[1] == canvasContextImageData.data[cell + 1]
-				&& oldColorArray[2] == canvasContextImageData.data[cell + 2]
-				&& oldColorArray[3] == canvasContextImageData.data[cell + 3])
+				&& oldColorArray[2] == canvasContextImageData.data[cell + 2])
 			// test to see if each array item is equal. Remember that
 			// [0]: Red, [1]: Green, [2]: Blue, [3]: Alpha
 			{
@@ -348,6 +362,9 @@ function toolEraser()
 			currentDrawToolFunction.currentlyPainting = true;
 			canvasContext.beginPath();
 			canvasContext.moveTo(e._x, (e._y - DRAW_TOOL_OFFSET));
+
+			// 
+			addToUndo();
 		}
 	};
 
@@ -400,6 +417,9 @@ function toolPencil()
 			currentDrawToolFunction.currentlyPainting = true;
 			canvasContext.beginPath();
 			canvasContext.moveTo(e._x, (e._y - DRAW_TOOL_OFFSET));
+
+			// 
+			addToUndo();
 		}
 	};
 
@@ -438,6 +458,34 @@ function clearPaintCanvas()
 {
 	canvasContext.fillStyle = "#FFFFFF";
 	canvasContext.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+	
+	// clear the undo states
+	canvasUndoStates = [];
+}
+
+
+function addToUndo()
+// add the current canvas state to our undo states
+{
+	if (canvasUndoStates.length == 4)
+	// check to see if there are X undo states currently
+	// saved. X is our maximum amount of undo states
+	{
+		// remove the element furthest down in the undo
+		// states stack. this removes the oldest canvas
+		// state
+		canvasUndoStates.splice(0, 1);
+
+		// push our newest canvas state onto the stack
+		canvasUndoStates.push(canvasContext.getImageData(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT));
+	}
+	else
+	// there are less than X undo states currently
+	// saved.
+	{
+		// push our newest canvas state onto the stack
+		canvasUndoStates.push(canvasContext.getImageData(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT));
+	}
 }
 
 
@@ -659,7 +707,31 @@ function paintToolOnClick(id)
 			break;
 		
 		case "toolUndo":
-			
+			// we don't want the undo tool to be a tool that can be
+			// continuously used. It should just be clicked one and
+			// then done with. This below code will immediately
+			// switch the user back to the tool they used before the
+			// undo tool. If they did not already use any tool then
+			// the pencil tool will be automatically activated
+			if (previousDrawTool != "null")
+			{
+				if (canvasUndoStates.length >= 1)
+				// ensure that there are some undo states that we
+				// can restore to
+				{
+					// restore the newest undo state onto the canvas
+					canvasContext.putImageData(canvasUndoStates.pop(), 0, 0);
+				}
+
+				// restore the user's previously used tool
+				paintToolOnClick(previousDrawTool);
+			}
+			else
+			{
+				// switch the user to the pencil tool
+				paintToolOnClick("toolPencil");
+			}
+
 			break;
 
 		case "toolNuke":
@@ -683,10 +755,12 @@ function paintToolOnClick(id)
 					clearPaintCanvas();
 				}
 
+				// restore the user's previously used tool
 				paintToolOnClick(previousDrawTool);
 			}
 			else
 			{
+				// switch the user to the pencil tool
 				paintToolOnClick("toolPencil");
 			}
 

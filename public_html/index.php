@@ -85,6 +85,7 @@
 							<td rowspan="2"><img src="images/paint/tools/toolBrush.png" id="toolBrush" onmouseout="paintToolOnMouseOut('toolBrush')" onmouseover="paintToolOnMouseOver('toolBrush')" onclick="paintToolOnClick('toolBrush')" alt="Brush Tool" /></td>
 							<td rowspan="2"><img src="images/paint/tools/toolBucket.png" id="toolBucket" onmouseout="paintToolOnMouseOut('toolBucket')" onmouseover="paintToolOnMouseOver('toolBucket')" onclick="paintToolOnClick('toolBucket')" alt="Bucket Tool" /></td>
 							<td rowspan="2"><img src="images/paint/tools/toolEraser.png" id="toolEraser" onmouseout="paintToolOnMouseOut('toolEraser')" onmouseover="paintToolOnMouseOver('toolEraser')" onclick="paintToolOnClick('toolEraser')" alt="Eraser Tool" /></td>
+							<td rowspan="2"><img src="images/paint/tools/toolUndo.png" id="toolUndo" onmouseout="paintToolOnMouseOut('toolUndo')" onmouseover="paintToolOnMouseOver('toolUndo')" onclick="paintToolOnClick('toolUndo')" alt="Undo Tool" /></td>
 							<td rowspan="2"><img src="images/paint/tools/toolNuke.png" id="toolNuke" onmouseout="paintToolOnMouseOut('toolNuke')" onmouseover="paintToolOnMouseOver('toolNuke')" onclick="paintToolOnClick('toolNuke')" alt="Nuke Tool" /></td>
 						</tr>
 						<tr>
