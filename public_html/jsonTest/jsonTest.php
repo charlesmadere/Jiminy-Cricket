@@ -33,6 +33,9 @@
 		</p>
 		<p>
 			<?php loadTopics("SuperHeroes.json"); ?>
+		</p>
+		<p>
+			<?php loadTopics("VideoGames.json"); ?>
 		</p>	
 	</body>
 
