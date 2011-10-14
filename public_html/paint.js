@@ -657,6 +657,10 @@ function paintToolOnClick(id)
 			currentDrawToolFunction = new toolEraser();;
 			paintColorOnClick("colorWhite");
 			break;
+		
+		case "toolUndo":
+			
+			break;
 
 		case "toolNuke":
 			// we don't want the nuke tool to be a tool that can be
