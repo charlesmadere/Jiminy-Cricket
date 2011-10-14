@@ -31,6 +31,9 @@
 		<p>
 			<?php loadTopics("Animals.json"); ?>
 		</p>
+		<p>
+			<?php loadTopics("SuperHeroes.json"); ?>
+		</p>	
 	</body>
 
 </html>
