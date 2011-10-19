@@ -1,0 +1,24 @@
+		<div id="blanket" style="display: none;"></div>
+		<div id="popUpFacebookDiv" style="display: none;">
+		<!-- the code within this div is displayed only when the
+		please login to facebook popup shows. -->
+			<div id="popUpContent">
+				<div id="popUpContentLeft">
+					<img src="images/icons/inform-128.png" />
+				</div>
+				<div id="popUpContentRight">
+					<h2>You need to login to Facebook to use WePaint! Please connect your Facebook account to continue.</h2>
+					<div class="error" id="errorFacebookDiv"></div>
+				</div>
+				<div id="popUpContentBottom">
+					<div id="popUpContentBottomContent">
+						<div id="fbookLogin">
+							<fb:login-button></fb:login-button>
+						</div>
+						<div id="popUpContentBottomContentRight">
+							<a href="#" onclick="popupFacebook('popUpFacebookDiv')"><img src="images/buttons/continue.png" class="noBorder" id="continue" onmouseout="imgMouseOff('buttons', 'continue')" onmouseover="imgMouseOn('buttons', 'continue')" /></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>

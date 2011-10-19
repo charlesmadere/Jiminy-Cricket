@@ -1,0 +1,104 @@
+#blanket
+{
+	background-color: #C0C0C0;
+	opacity: 0.65;
+	filter: alpha(opacity=65);
+	left: 0px;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	z-index: 5;
+}
+
+#popUpContent
+{
+	height: 436px;
+	margin-left: 16px;
+	margin-right: 16px;
+	margin-top: 24px;
+	position: relative;
+	width: 608px;
+}
+
+#popUpContent div
+{
+	float: left;
+}
+
+#popUpContentBottom
+{
+	border-top-style: dashed;
+	border-width: 1px;
+	height: 204px;
+	margin-left: 16px;
+	margin-right: 16px;
+	margin-top: 16px;
+	width: 576px;
+}
+
+#popUpContentBottomContent
+{
+	height: 164px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 40px;
+	text-align: center;
+	width: 576px;
+}
+
+#popUpContentBottomContent
+{
+	float: left;
+}
+
+#popUpContentBottomContentRight
+{
+	height: 144px;
+	margin-top: 20px;
+	width: 320px;
+}
+
+#popUpContentLeft
+{
+	height: 176px;
+	margin-left: 20px;
+	margin-top: 40px;
+	width: 172px;
+}
+
+#popUpContentRight
+{
+	height: 200px;
+	margin-top: 16px;
+	margin-right: 16px;
+	width: 400px;
+}
+
+#popUpFacebookDiv
+{
+	background-color: #FFFFFF;
+	background-image: url('images/barHigh.png');
+	background-position: top;
+	background-repeat: repeat-x;
+	box-shadow: 5px 5px 5px #666666;
+	position: absolute;
+	height: 480px;
+	width: 640px;
+	z-index: 10;
+}
+
+#popUpDiv
+{
+	background-color: #FFFFFF;
+	background-image: url('images/barHigh.png');
+	background-position: top;
+	background-repeat: repeat-x;
+	box-shadow: 5px 5px 5px #666666;
+	position: absolute;
+	height: 480px;
+	width: 640px;
+	z-index: 10;
+}
+
+
+/* Team Jiminy Cricket */

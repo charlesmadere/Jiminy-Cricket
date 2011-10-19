@@ -1,0 +1,164 @@
+.bottomBorder
+{
+	border-bottom-style: solid;
+	border-width: 1px;
+}
+
+.error
+{
+	color: #DC143C;
+}
+
+.noBorder
+{
+	border: 0;
+}
+
+#content
+/* this code centers the page */
+{
+	height: 605px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 12px;
+	position: relative;
+	width: 1024px;
+}
+
+#content div
+{
+	float: left;
+}
+
+#contentLite
+/* this code centers the page */
+{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 32px;
+	position: relative;
+	width: 800px;
+}
+
+#contentLite div
+{
+	float: left;
+}
+
+#contentLiteLeft
+{
+	height: 208px;
+	margin-left: 32px;
+	margin-top: 32px;
+	text-align: center;
+	width: 256px;
+}
+
+#contentLiteRight
+{
+	height: 176px;
+	margin-left: 24px;
+	margin-right: 16px;
+	margin-top: 64px;
+	text-align: center;
+	width: 472px;
+}
+
+#contentLiteBottom
+{
+	margin-left: 24px;
+	margin-right: 24px;
+	width: 752px;
+}
+
+#contentLeft
+{
+	border-style: solid;
+	border-width: 1px;
+	width: 700px;
+}
+
+#contentRight
+{
+	border-bottom-style: solid;
+	border-right-style: solid;
+	border-top-style: solid;
+	border-width: 1px;
+	width: 300px;
+}
+
+#header
+{
+	background-image: url('../../images/nav/header.png');
+	background-repeat: repeat-x;
+	height: 92px;
+	width: 100%;
+}
+
+#headerLite
+{
+	background-image: url('../../images/barHigh.png');
+	background-repeat: repeat-x;
+	height: 12px;
+	width: 100%;
+}
+
+a:active
+{
+	color: #FFA82A;
+	text-decoration: none;
+}
+
+a:hover
+{
+	color: #D58C23;
+	text-decoration: underline;
+}
+
+a:link
+{
+	color: #FF9700;
+	text-decoration: none;
+}
+
+a:visited
+{
+	color: #C47400;
+	text-decoration: none;
+}
+
+body
+{
+	font-family: Calibri, Arial, sans-serif;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+}
+
+h1
+{
+	font-family: "Segoe UI Semibold", "Segoe UI", sans-serif;
+	font-weight: normal;
+	margin-top: 4px;
+}
+
+h2
+{
+	font-family: "Segoe UI", sans-serif;
+	font-weight: normal;
+}
+
+h3
+{
+	font-family: "Segoe UI Light", "Segoe UI", sans-serif;
+	font-weight: normal;
+}
+
+p
+{
+	margin-top: 8px;
+}
+
+
+/* Team Jiminy Cricket */
