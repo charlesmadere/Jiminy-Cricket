@@ -497,7 +497,7 @@ function paintColorOnMouseOut(id)
 	// perform an onmouseout image change event
 	{
 		// change the id's image src
-		document.getElementById(id).src = "images/paint/colors/" + id + ".png";
+		document.getElementById(id).src = "../../images/paint/colors/" + id + ".png";
 	}
 }
 
@@ -510,7 +510,7 @@ function paintColorOnMouseOver(id)
 	// perform an onmouseover image change event
 	{
 		// change the id's image src
-		document.getElementById(id).src = "images/paint/colors/" + id + "-on.png";
+		document.getElementById(id).src = "../../images/paint/colors/" + id + "-on.png";
 	}
 }
 
@@ -523,13 +523,13 @@ function paintColorOnClick(id)
 		previousDrawColor = currentDrawColor;
 
 		// change the old color's image src to the regular style image
-		document.getElementById(currentDrawColor).src = "images/paint/colors/" + currentDrawColor + ".png";
+		document.getElementById(currentDrawColor).src = "../../images/paint/colors/" + currentDrawColor + ".png";
 	}
 
 	currentDrawColor = id;
 
 	// change the id's image src to the active style image
-	document.getElementById(currentDrawColor).src = "images/paint/colors/" + currentDrawColor + "-active.png";
+	document.getElementById(currentDrawColor).src = "../../images/paint/colors/" + currentDrawColor + "-active.png";
 
 	if (currentDrawTool == "null")
 	// if the user chose a color but has not yet chosen a tool
@@ -635,7 +635,7 @@ function paintToolOnMouseOut(id)
 	// perform an onmouseout image change event
 	{
 		// change the id's image src
-		document.getElementById(id).src = "images/paint/tools/" + id + ".png";
+		document.getElementById(id).src = "../../images/paint/tools/" + id + ".png";
 	}
 }
 
@@ -648,7 +648,7 @@ function paintToolOnMouseOver(id)
 	// perform an onmouseover image change event
 	{
 		// change the id's image src
-		document.getElementById(id).src = "images/paint/tools/" + id + "-on.png";
+		document.getElementById(id).src = "../../images/paint/tools/" + id + "-on.png";
 	}
 }
 
@@ -663,13 +663,13 @@ function paintToolOnClick(id)
 		previousDrawTool = currentDrawTool;
 
 		// change the id's image src to the regular style image
-		document.getElementById(currentDrawTool).src = "images/paint/tools/" + currentDrawTool + ".png";
+		document.getElementById(currentDrawTool).src = "../../images/paint/tools/" + currentDrawTool + ".png";
 	}
 
 	currentDrawTool = id;
 
 	// change the id's image src to the active style image
-	document.getElementById(currentDrawTool).src = "images/paint/tools/" + currentDrawTool + "-active.png";
+	document.getElementById(currentDrawTool).src = "../../images/paint/tools/" + currentDrawTool + "-active.png";
 
 	if (currentDrawTool != "toolEraser" && previousDrawTool == "toolEraser" && previousDrawColor != "null")
 	// make it easier for the user to switch between tools by saving

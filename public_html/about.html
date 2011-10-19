@@ -5,11 +5,19 @@
 	<head>
 		<link href="http://www.wepaint.us/assets/stylesheets/basic.css" rel="stylesheet" type="text/css" />
 		<meta charset="UTF-8" />
+		<script src="assets/javascript/basic.js" type="text/javascript"></script>
 		<title>About ~ WePaint.us</title>
 	</head>
 
 	<body>
-		<div id="headerLite"></div>
+		<div id="header">
+			<img src="images/wepaint.png" alt="WePaint.us" />
+			<img src="images/nav/divider.png" />
+			<img src="images/nav/spacer.png" />
+			<a href="about.html">
+				<img src="images/nav/about.png" alt="About" class="noBorder" id="about" onmouseout="imgMouseOff('nav', 'about')" onmouseover="imgMouseOn('nav', 'about')" />
+			</a>
+		</div>
 		<div id="contentLite">
 			<div id="contentLiteLeft">
 				<img src="http://www.wepaint.us/images/icons/inform-128.png" />
@@ -18,7 +26,7 @@
 				<h1>About We Paint</h1>
 			</div>
 			<div id="contentLiteBottom">
-				<h3>Hello, World!</h3>
+				<p><a href="https://github.com/ScootrNova/Jiminy-Cricket" target="_blank"><img src="images/other/octocat.png" class="noBorder" /></a></p>
 			</div>
 		</div>
 	</body>
