@@ -52,11 +52,7 @@
 
 	<body>
 		<div id="fb-root"></div>
-		<div id="header">
-			<img src="images/wepaint.png" alt="WePaint.us" />
-			<img src="images/nav/divider.png" />
-			<img src="images/nav/spacer.png" />
-		</div>
+		<div id="headerLite"></div>
 		<div id="content">
 			<div id="contentLeft">
 				<div class="bottomBorder" id="currentWordAndTimeLeft">
