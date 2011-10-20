@@ -247,87 +247,6 @@ function toolBucket()
 				// apply the user selected color to the current cell
 				applyNewColor(cell);
 
-				var west = (x - 1);
-				var east = (x + 1);
-
-				cell = (CANVAS_WIDTH * y + west) * 4;
-
-				while (checkColorsForMatch(cell) && cell >= 0)
-				// 
-				{
-					// apply the user selected color to the current cell
-					applyNewColor(cell);
-
-					// go west one more pixel
-					--west;
-
-					// calculate west cell
-					cell = (CANVAS_WIDTH * y + west) * 4;
-				}
-
-				cell = (CANVAS_WIDTH * y + east) * 4;
-
-				while (checkColorsForMatch(cell) && cell >= 0)
-				// 
-				{
-					// apply the user selected color to the current cell
-					applyNewColor(cell);
-
-					// go east one more pixel
-					++east;
-
-					// calculate east cell
-					cell = (CANVAS_WIDTH * y + east) * 4;
-				}
-
-				while (west != x)
-				// 
-				{
-					++west;
-
-					cell = (CANVAS_WIDTH * (y - 1) + west) * 4;
-
-					if (checkColorsForMatch(cell) && cell >= 0)
-					// 
-					{
-						stack.push(y - 1);
-						stack.push(west);
-					}
-
-					cell = (CANVAS_WIDTH * (y + 1) + west) * 4;
-
-					if (checkColorsForMatch(cell) && cell >= 0)
-					//
-					{
-						stack.push(y + 1);
-						stack.push(west);
-					}
-				}
-
-				while (east != x)
-				// 
-				{
-					--east;
-
-					cell = (CANVAS_WIDTH * (y - 1) + east) * 4;
-
-					if (checkColorsForMatch(cell) && cell >= 0)
-					// 
-					{
-						stack.push(y - 1);
-						stack.push(east);
-					}
-
-					cell = (CANVAS_WIDTH * (y + 1) + east) * 4;
-
-					if (checkColorsForMatch(cell) && cell >= 0)
-					//
-					{
-						stack.push(y + 1);
-						stack.push(east);
-					}
-				}
-
 				// get the cell that is located directly above the
 				// current one. This is exactly one pixel upwards
 				cell = (CANVAS_WIDTH * (y - 1) + x) * 4;
@@ -341,6 +260,20 @@ function toolBucket()
 					stack.push(x);
 				}
 
+				// get the cell that is located directly left of
+				// the current one. This is exactly one pixel to
+				// the left.
+				cell = (CANVAS_WIDTH * y + (x - 1)) * 4;
+
+				if (checkColorsForMatch(cell) && cell >= 0)
+				// the cell is the color that we are replacing and
+				// has an index of >= 0. This is important because
+				// we can have a negative cell
+				{
+					stack.push(y);
+					stack.push(x - 1);
+				}
+
 				// get the cell that is located directly below the
 				// current one. This is exactly one pixel down.
 				cell = (CANVAS_WIDTH * (y + 1) + x) * 4;
@@ -352,6 +285,20 @@ function toolBucket()
 				{
 					stack.push(y + 1);
 					stack.push(x);
+				}
+
+				// get the cell that is located directly right of
+				// the current one. This is exactly one pixel to
+				// the right.
+				cell = (CANVAS_WIDTH * y + (x + 1)) * 4;
+
+				if (checkColorsForMatch(cell) && cell >= 0)
+				// the cell is the color that we are replacing and
+				// has an index of >= 0. This is important because
+				// we can have a negative cell
+				{
+					stack.push(y);
+					stack.push(x + 1);
 				}
 			}
 			// continue to loop as long as there are more than 0
