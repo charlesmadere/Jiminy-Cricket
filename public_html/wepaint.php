@@ -52,7 +52,11 @@
 
 	<body>
 		<div id="fb-root"></div>
-		<div id="headerLite"></div>
+		<div id="header">
+			<img src="images/wepaint.png" alt="WePaint.us" />
+			<img src="images/nav/divider.png" />
+			<img src="images/nav/spacer.png" />
+		</div>
 		<div id="content">
 			<div id="contentLeft">
 				<div class="bottomBorder" id="currentWordAndTimeLeft">
@@ -109,12 +113,8 @@
 			</div>
 		</div>
 
-		<div id="fbookLike">
-			<div class="fb-like" data-href="http://www.wepaint.us/" data-send="false" data-width="450" data-show-faces="false"></div>
-		</div>
-
 		<script src="//connect.facebook.net/en_US/all.js" type="text/javascript"></script>
-		<script src="assets/javascript/facebook.js" type="text/javascript"></script>
+		<script src="assets/javascript/facebook_paint.js" type="text/javascript"></script>
 	</body>
 
 </html>

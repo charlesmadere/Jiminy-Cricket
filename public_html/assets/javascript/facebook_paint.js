@@ -36,6 +36,9 @@ FB.getLoginStatus(function(response)
 	{
 		facebookLoggedIn = false;
 	}
+
+	// run the main method
+	main();
 });
 
 

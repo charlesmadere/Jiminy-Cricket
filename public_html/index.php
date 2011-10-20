@@ -32,9 +32,10 @@
 
 ?>
 
+
 <!doctype html>
 
-<html lang="en">
+<html lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
 
 	<head>
 		<link href="assets/stylesheets/basic.css" rel="stylesheet" type="text/css" />
@@ -57,9 +58,16 @@
 			</a>
 		</div>
 		<div id="contentLite">
-			<p><a href="wepaint.php">Hello, World!</a></p>
+			<h3><a href="wepaint.php">Hello, World!</a></h3>
 			<!-- the code to create a wepaint game goes here! -->
 		</div>
+
+		<div id="fbookLike">
+			<div class="fb-like" data-href="http://www.wepaint.us/" data-send="false" data-width="450" data-show-faces="false"></div>
+		</div>
+
+		<script src="//connect.facebook.net/en_US/all.js" type="text/javascript"></script>
+		<script src="assets/javascript/facebook.js" type="text/javascript"></script>
 	</body>
 
 </html>
