@@ -58,8 +58,12 @@
 			</a>
 		</div>
 		<div id="contentLite">
-			<h3><a href="wepaint.php">Hello, World!</a></h3>
 			<!-- the code to create a wepaint game goes here! -->
+			<!--
+				Charles: Geo, there is a bit of broken html in here. 
+				<p/> is not a correct closing tag (there also are no
+				<p> opening tags) and ya
+			-->
 			<h4>Select Draw Limit<h5>
 			<form>
 				<input type="radio" name= "drawLimit" value"30" checked/>30 Seconds<p/>
@@ -68,6 +72,7 @@
 				<input type="radio" name= "drawLimit" value"300"/>5 Minutes <p/>
 				<input type="radio" name= "drawLimit" value"1200"/>My friends are "slow"</p>
 			</form>
+			<h3><a href="wepaint.php">Hello, Paint!</a></h3>
 		</div>
 
 		<div id="fbookLike">
