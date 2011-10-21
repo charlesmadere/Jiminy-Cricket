@@ -62,7 +62,12 @@
 			<!--
 				Charles: Geo, there is a bit of broken html in here. 
 				<p/> is not a correct closing tag (there also are no
-				<p> opening tags) and ya
+				<p> opening tags). And to be honest I'd maybe like a
+				few more in between values like 45 seconds, 1 minute
+				30 seconds... Times like that will probably prove
+				to be the sweet spot of our application and therefore
+				we may need a dropdown box instead of a radio list to
+				squeeze in all of those options
 			-->
 			<h4>Select Draw Limit<h5>
 			<form>

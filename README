@@ -1,2 +1,34 @@
 Welcome to the GitHub for We Paint!
 http://www.wepaint.us/
+
+Main folder descriptions follow:
+
+/defunct/
+Folder for old files or snippets of code that are no longer in use but may be
+needed again someday.
+
+/documents/
+All document files should go in this directory. This means that this directory
+will most likely be like 95% .doc and .ppt files. Please avoid using the newer
+word formats (.docx or .pptx) so that we can ensure compatibility with the
+teacher and other students. If you use any images in your documents then they
+should be placed in the /resources/ directory, not in here.
+
+/other/
+This directory is for just all other files and will probably not really be used
+very much. Basically just miscellaneous items that don't fit anywhere else
+should go in here. Keepin' it organized u no?
+
+/public_html/
+This directory should contain an exact working copy of the exact structure of
+our website and nothing more. This file is the only exception to that rule. If
+you put a file in here then it should be pretty much immediately uploaded via
+SFTP to the server's public_html folder and if a file exists on the server then
+it should also definitely be in here. Our website can be found at
+http://www.wepaint.us/
+
+/resources/
+The resources directory is primarily for the source files to some of our custom
+images. However, we should also be sure to put any of the images that we use in
+our PowerPoint files in here as well as just any other picture that we will be
+editing or just using in some way for our project.

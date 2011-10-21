@@ -2,4 +2,4 @@ All document files should go in this directory. This means that this directory
 will most likely be like 95% .doc and .ppt files. Please avoid using the newer
 word formats (.docx or .pptx) so that we can ensure compatibility with the
 teacher and other students. If you use any images in your documents then they
-should be placed in the resources directory and not in here.
+should be placed in the /resources/ directory, not in here.
