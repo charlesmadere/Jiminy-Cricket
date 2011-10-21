@@ -60,6 +60,14 @@
 		<div id="contentLite">
 			<h3><a href="wepaint.php">Hello, World!</a></h3>
 			<!-- the code to create a wepaint game goes here! -->
+			<h4>Select Draw Limit<h5>
+			<form>
+				<input type="radio" name= "drawLimit" value"30" checked/>30 Seconds<p/>
+				<input type="radio" name= "drawLimit" value"60"/>1 Minute<p/>
+				<input type="radio" name= "drawLimit" value"180"/>3 Minutes <p/>
+				<input type="radio" name= "drawLimit" value"300"/>5 Minutes <p/>
+				<input type="radio" name= "drawLimit" value"1200"/>My friends are "slow"</p>
+			</form>
 		</div>
 
 		<div id="fbookLike">

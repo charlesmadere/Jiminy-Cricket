@@ -160,5 +160,16 @@ p
 	margin-top: 8px;
 }
 
+h4
+{
+	font-family: "Segoe UI Light", "Segoe UI", sans-serif;
+	font-weight: normal;
+}
+
+form
+{
+	font-family: "Segoe UI Light", "Segoe UI", sans-serif;
+	font-weight: normal;
+}
 
 /* Team Jiminy Cricket */
