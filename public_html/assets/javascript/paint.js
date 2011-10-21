@@ -247,86 +247,128 @@ function toolBucket()
 				// apply the user selected color to the current cell
 				applyNewColor(cell);
 
+				// get the x coordinate to the left and right of our
+				// current position
 				var west = (x - 1);
 				var east = (x + 1);
 
+				// get the cell for the new x coordinate to the west
 				cell = (CANVAS_WIDTH * y + west) * 4;
 
 				while (checkColorsForMatch(cell) && cell >= 0)
-				// 
+				// check to see if the cell is the user selected color. if
+				// it is we will begin to loop
 				{
 					// apply the user selected color to the current cell
 					applyNewColor(cell);
 
-					// go west one more pixel
+					// go west one more pixel. we want to do --west because
+					// in order to go west more we must subtract from x, not
+					// add to it.
 					--west;
 
 					// calculate west cell
 					cell = (CANVAS_WIDTH * y + west) * 4;
 				}
 
+				// get the cell for the new x coordinate to the east
 				cell = (CANVAS_WIDTH * y + east) * 4;
 
 				while (checkColorsForMatch(cell) && cell >= 0)
-				// 
+				// check to see if the cell is the user selected color. if
+				// it is we will begin to loop
 				{
 					// apply the user selected color to the current cell
 					applyNewColor(cell);
 
-					// go east one more pixel
+					// go east one more pixel. we must do ++east beacuse
+					// in order to go east we must add to x, not subtract
+					// from it.
 					++east;
 
 					// calculate east cell
 					cell = (CANVAS_WIDTH * y + east) * 4;
 				}
 
-				while (west != x)
-				// 
+				do
+				// loop until the west variable is equal to x. as of
+				// right now the west variable should be at least one
+				// unit to the west of x. for each run of this loop
+				// we will be moving the west variable one more unit
+				// eastward until it is equal to the x variable
 				{
-					++west;
-
+					// get the cell for the west coordinate and one
+					// pixel upwards
 					cell = (CANVAS_WIDTH * (y - 1) + west) * 4;
 
 					if (checkColorsForMatch(cell) && cell >= 0)
-					// 
+					// the cell is the color that we are replacing and
+					// has an index of >= 0. This is important because
+					// we can have a negative cell
 					{
 						stack.push(y - 1);
 						stack.push(west);
 					}
 
+					// get the cell for the west coordinate and one
+					// pixel downards
 					cell = (CANVAS_WIDTH * (y + 1) + west) * 4;
 
 					if (checkColorsForMatch(cell) && cell >= 0)
-					//
+					// the cell is the color that we are replacing and
+					// has an index of >= 0. This is important because
+					// we can have a negative cell
 					{
 						stack.push(y + 1);
 						stack.push(west);
 					}
+
+					// go east one pixel. note how this operation is
+					// the opposite of what we did with the west
+					// variable above
+					++west;
 				}
+				while (west != x);
 
-				while (east != x)
-				// 
+				do
+				// loop until the east variable is equal to x. as of
+				// right now the east variable should be at least one
+				// unit to the east of x. for each run of this loop
+				// we will be moving the east variable one more unit
+				// westward until it is equal to the x variable
 				{
-					--east;
-
+					// get the cell for the east coordinate and one
+					// pixel upwards
 					cell = (CANVAS_WIDTH * (y - 1) + east) * 4;
 
 					if (checkColorsForMatch(cell) && cell >= 0)
-					// 
+					// the cell is the color that we are replacing and
+					// has an index of >= 0. This is important because
+					// we can have a negative cell
 					{
 						stack.push(y - 1);
 						stack.push(east);
 					}
 
+					// get the cell for the east coordinate and one
+					// pixel downwards
 					cell = (CANVAS_WIDTH * (y + 1) + east) * 4;
 
 					if (checkColorsForMatch(cell) && cell >= 0)
-					//
+					// the cell is the color that we are replacing and
+					// has an index of >= 0. This is important because
+					// we can have a negative cell
 					{
 						stack.push(y + 1);
 						stack.push(east);
 					}
+
+					// go west one pixel. note how this operation is
+					// the opposite of what we did with the east
+					// variable above
+					--east;
 				}
+				while (east != x);
 
 				// get the cell that is located directly above the
 				// current one. This is exactly one pixel upwards
