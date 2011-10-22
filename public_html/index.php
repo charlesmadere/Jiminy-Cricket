@@ -12,7 +12,7 @@
 	// See if there is a user from a cookie
 	$user = $facebook->getUser();
 
-	/*if ($user)
+	if ($user)
 	{
 		try
 		{
@@ -24,7 +24,7 @@
 			echo "<pre>" . htmlspecialchars(print_r($e, true)) . "</pre>";
 			$user = null;
 		}
-	}*/
+	}
 
 
 	// Team Jiminy Cricket
@@ -35,15 +35,25 @@
 
 <!doctype html>
 
+
 <html lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
 
 	<head>
 		<link href="assets/stylesheets/basic.css" rel="stylesheet" type="text/css" />
 		<link href="assets/stylesheets/facebook.css" rel="stylesheet" type="text/css" />
 		<meta charset="UTF-8" />
+		<script src="assets/javascript/jquery.js" type="text/javascript"></script>
 		<script src="assets/javascript/modernizr.js" type="text/javascript"></script>
 		<script src="assets/javascript/debugger.js" type="text/javascript"></script>
+		<script src="assets/javascript/compatibility.js" type="text/javascript"></script>
 		<script src="assets/javascript/basic.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(document).ready(function()
+			// main method
+			{
+				
+			});
+		</script>
 		<title>Create A Game ~ WePaint.us</title>
 	</head>
 

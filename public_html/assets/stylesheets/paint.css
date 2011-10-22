@@ -1,6 +1,12 @@
 #chatArea
 {
-	height: 328px;
+	height: 279px;
+	width: 300px;
+}
+
+#chatAreaInput
+{
+	height: 48px;
 	width: 300px;
 }
 
