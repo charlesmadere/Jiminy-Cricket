@@ -10,18 +10,37 @@
 		<script src="../assets/javascript/debugger.js" type="text/javascript"></script>
 		<script type="text/javascript">
 			$(document).ready(function()
-			// main method
 			{
-				
+				$("#generate").click(function()
+				{
+					$("#quote p").load("script.php");
+				});
 			});
 		</script>
+		<style type="text/css">
+			#wrapper
+			{
+				width: 240px;
+				height: 80px;
+				margin: auto;
+				padding: 10px;
+				margin-top: 10px;
+				border: 1px solid black;
+				text-align: center;
+			}
+		</style>
 		<title>dataTest</title>
 	</head>
 
 	<body>
 		<div id="headerLite"></div>
 		<div id="contentLite">
-			<h3><a href="#">Hello, World!</a></h3>
+			<div id="wrapper">
+				<div id="quote">
+					<p></p>
+				</div>
+				<input type="submit" id="generate" value="Generate!" />
+			</div>
 		</div>
 	</body>
 
