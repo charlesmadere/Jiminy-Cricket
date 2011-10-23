@@ -4,7 +4,8 @@ function compatibilityTest()
 // from the feature list below depending on what we change later in our
 // development cycle.
 {
-	if (Modernizr.canvas && Modernizr.websockets && Modernizr.webworkers)
+	if (Modernizr.canvas)
+	//if (Modernizr.canvas && Modernizr.websockets && Modernizr.webworkers)
 	// browser is compatible with everything we need
 	{
 		return true;

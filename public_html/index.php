@@ -52,28 +52,25 @@
 			// main method
 			{
 				var compatibilityImage = document.getElementById("compatibilityImage");
-				var contentLiteRight = document.getElementById("contentLiteRight");
-
-				contentLiteRight.style.marginLeft = "0px";
-				contentLiteRight.style.width = "494px";
+				var compatRight = document.getElementById("compatRight");
 
 				if (compatibilityTest())
 				// browser is compatible with everything we need
 				{
 					compatibilityImage.src = "../images/icons/accept-64.png";
 
-					contentLiteRight.innerHTML = "Your browser is 100% compatible with We Paint. Have fun!";
-					contentLiteRight.style.marginTop = "48px";
-					contentLiteRight.setAttribute("class", "acceptWithoutBorders");
+					compatRight.innerHTML = "Your browser is 100% compatible with We Paint. Have fun!";
+					compatRight.style.marginTop = "24px";
+					compatRight.style.height = "64px";
+					compatRight.setAttribute("class", "acceptWithoutBorders");
 				}
 				else
 				// browser is not compatible with everything we need
 				{
 					compatibilityImage.src = "../images/icons/critical-64.png";
 
-					contentLiteRight.innerHTML = "Sorry, but your browser is not compatible with all of the HTML5 technologies that We Paint requires. You will not be able to play until you update to a modern browser such as <a href=\"http://www.google.com/chrome\" target=\"_blank\">Google Chrome</a> or <a href=\"http://www.firefox.com/\" target=\"_blank\">Mozilla Firefox</a>."
-					contentLiteRight.style.marginTop = "32px";
-					contentLiteRight.setAttribute("class", "errorWithoutBorders");
+					compatRight.innerHTML = "Sorry, but your browser is not compatible with all of the HTML5 technologies that We Paint requires. You will not be able to play until you update to a modern browser such as <a href=\"http://www.google.com/chrome\" target=\"_blank\">Google Chrome</a> or <a href=\"http://www.firefox.com/\" target=\"_blank\">Mozilla Firefox</a>."
+					compatRight.setAttribute("class", "errorWithoutBorders");
 				}
 			});
 		</script>
@@ -110,12 +107,11 @@
 				<input type="radio" name= "drawLimit" value"300"/>5 Minutes <p/>
 				<input type="radio" name= "drawLimit" value"1200"/>My friends are "slow"</p>
 			</form>
-			<h3><a href="wepaint.php">Hello, Paint!</a></h3>
-
-			<div id="contentLiteLeft">
+			<div id="compatLeft">
 				<img id="compatibilityImage" />
 			</div>
-			<div id="contentLiteRight"></div>
+			<div id="compatRight"></div>
+			<h3><a href="wepaint.php">Hello, Paint!</a></h3>
 		</div>
 
 		<div id="fbookLike">

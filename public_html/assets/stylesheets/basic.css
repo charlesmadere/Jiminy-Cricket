@@ -9,30 +9,22 @@
 	color: #249A3F;
 }
 
-.acceptBorders
-{
-	border-color: #249A3F;
-	border-style: dashed;
-	border-width: 1px;
-	height: 192px;
-	width: 798px;
-}
-
 .acceptWithBorders
 {
 	border-color: #249A3F;
 	border-style: dashed;
 	border-width: 1px;
 	color: #249A3F;
-	margin-bottom: 16px;
+	margin-bottom: 8px;
 	margin-left: 8px;
 	margin-right: 8px;
+	margin-top: 8px;
 }
 
 .acceptWithoutBorders
 {
 	color: #249A3F;
-	margin-bottom: 16px;
+	margin-bottom: 8px;
 	margin-left: 8px;
 	margin-right: 8px;
 }
@@ -42,22 +34,13 @@
 	color: #DC143C;
 }
 
-.errorBorders
-{
-	border-color: #DC143C;
-	border-style: dashed;
-	border-width: 1px;
-	height: 192px;
-	width: 798px;
-}
-
 .errorWithBorders
 {
 	border-color: #DC143C;
 	border-style: dashed;
 	border-width: 1px;
 	color: #DC143C;
-	margin-bottom: 16px;
+	margin-bottom: 8px;
 	margin-left: 8px;
 	margin-right: 8px;
 }
@@ -65,7 +48,7 @@
 .errorWithoutBorders
 {
 	color: #DC143C;
-	margin-bottom: 16px;
+	margin-bottom: 8px;
 	margin-left: 8px;
 	margin-right: 8px;
 }
@@ -73,6 +56,29 @@
 .noBorder
 {
 	border: 0;
+}
+
+#compatLeft
+{
+	height: 80px;
+	margin-bottom: 8px;
+	margin-left: 32px;
+	margin-top: 8px;
+	text-align: center;
+	width: 192px;
+}
+
+#compatRight
+{
+	height: 80px;
+	font-family: "Segoe UI Light", "Segoe UI", sans-serif;
+	font-size: medium;
+	margin-bottom: 8px;
+	margin-left: 0px;
+	margin-right: 32px;
+	margin-top: 8px;
+	text-align: left;
+	width: 544px;
 }
 
 #content
