@@ -4,9 +4,70 @@
 	border-width: 1px;
 }
 
+.accept
+{
+	color: #249A3F;
+}
+
+.acceptBorders
+{
+	border-color: #249A3F;
+	border-style: dashed;
+	border-width: 1px;
+	height: 192px;
+	width: 798px;
+}
+
+.acceptWithBorders
+{
+	border-color: #249A3F;
+	border-style: dashed;
+	border-width: 1px;
+	color: #249A3F;
+	margin-bottom: 16px;
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
+.acceptWithoutBorders
+{
+	color: #249A3F;
+	margin-bottom: 16px;
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
 .error
 {
 	color: #DC143C;
+}
+
+.errorBorders
+{
+	border-color: #DC143C;
+	border-style: dashed;
+	border-width: 1px;
+	height: 192px;
+	width: 798px;
+}
+
+.errorWithBorders
+{
+	border-color: #DC143C;
+	border-style: dashed;
+	border-width: 1px;
+	color: #DC143C;
+	margin-bottom: 16px;
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
+.errorWithoutBorders
+{
+	color: #DC143C;
+	margin-bottom: 16px;
+	margin-left: 8px;
+	margin-right: 8px;
 }
 
 .noBorder
@@ -155,15 +216,15 @@ h3
 	font-weight: normal;
 }
 
-p
-{
-	margin-top: 8px;
-}
-
 h4
 {
 	font-family: "Segoe UI Light", "Segoe UI", sans-serif;
 	font-weight: normal;
+}
+
+p
+{
+	margin-top: 8px;
 }
 
 form
@@ -171,5 +232,6 @@ form
 	font-family: "Segoe UI Light", "Segoe UI", sans-serif;
 	font-weight: normal;
 }
+
 
 /* Team Jiminy Cricket */
