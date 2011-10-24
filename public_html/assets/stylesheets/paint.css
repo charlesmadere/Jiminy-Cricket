@@ -1,6 +1,9 @@
 #chatArea
 {
+	border-bottom-style: solid;
+	border-width: 1px;
 	height: 279px;
+	overflow: auto;
 	width: 300px;
 }
 
@@ -8,6 +11,20 @@
 {
 	height: 48px;
 	width: 300px;
+}
+
+#chatForm
+{
+	margin-top: 4px;
+	margin-bottom: 1px;
+}
+
+#msg
+{
+	border-width: 0px;
+	font-family: "Segoe UI Light", "Segoe UI", sans-serif;
+	font-size: 154%;
+	height: 42px;
 }
 
 #content div

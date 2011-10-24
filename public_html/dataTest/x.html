@@ -1,63 +1,89 @@
+<!doctype html>
+
+
 <html>
-<head>
-	<title>AJAX with jQuery Example</title>
-	<script type="text/javascript" src="../assets/javascript/jquery.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			timestamp = 0;
-			updateMsg();
-			$("form#chatform").submit(function(){
-				$.post("server.php",{
+
+	<head>
+		<link href="../assets/stylesheets/basic.css" rel="stylesheet" type="text/css" />
+		<link href="../assets/stylesheets/paint.css" rel="stylesheet" type="text/css" />
+		<meta charset="UTF-8" />
+		<script src="../assets/javascript/jquery.js" type="text/javascript"></script>
+		<script src="../assets/javascript/debugger.js" type="text/javascript"></script>
+		<script src="../assets/javascript/chat.js" type="text/javascript"></script>
+		<script src="../assets/javascript/basic.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(document).ready(function()
+			// main method
+			{
+				timestamp = 0;
+				updateMsg();
+
+				$("form#chatForm").submit(function()
+				// 
+				{
+					if (/\S/.test(document.getElementById("msg").value))
+					// the value of the input text field is both not blank and
+					// not just filled with spaces
+					{
+						$.post("server.php",
+						{
 							message: $("#msg").val(),
 							name: $("#author").val(),
 							action: "postmsg",
 							time: timestamp
-						}, function(xml) {
-					$("#msg").empty();
-					addMessages(xml);
+						},
+						function(xml)
+						{
+							$("#msg").empty();
+							addMessages(xml);
+						});
+					
+						document.getElementById("msg").value = "";
+					}
+
+					return false;
 				});
-				return false;
 			});
-		});
-		function addMessages(xml) {
-			if($("status",xml).text() == "2") return;
-			timestamp = $("time",xml).text();
-			$("message",xml).each(function(id) {
-				message = $("message",xml).get(id);
-				$("#messagewindow").prepend("<b>"+$("author",message).text()+
-											"</b>: "+$("text",message).text()+
-											"<br />");
-			});
-		}
-		function updateMsg() {
-			$.post("server.php",{ time: timestamp }, function(xml) {
-				$("#loading").remove();
-				addMessages(xml);
-			});
-			setTimeout('updateMsg()', 4000);
-		}
-	</script>
-	<style type="text/css">
-		#messagewindow {
-			height: 250px;
-			border: 1px solid;
-			padding: 5px;
-			overflow: auto;
-		}
-		#wrapper {
-			margin: auto;
-			width: 438px;
-		}
-	</style>
-</head>
-<body>
-	<div id="wrapper">
-	<p id="messagewindow"><span id="loading">Loading...</span></p>
-	<form id="chatform">
-	Name: <input type="text" id="author" />
-	Message: <input type="text" id="msg" />    
-	<input type="submit" value="ok" /><br />
-	</form>
-	</div>
-</body>
+		</script>
+		<title>AJAX with jQuery Example</title>
+	</head>
+
+	<body>
+		<div id="header"></div>
+		<div id="content">
+			<div id="contentLeft">
+				<div class="bottomBorder" id="currentWordAndTimeLeft">
+					currentWordAndTimeLeft
+				</div>
+				<div class="bottomBorder" id="paintArea">
+					<canvas id="paintCanvas" height="470" width="700"></canvas>
+				</div>
+				<div id="toolBox">
+					toolBox
+				</div>
+			</div>
+			<div id="contentRight">
+				<div class="bottomBorder" id="currentTopic">
+					currentTopic
+				</div>
+				<div class="bottomBorder" id="whoIsPlaying">
+					whoIsPlaying
+				</div>
+				<div id="chatArea">
+					<span id="loading">Loading...</span>
+				</div>
+				<div id="chatAreaInput">
+					<form id="chatForm">
+						<input id="msg" maxlength="140" onclick="clearInput('msg')" size="20" type="text" value="Say hi!" />
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+
 </html>
+
+
+<!--
+	Team Jiminy Cricket
+-->
