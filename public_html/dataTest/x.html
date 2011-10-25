@@ -21,13 +21,16 @@
 				$("form#chatForm").submit(function()
 				// 
 				{
-					if (/\S/.test(document.getElementById("msg").value))
+
+					var messageToSend = validateMessage(document.getElementById("msg").value);
+
+					if (messageToSend)
 					// the value of the input text field is both not blank and
 					// not just filled with spaces
 					{
 						$.post("server.php",
 						{
-							message: $("#msg").val(),
+							message: messageToSend,
 							name: $("#author").val(),
 							action: "postmsg",
 							time: timestamp

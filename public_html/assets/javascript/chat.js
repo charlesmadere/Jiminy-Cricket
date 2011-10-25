@@ -1,3 +1,77 @@
+function validateMessage(message)
+// performs a few regular expressions on a message and if everything
+// checks out ok then true is returned
+{
+
+	var directory = "../images/emoticons/";
+	var size = "20";
+
+	var face01 = directory + "face01-" + size + ".png";
+	var face02 = directory + "face02-" + size + ".png";
+	var face03 = directory + "face03-" + size + ".png";
+	var face04 = directory + "face04-" + size + ".png";
+	var face05 = directory + "face05-" + size + ".png";
+	var face06 = directory + "face06-" + size + ".png";
+	var face07 = directory + "face07-" + size + ".png";
+	var face08 = directory + "face08-" + size + ".png";
+	var face09 = directory + "face09-" + size + ".png";
+	var face10 = directory + "face10-" + size + ".png";
+
+	if (/\S/.test(message))
+	// check the string to ensure it's not just white space
+	{
+		// performs a global search on the message string and will
+		// replace characters within the brackets with blank ("")
+		message = message.replace(/<|>|"|\|`|\|/g, "");
+
+		if (/\S/.test(message))
+		// check again for a message that's just whitespace
+		{
+			// face01: ":D"
+			message = message.replace(/:D/g, "<img src=" + face01 + " />");
+
+			// face02: ":("
+			message = message.replace(/:\(/g, "<img src=" + face02 + " />");
+
+			// face03: ":3"
+			message = message.replace(/:3/g, "<img src=" + face03 + " />");
+
+			// face04: ":o"
+			message = message.replace(/:o/g, "<img src=" + face04 + " />");
+
+			// face05: ":O"
+			message = message.replace(/:O/g, "<img src=" + face05 + " />");
+
+			// face06: ":x" and "x_x"
+			message = message.replace(/:x|x_x/gi, "<img src=" + face06 + " />");
+
+			// face07: "D:"
+			message = message.replace(/D:/g, "<img src=" + face07 + " />");
+
+			// face08: ":p"
+			message = message.replace(/:p/gi, "<img src=" + face08 + " />");
+
+			// face09: ":v"
+			message = message.replace(/:v/gi, "<img src=" + face09 + " />");
+
+			// face10: ";)"
+			message = message.replace(/\;\)/g, "<img src=" + face10 + " />");
+			
+			return message;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	else
+	// message is invalid!
+	{
+		return false;
+	}
+}
+
+
 function addMessages(xml)
 // 
 {
