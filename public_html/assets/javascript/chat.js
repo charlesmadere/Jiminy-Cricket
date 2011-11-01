@@ -5,31 +5,45 @@ function validateMessage(message)
 
 	var directory = "../images/emoticons/";
 	var size = "20";
+	var extension = ".png";
 
-	var face00 = directory + "face00-" + size + ".png";
-	var face01 = directory + "face01-" + size + ".png";
-	var face02 = directory + "face02-" + size + ".png";
-	var face03 = directory + "face03-" + size + ".png";
-	var face04 = directory + "face04-" + size + ".png";
-	var face05 = directory + "face05-" + size + ".png";
-	var face06 = directory + "face06-" + size + ".png";
-	var face07 = directory + "face07-" + size + ".png";
-	var face08 = directory + "face08-" + size + ".png";
-	var face09 = directory + "face09-" + size + ".png";
-	var face10 = directory + "face10-" + size + ".png";
-	var face11 = directory + "face11-" + size + ".png";
-	var face12 = directory + "face12-" + size + ".png";
-	var face13 = directory + "face13-" + size + ".png";
+	var face00 = directory + "face00-" + size + extension;
+	var face01 = directory + "face01-" + size + extension;
+	var face02 = directory + "face02-" + size + extension;
+	var face03 = directory + "face03-" + size + extension;
+	var face04 = directory + "face04-" + size + extension;
+	var face05 = directory + "face05-" + size + extension;
+	var face06 = directory + "face06-" + size + extension;
+	var face07 = directory + "face07-" + size + extension;
+	var face08 = directory + "face08-" + size + extension;
+	var face09 = directory + "face09-" + size + extension;
+	var face10 = directory + "face10-" + size + extension;
+	var face11 = directory + "face11-" + size + extension;
+	var face12 = directory + "face12-" + size + extension;
+	var face13 = directory + "face13-" + size + extension;
 
 	if (/\S/.test(message))
 	// check the string to ensure it's not just white space
 	{
+		// remove any whitespace at the beginning and end of the
+		// message string
+		message = jQuery.trim(message);
+
 		// performs a global search on the message string and will
 		// replace characters within the brackets with blank ("")
-		message = message.replace(/<|>|"|\\|`|\||\^|\~/g, "");
+		message = message.replace(/\\|\`|\||\^|\~/g, "");
+
+		// replace some special HTML characters with their code
+		// counterparts so that the appearance of the page isn't
+		// corrupted by bad user input
+		message = message.replace(/\&/g, "&amp;");
+		message = message.replace(/\"/g, "&quot;");
+		message = message.replace(/\</g, "&lt;");
+		message = message.replace(/\>/g, "&gt;");
 
 		if (/\S/.test(message))
-		// check again for a message that's just whitespace
+		// check again to ensure that the message actually contains
+		// some characters
 		{
 			// face00: ":)"
 			message = message.replace(/:\)/g, "<img src=" + face00 + " />");
@@ -53,7 +67,7 @@ function validateMessage(message)
 			message = message.replace(/:x|x_x/gi, "<img src=" + face06 + " />");
 
 			// face07: "XO"
-			message = message.replace(/D:/g, "<img src=" + face07 + " />");
+			message = message.replace(/XO/g, "<img src=" + face07 + " />");
 
 			// face08: ":p"
 			message = message.replace(/:p/gi, "<img src=" + face08 + " />");
@@ -65,23 +79,24 @@ function validateMessage(message)
 			message = message.replace(/\;\)/g, "<img src=" + face10 + " />");
 
 			// face11: ":joe:"
-			message = message.replace(/:joe:/gi, "<img src=" + face11 + " />");
+			message = message.replace(/joe/gi, "<img src=" + face11 + " />");
 
 			// face12: ":pao:"
-			message = message.replace(/:pao:/gi, "<img src=" + face12 + " />");
+			message = message.replace(/pao/gi, "<img src=" + face12 + " />");
 
 			// face13: ":pika:"
-			message = message.replace(/:pika:/gi, "<img src=" + face13 + " />");
+			message = message.replace(/pika/gi, "<img src=" + face13 + " />");
 			
 			return message;
 		}
 		else
+		// message contained nothing but possibly exploitive characters
 		{
 			return false;
 		}
 	}
 	else
-	// message is invalid!
+	// message was just blank or whitespace
 	{
 		return false;
 	}
@@ -91,12 +106,6 @@ function validateMessage(message)
 function addMessages(xml)
 // 
 {
-	if ($("status", xml).text() == "2")
-	// 
-	{
-		return;
-	}
-
 	timestamp = $("time", xml).text();
 
 	$("message", xml).each(function(id)

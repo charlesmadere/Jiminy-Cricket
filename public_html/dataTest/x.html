@@ -21,31 +21,44 @@
 				$("form#chatForm").submit(function()
 				// 
 				{
-
+					// validate the user submitted text to ensure that it's
+					// not exploitive
 					var messageToSend = validateMessage(document.getElementById("msg").value);
 
 					if (messageToSend)
 					// the value of the input text field is both not blank and
 					// not just filled with spaces
 					{
-						$.post("server.php",
-						{
-							message: messageToSend,
-							name: $("#author").val(),
-							action: "postmsg",
-							time: timestamp
-						},
-						function(xml)
-						{
-							$("#msg").empty();
-							addMessages(xml);
-						});
-					
+						$.post
+						(
+							"server.php",
+							{
+								message: messageToSend,
+								name: $("#author").val(),
+								action: "postmsg",
+								time: timestamp
+							},
+							function(xml)
+							{
+								$("#msg").empty();
+								addMessages(xml);
+							}
+						);
+
+						// clear the message text field so that the user can
+						// begin typing another message without deleting their
+						// previously entered text
 						document.getElementById("msg").value = "";
+
+						// scroll to the bottom of the chat window
+						$("#chatArea").scrollTop($(document).height());
 					}
 
 					return false;
 				});
+
+				// scroll to the bottom of the chat window
+				$("#chatArea").scrollTop($(document).height());
 			});
 		</script>
 		<title>AJAX with jQuery Example</title>
