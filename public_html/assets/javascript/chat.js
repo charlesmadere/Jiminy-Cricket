@@ -6,6 +6,7 @@ function validateMessage(message)
 	var directory = "../images/emoticons/";
 	var size = "20";
 
+	var face00 = directory + "face00-" + size + ".png";
 	var face01 = directory + "face01-" + size + ".png";
 	var face02 = directory + "face02-" + size + ".png";
 	var face03 = directory + "face03-" + size + ".png";
@@ -16,17 +17,23 @@ function validateMessage(message)
 	var face08 = directory + "face08-" + size + ".png";
 	var face09 = directory + "face09-" + size + ".png";
 	var face10 = directory + "face10-" + size + ".png";
+	var face11 = directory + "face11-" + size + ".png";
+	var face12 = directory + "face12-" + size + ".png";
+	var face13 = directory + "face13-" + size + ".png";
 
 	if (/\S/.test(message))
 	// check the string to ensure it's not just white space
 	{
 		// performs a global search on the message string and will
 		// replace characters within the brackets with blank ("")
-		message = message.replace(/<|>|"|\|`|\|/g, "");
+		message = message.replace(/<|>|"|\\|`|\||\^|\~/g, "");
 
 		if (/\S/.test(message))
 		// check again for a message that's just whitespace
 		{
+			// face00: ":)"
+			message = message.replace(/:\)/g, "<img src=" + face00 + " />");
+
 			// face01: ":D"
 			message = message.replace(/:D/g, "<img src=" + face01 + " />");
 
@@ -45,7 +52,7 @@ function validateMessage(message)
 			// face06: ":x" and "x_x"
 			message = message.replace(/:x|x_x/gi, "<img src=" + face06 + " />");
 
-			// face07: "D:"
+			// face07: "XO"
 			message = message.replace(/D:/g, "<img src=" + face07 + " />");
 
 			// face08: ":p"
@@ -56,6 +63,15 @@ function validateMessage(message)
 
 			// face10: ";)"
 			message = message.replace(/\;\)/g, "<img src=" + face10 + " />");
+
+			// face11: ":joe:"
+			message = message.replace(/:joe:/gi, "<img src=" + face11 + " />");
+
+			// face12: ":pao:"
+			message = message.replace(/:pao:/gi, "<img src=" + face12 + " />");
+
+			// face13: ":pika:"
+			message = message.replace(/:pika:/gi, "<img src=" + face13 + " />");
 			
 			return message;
 		}
@@ -87,7 +103,7 @@ function addMessages(xml)
 	// 
 	{
 		message = $("message", xml).get(id);
-		$("#chatArea").prepend("<b>" + $("author", message).text() + "</b>: " + $("text", message).text() + "<br />");
+		$("#chatArea").append("<b>" + $("author", message).text() + "</b>: " + $("text", message).text() + "<br />");
 	});
 }
 
