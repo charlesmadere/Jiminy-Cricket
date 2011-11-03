@@ -89,28 +89,34 @@
 		</div>
 		<div id="contentLite">
 			<!-- the code to create a wepaint game goes here! -->
-			<!--
-				Charles: Geo, there is a bit of broken html in here. 
-				<p/> is not a correct closing tag (there also are no
-				<p> opening tags). And to be honest I'd maybe like a
-				few more in between values like 45 seconds, 1 minute
-				30 seconds... Times like that will probably prove
-				to be the sweet spot of our application and therefore
-				we may need a dropdown box instead of a radio list to
-				squeeze in all of those options
-			-->
-			<h4>Select Draw Limit<h5>
 			<form>
-				<input type="radio" name= "drawLimit" value"30" checked/>30 Seconds<p/>
-				<input type="radio" name= "drawLimit" value"60"/>1 Minute<p/>
-				<input type="radio" name= "drawLimit" value"180"/>3 Minutes <p/>
-				<input type="radio" name= "drawLimit" value"300"/>5 Minutes <p/>
-				<input type="radio" name= "drawLimit" value"1200"/>My friends are "slow"</p>
+				<h4>Select Draw Limit</h4>
+				<select name = "timer">
+					<option value = "30">30 seconds</option>
+					<option value = "45">45 seconds</option>
+					<option value = "30">1 minute</option>
+					<option value = "30">2 minutes</option>
+					<option value = "30">3 minutes</option>
+					<option value = "30">4 minutes</option>
+					<option value = "30">5 minutes seconds</option>
+					<option value = "6000">Derp</option>
+				</select><hr />
+				<h4>Select a Category</h4>
+				<select>
+					<option value = "10">temp</option>
+					<option value = "30">temp</option>
+					<option value = "30">temp</option>
+					<option value = "30">temp</option>
+					<option value = "30">temp</option>
+					<option value = "30">temp</option>
+				</select><hr />
+				<h4>Invite Your Friends!<h4>
+				<hr /> 
 			</form>
 			<div id="compatLeft">
 				<img id="compatibilityImage" />
 			</div>
-			<div id="compatRight"></div>
+			<div id="compatRight"></div><hr />
 			<h3><a href="wepaint.php">Hello, Paint!</a></h3>
 		</div>
 
