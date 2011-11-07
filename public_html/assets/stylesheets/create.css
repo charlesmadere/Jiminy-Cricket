@@ -1,0 +1,149 @@
+div.accept
+{
+	color: #249A3F;
+}
+
+
+div.acceptWithBorders
+{
+	border-color: #249A3F;
+	border-style: dashed;
+	border-width: 1px;
+	color: #249A3F;
+	margin-bottom: 8px;
+	margin-left: 8px;
+	margin-right: 8px;
+	margin-top: 8px;
+}
+
+
+div.acceptWithoutBorders
+{
+	color: #249A3F;
+	margin-bottom: 8px;
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
+
+div.error
+{
+	color: #DC143C;
+}
+
+
+div.errorWithBorders
+{
+	border-color: #DC143C;
+	border-style: dashed;
+	border-width: 1px;
+	color: #DC143C;
+	margin-bottom: 8px;
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
+
+div.errorWithoutBorders
+{
+	color: #DC143C;
+	margin-bottom: 8px;
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
+
+div#compatLeft
+{
+	float: left;
+	height: 80px;
+	margin-bottom: 8px;
+	margin-left: 32px;
+	margin-top: 8px;
+	text-align: center;
+	width: 192px;
+}
+
+
+div#compatRight
+{
+	float: left;
+	font-family: Calibri, Arial, sans-serif;
+	height: 80px;
+	margin-bottom: 8px;
+	margin-left: 0px;
+	margin-right: 32px;
+	margin-top: 8px;
+	text-align: left;
+	width: 544px;
+}
+
+
+div#settingsLeft
+{
+	float: left;
+	text-align: center;
+	width: 284px;
+}
+
+
+div#settingsRight
+{
+	float: left;
+	text-align: center;
+	width: 484px;
+}
+
+
+div#submitSettings
+{
+	margin-top: 16px;
+	text-align: center;
+}
+
+
+form#settings
+{
+	border-color: #000000;
+	border-style: solid;
+	border-width: 1px;
+	margin-bottom: 32px;
+	overflow: auto;
+	padding-bottom: 16px;
+	padding-left: 16px;
+	padding-right: 16px;
+	padding-top: 16px;
+	width: 768px;
+}
+
+
+div#category
+{
+	margin-bottom: 16px;
+}
+
+
+div#inviteFriends
+{
+	height: 138px;
+	margin-bottom: 16px;
+}
+
+
+div#time
+{
+	margin-bottom: 16px;
+}
+
+
+select
+{
+	border-color: #FF9700;
+	border-style: solid;
+	border-width: 1px;
+	font-family: Consolas, Monospace, sans-serif;
+	font-size: 105%;
+}
+
+
+/* Team Jiminy Cricket */

@@ -1,11 +1,12 @@
-#fbookLike
+div#fbookLike
 {
 	height: 32px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 8px;
-	width: 256px;
+	margin-top: 16px;
+	width: 288px;
 }
+
 
 #fbookLogin
 {

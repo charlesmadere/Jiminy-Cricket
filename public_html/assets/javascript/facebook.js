@@ -42,12 +42,14 @@ FB.getLoginStatus(function(response)
 FB.Event.subscribe('auth.login', function(response)
 {
 	facebookLoggedIn = true;
+	window.location.reload();
 });
 
 
 FB.Event.subscribe('auth.logout', function(response)
 {
 	facebookLoggedIn = false;
+	window.location.reload();
 });
 
 

@@ -1,103 +1,17 @@
-.bottomBorder
+div.bottomBorder
 {
 	border-bottom-style: solid;
 	border-width: 1px;
 }
 
-.accept
-{
-	color: #249A3F;
-}
-
-.acceptWithBorders
-{
-	border-color: #249A3F;
-	border-style: dashed;
-	border-width: 1px;
-	color: #249A3F;
-	margin-bottom: 8px;
-	margin-left: 8px;
-	margin-right: 8px;
-	margin-top: 8px;
-}
-
-.acceptWithoutBorders
-{
-	color: #249A3F;
-	margin-bottom: 8px;
-	margin-left: 8px;
-	margin-right: 8px;
-}
-
-.error
-{
-	color: #DC143C;
-}
-
-.errorWithBorders
-{
-	border-color: #DC143C;
-	border-style: dashed;
-	border-width: 1px;
-	color: #DC143C;
-	margin-bottom: 8px;
-	margin-left: 8px;
-	margin-right: 8px;
-}
-
-.errorWithoutBorders
-{
-	color: #DC143C;
-	margin-bottom: 8px;
-	margin-left: 8px;
-	margin-right: 8px;
-}
 
 .noBorder
 {
 	border: 0;
 }
 
-#compatLeft
-{
-	height: 80px;
-	margin-bottom: 8px;
-	margin-left: 32px;
-	margin-top: 8px;
-	text-align: center;
-	width: 192px;
-}
 
-#compatRight
-{
-	height: 80px;
-	font-family: "Segoe UI Light", "Segoe UI", sans-serif;
-	font-size: medium;
-	margin-bottom: 8px;
-	margin-left: 0px;
-	margin-right: 32px;
-	margin-top: 8px;
-	text-align: left;
-	width: 544px;
-}
-
-#content
-/* this code centers the page */
-{
-	height: 605px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 12px;
-	position: relative;
-	width: 1024px;
-}
-
-#content div
-{
-	float: left;
-}
-
-#contentLite
+div#contentLite
 /* this code centers the page */
 {
 	margin-left: auto;
@@ -107,13 +21,10 @@
 	width: 800px;
 }
 
-#contentLite div
+
+div#contentLiteLeft
 {
 	float: left;
-}
-
-#contentLiteLeft
-{
 	height: 160px;
 	margin-left: 32px;
 	margin-top: 32px;
@@ -121,8 +32,10 @@
 	width: 256px;
 }
 
-#contentLiteRight
+
+div#contentLiteRight
 {
+	float: left;
 	height: 128px;
 	margin-left: 24px;
 	margin-right: 16px;
@@ -131,21 +44,24 @@
 	width: 472px;
 }
 
-#contentLiteBottom
+
+div#contentLiteBottom
 {
 	margin-left: 24px;
 	margin-right: 24px;
 	width: 752px;
 }
 
-#contentLeft
+
+div#contentLeft
 {
 	border-style: solid;
 	border-width: 1px;
 	width: 700px;
 }
 
-#contentRight
+
+div#contentRight
 {
 	border-bottom-style: solid;
 	border-right-style: solid;
@@ -154,7 +70,8 @@
 	width: 300px;
 }
 
-#header
+
+div#header
 {
 	background-image: url('../../images/nav/header.png');
 	background-repeat: repeat-x;
@@ -162,7 +79,8 @@
 	width: 100%;
 }
 
-#headerLite
+
+div#headerLite
 {
 	background-image: url('../../images/barHigh.png');
 	background-repeat: repeat-x;
@@ -170,11 +88,13 @@
 	width: 100%;
 }
 
+
 a:active
 {
 	color: #FFA82A;
 	text-decoration: none;
 }
+
 
 a:hover
 {
@@ -182,17 +102,20 @@ a:hover
 	text-decoration: underline;
 }
 
+
 a:link
 {
 	color: #FF9700;
 	text-decoration: none;
 }
 
+
 a:visited
 {
 	color: #C47400;
 	text-decoration: none;
 }
+
 
 body
 {
@@ -203,6 +126,7 @@ body
 	margin-top: 0px;
 }
 
+
 h1
 {
 	font-family: "Segoe UI Semibold", "Segoe UI", sans-serif;
@@ -210,17 +134,22 @@ h1
 	margin-top: 4px;
 }
 
+
 h2
 {
 	font-family: "Segoe UI", sans-serif;
 	font-weight: normal;
 }
 
+
 h3
 {
 	font-family: "Segoe UI Light", "Segoe UI", sans-serif;
 	font-weight: normal;
+	margin-bottom: 8px;
+	margin-top: 0px;
 }
+
 
 h4
 {
@@ -228,10 +157,12 @@ h4
 	font-weight: normal;
 }
 
+
 p
 {
 	margin-top: 8px;
 }
+
 
 form
 {

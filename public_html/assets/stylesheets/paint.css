@@ -1,4 +1,4 @@
-#chatArea
+div#chatArea
 {
 	border-bottom-style: solid;
 	border-width: 1px;
@@ -7,19 +7,34 @@
 	width: 300px;
 }
 
-#chatAreaInput
+
+div#chatAreaInput
 {
 	height: 48px;
 	width: 300px;
 }
 
-#chatForm
+
+div#chatForm
 {
 	margin-top: 4px;
 	margin-bottom: 1px;
 }
 
-#msg
+
+div#content
+/* this code centers the page */
+{
+	height: 605px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 12px;
+	position: relative;
+	width: 1024px;
+}
+
+
+input#msg
 {
 	border-width: 0px;
 	font-family: "Segoe UI Light", "Segoe UI", sans-serif;
@@ -27,50 +42,58 @@
 	height: 42px;
 }
 
-#content div
+
+div#content div
 {
 	float: left;
 }
 
-#currentTopic
+
+div#currentTopic
 {
 	height: 48px;
 	width: 300px;
 }
 
-#currentWordAndTimeLeft
+
+div#currentWordAndTimeLeft
 {
 	height: 48px;
 	width: 700px;
 }
 
-#linkToInvite
+
+div#linkToInvite
 {
 	height: 64px;
 	width: 300px;
 }
 
-#paintArea
+
+div#paintArea
 {
 	cursor: crosshair;
 	height: 470px;
 	width: 700px;
 }
 
-#toolBox
+
+div#toolBox
 {
 	height: 82px;
 	width: 700px;
 }
 
-#toolBoxTable
+
+div#toolBoxTable
 {
 	height: 82px;
 	text-align: center;
 	width: 700px;
 }
 
-#whoIsPlaying
+
+div#whoIsPlaying
 {
 	height: 224px;
 	width: 300px;

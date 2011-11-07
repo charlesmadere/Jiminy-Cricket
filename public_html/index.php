@@ -27,6 +27,14 @@
 	}
 
 
+	function findTopics()
+	// this function scans the assets/topics/ directory for json files and then prints
+	// those files to the user in the form of a dropdown menu
+	{
+		
+	}
+
+
 	// Team Jiminy Cricket
 
 
@@ -40,6 +48,7 @@
 
 	<head>
 		<link href="assets/stylesheets/basic.css" rel="stylesheet" type="text/css" />
+		<link href="assets/stylesheets/create.css" rel="stylesheet" type="text/css" />
 		<link href="assets/stylesheets/facebook.css" rel="stylesheet" type="text/css" />
 		<meta charset="UTF-8" />
 		<script src="assets/javascript/jquery.js" type="text/javascript"></script>
@@ -55,7 +64,8 @@
 				var compatRight = document.getElementById("compatRight");
 
 				if (compatibilityTest())
-				// browser is compatible with everything we need
+				// browser is compatible with everything we need. this method exists in the
+				// modernizr.js file
 				{
 					compatibilityImage.src = "../images/icons/accept-64.png";
 
@@ -69,7 +79,7 @@
 				{
 					compatibilityImage.src = "../images/icons/critical-64.png";
 
-					compatRight.innerHTML = "Sorry, but your browser is not compatible with all of the HTML5 technologies that We Paint requires. You will not be able to play until you update to a modern browser such as <a href=\"http://www.google.com/chrome\" target=\"_blank\">Google Chrome</a> or <a href=\"http://www.firefox.com/\" target=\"_blank\">Mozilla Firefox</a>."
+					compatRight.innerHTML = "Sorry, but your browser is not compatible with all of the HTML5 technologies that We Paint requires. You will not be able to play until you update to a modern browser such as <a href=\"http://www.google.com/chrome\" target=\"_blank\">Google Chrome</a>, <a href=\"http://windows.microsoft.com/en-US/internet-explorer/products/ie/home target=\"_blank\">Internet Explorer 9</a>, or <a href=\"http://www.firefox.com/\" target=\"_blank\">Mozilla Firefox</a>."
 					compatRight.setAttribute("class", "errorWithoutBorders");
 				}
 			});
@@ -89,40 +99,56 @@
 		</div>
 		<div id="contentLite">
 			<!-- the code to create a wepaint game goes here! -->
-			<form>
-				<h4>Select Draw Limit</h4>
-				<select name = "timer">
-					<option value = "30">30 seconds</option>
-					<option value = "45">45 seconds</option>
-					<option value = "30">1 minute</option>
-					<option value = "30">2 minutes</option>
-					<option value = "30">3 minutes</option>
-					<option value = "30">4 minutes</option>
-					<option value = "30">5 minutes seconds</option>
-					<option value = "6000">Derp</option>
-				</select><hr />
-				<h4>Select a Category</h4>
-				<select>
-					<option value = "10">temp</option>
-					<option value = "30">temp</option>
-					<option value = "30">temp</option>
-					<option value = "30">temp</option>
-					<option value = "30">temp</option>
-					<option value = "30">temp</option>
-				</select><hr />
-				<h4>Invite Your Friends!<h4>
-				<hr /> 
+			<form action="create.php" id="settings" method="post">
+				<div id="settingsLeft">
+					<div id="category">
+						<h3>Category</h3>
+						<select name="category">
+							<?php findTopics(); ?>
+							<option value="10">temp</option>
+							<option value="30">temp</option>
+							<option value="30">temp</option>
+							<option value="30">temp</option>
+							<option value="30">temp</option>
+							<option value="30">temp</option>
+						</select>
+					</div>
+
+					<div id="time">
+						<h3>Time Limit</h3>
+						<select name="time">
+							<option value="30">30 seconds</option>
+							<option value="45">45 seconds</option>
+							<option value="60">1 minute</option>
+							<option value="120">2 minutes</option>
+							<option value="180">3 minutes</option>
+							<option value="240">4 minutes</option>
+							<option value="300">5 minutes</option>
+							<option value="6000">Derp</option>
+						</select>
+					</div>
+				</div>
+				<div id="settingsRight">
+					<div id="inviteFriends">
+						<h3>Invite Your Friends!</h3>
+						<fb:login-button></fb:login-button>
+					</div>
+				</div>				
+				<div id="submitSettings">
+					<input class="noBorder" id="submit" onmouseout="imgMouseOff('buttons', 'submit')" onmouseover="imgMouseOn('buttons', 'submit')" src="images/buttons/submit.png" type="image" />
+				</div>
 			</form>
 			<div id="compatLeft">
 				<img id="compatibilityImage" />
 			</div>
-			<div id="compatRight"></div><hr />
-			<h3><a href="wepaint.php">Hello, Paint!</a></h3>
+			<div id="compatRight"></div>
 		</div>
 
 		<div id="fbookLike">
 			<div class="fb-like" data-href="http://www.wepaint.us/" data-send="false" data-width="450" data-show-faces="false"></div>
 		</div>
+
+		<h3><a href="wepaint.php">Hello, Paint!</a></h3>
 
 		<script src="//connect.facebook.net/en_US/all.js" type="text/javascript"></script>
 		<script src="assets/javascript/facebook.js" type="text/javascript"></script>

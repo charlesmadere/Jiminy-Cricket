@@ -40,7 +40,6 @@
 
 	<head>
 		<link href="assets/stylesheets/basic.css" rel="stylesheet" type="text/css" />
-		<link href="assets/stylesheets/facebook.css" rel="stylesheet" type="text/css" />
 		<link href="assets/stylesheets/paint.css" rel="stylesheet" type="text/css" />
 		<meta charset="UTF-8" />
 		<script src="assets/javascript/jquery.js" type="text/javascript"></script>
