@@ -1,6 +1,9 @@
 <?php
 
 
+	error_reporting(E_ALL);
+
+
 	require("facebook.php");
 
 	$facebook = new Facebook(array
@@ -14,10 +17,16 @@
 
 	if ($user)
 	{
+		echo "h";
 		try
 		{
+			echo "he";
 			// Proceed knowing you have a logged in user who's authenticated.
 			$user_profile = $facebook->api("/me");
+
+			// get the user's friends
+			$friends = $facebook->api("/me/friends");
+			echo "hey";
 		}
 		catch (FacebookApiException $e)
 		{
@@ -25,11 +34,15 @@
 			$user = null;
 		}
 	}
+	else
+	{
+		echo "no user";
+	}
 
 
 	function findTopics()
 	// this function scans the assets/topics/ directory for json files and then prints
-	// those files to the user in the form of a dropdown menu
+	// those files to the HTML page in the form of a dropdown menu
 	{
 		
 	}
@@ -89,6 +102,17 @@
 
 	<body>
 		<div id="fb-root"></div>
+		<script type="text/javascript">
+			(function(d, s, id)
+			{
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) {return;}
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=211936785535748";
+				fjs.parentNode.insertBefore(js, fjs);
+			}
+			(document, 'script', 'facebook-jssdk'));
+		</script>
 		<div id="header">
 			<img src="images/wepaint.png" alt="WePaint.us" />
 			<img src="images/nav/divider.png" />
@@ -106,11 +130,6 @@
 						<select name="category">
 							<?php findTopics(); ?>
 							<option value="10">temp</option>
-							<option value="30">temp</option>
-							<option value="30">temp</option>
-							<option value="30">temp</option>
-							<option value="30">temp</option>
-							<option value="30">temp</option>
 						</select>
 					</div>
 
@@ -131,9 +150,9 @@
 				<div id="settingsRight">
 					<div id="inviteFriends">
 						<h3>Invite Your Friends!</h3>
-						<fb:login-button></fb:login-button>
+						<div class="fb-login-button" data-show-faces="true" data-width="350" data-max-rows="1"></div>
 					</div>
-				</div>				
+				</div>
 				<div id="submitSettings">
 					<input class="noBorder" id="submit" onmouseout="imgMouseOff('buttons', 'submit')" onmouseover="imgMouseOn('buttons', 'submit')" src="images/buttons/submit.png" type="image" />
 				</div>

@@ -1,56 +1,34 @@
-var facebookLoggedIn = false;
-
-
-FB.init
-({
-	// our AppID
-	appId: '211936785535748',
-
-	// check login status
-	status: true,
-
-	// enable cookies to allow the server to access
-	// the session
-	cookie: true,
-
-	// parse XFBML
-	xfbml: true,
-
-	// channel.html file
-	channelURL: 'http://www.wepaint.us/channel.html',
-
-	// enable OAuth 2.0
-	oauth: true
-});
-
-
-FB.getLoginStatus(function(response)
+window.fbAsyncInit = function()
 {
-	if (response.authResponse)
-	// user is logged in
+		FB.init
+		(
+			{
+				appId: '211936785535748',
+				cookie: true,
+				xfbml: true,
+				oauth: true
+				channelURL: 'http://www.wepaint.us/channel.html',
+			}
+		);
+
+		FB.Event.subscribe('auth.login', function(response)
+			{
+				window.location.reload();
+			}
+		);
+
+        FB.Event.subscribe('auth.logout', function(response) {
+          window.location.reload();
+        });
+};
+(
+	function()
 	{
-		facebookLoggedIn = true;
-	}
-	else
-	// user is not logged in
-	{
-		facebookLoggedIn = false;
-	}
-});
-
-
-FB.Event.subscribe('auth.login', function(response)
-{
-	facebookLoggedIn = true;
-	window.location.reload();
-});
-
-
-FB.Event.subscribe('auth.logout', function(response)
-{
-	facebookLoggedIn = false;
-	window.location.reload();
-});
+			var e = document.createElement('script'); e.async = true;
+			e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+			document.getElementById('fb-root').appendChild(e);
+	}()
+);
 
 
 // Team Jiminy Cricket
