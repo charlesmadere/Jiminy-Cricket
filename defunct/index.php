@@ -6,37 +6,37 @@
 
 	require("facebook.php");
 
-	$facebook = new Facebook
+	$facebook = new Facebook(array
 	(
-		array
-		(
-			'appId' => '211936785535748',
-			'secret' => '760f613bc10ba7bb970b3b4df4c1ff87',
-		)
-	);
+		'appId' => '211936785535748',
+		'secret' => '760f613bc10ba7bb970b3b4df4c1ff87',
+	));
 
+	// See if there is a user from a cookie
 	$user = $facebook->getUser();
 
 	if ($user)
 	{
+		echo "h";
 		try
 		{
-			$user_profile = $facebook->api('/me');
+			echo "he";
+			// Proceed knowing you have a logged in user who's authenticated.
+			$user_profile = $facebook->api("/me");
+
+			// get the user's friends
+			$friends = $facebook->api("/me/friends");
+			echo "hey";
 		}
 		catch (FacebookApiException $e)
 		{
-			error_log($e);
+			echo "<pre>" . htmlspecialchars(print_r($e, true)) . "</pre>";
 			$user = null;
 		}
 	}
-
-	if ($user)
-	{
-		$logoutUrl = $facebook->getLogoutUrl();
-	}
 	else
 	{
-		$loginUrl = $facebook->getLoginUrl();
+		echo "no user";
 	}
 
 
@@ -102,6 +102,17 @@
 
 	<body>
 		<div id="fb-root"></div>
+		<script type="text/javascript">
+			(function(d, s, id)
+			{
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) {return;}
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=211936785535748";
+				fjs.parentNode.insertBefore(js, fjs);
+			}
+			(document, 'script', 'facebook-jssdk'));
+		</script>
 		<div id="header">
 			<img src="images/wepaint.png" alt="WePaint.us" />
 			<img src="images/nav/divider.png" />
@@ -111,11 +122,11 @@
 			</a>
 		</div>
 		<div id="contentLite">
-			<h1 style="text-align: center;">Create a game of We Paint!</h1>
+			<!-- the code to create a wepaint game goes here! -->
 			<form action="create.php" id="settings" method="post">
 				<div id="settingsLeft">
 					<div id="category">
-						<h3>Choose a Category</h3>
+						<h3>Category</h3>
 						<select name="category">
 							<?php findTopics(); ?>
 							<option value="10">temp</option>
@@ -123,7 +134,7 @@
 					</div>
 
 					<div id="time">
-						<h3>Pick a Time Limit</h3>
+						<h3>Time Limit</h3>
 						<select name="time">
 							<option value="30">30 seconds</option>
 							<option value="45">45 seconds</option>
@@ -139,11 +150,7 @@
 				<div id="settingsRight">
 					<div id="inviteFriends">
 						<h3>Invite Your Friends!</h3>
-						<?php if ($user): ?>
-							<img src="https://graph.facebook.com/<?php echo $user; ?>/picture">
-							<?php else: ?>
-							<a href="<?php echo $loginUrl; ?>"><img class="noBorder" id="login" src="images/buttons/login.png" onmouseout="imgMouseOff('buttons', 'login')" onmouseover="imgMouseOn('buttons', 'login')" /></a>
-						<?php endif ?>
+						
 					</div>
 				</div>
 				<div id="submitSettings">
