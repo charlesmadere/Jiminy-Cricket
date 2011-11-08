@@ -4,14 +4,21 @@
 	error_reporting(E_ALL);
 
 
+	// facebook configuration settings
+	$FB_APPID = "211936785535748";
+	$FB_APPSECRET = "760f613bc10ba7bb970b3b4df4c1ff87";
+	$FB_SCOPE = "user_about_me";
+	$FB_REDIRECT = "http://www.wepaint.us/";
+
 	require("facebook.php");
 
 	$facebook = new Facebook
 	(
 		array
 		(
-			'appId' => '211936785535748',
-			'secret' => '760f613bc10ba7bb970b3b4df4c1ff87',
+			'appId' => $FB_APPID,
+			'secret' => $FB_APPSECRET,
+			'cookie' => true
 		)
 	);
 
@@ -30,13 +37,49 @@
 		}
 	}
 
+	$loginUrl = $facebook->getLoginUrl
+	(
+		array
+		(
+			'scope' => $FB_SCOPE,
+			'redirect_uri' => $FB_REDIRECT
+		)
+	);
+
+	$logoutUrl = $facebook->getLogoutUrl();
+
+
 	if ($user)
 	{
-		$logoutUrl = $facebook->getLogoutUrl();
+		$userInfo = $facebook->api("/$user");
+
+		if (isset($_GET['publish']))
+		{
+			try
+			{
+				
+			}
+			catch (FacebookApiException $e)
+			{
+				d($e);
+			}
+
+			$redirectUrl = $FB_REDIRECT . "index.php?success=1";
+			header("Location: $redirectUrl");
+		}
 	}
-	else
+
+
+	function echoLoginOrLogout()
 	{
-		$loginUrl = $facebook->getLoginUrl();
+		if ($user)
+		{
+			echo "<img src=\"https://graph.facebook.com/" . $user . "/picture\" />\n";
+		}
+		else
+		{
+			echo "<a href=\"" . $loginUrl . "\"><img class=\"noBorder\" id=\"login\" src=\"images/buttons/login.png\" onmouseout=\"imgMouseOff('buttons', 'login',)\" onmouseover=\"imgMouseOn('buttons', 'login')\" /></a>\n";
+		}
 	}
 
 
@@ -45,6 +88,14 @@
 	// those files to the HTML page in the form of a dropdown menu
 	{
 		
+	}
+
+
+	function d($d)
+	{
+		echo "<pre>";
+		print_r($d);
+		echo "</pre>\n";
 	}
 
 
@@ -138,13 +189,18 @@
 				</div>
 				<div id="settingsRight">
 					<div id="inviteFriends">
-						<h3>Invite Your Friends!</h3>
-						<?php if ($user): ?>
-							<p><?php echo $user['name']; ?></p>
-							<img src="https://graph.facebook.com/<?php echo $user; ?>/picture">
-						<?php else: ?>
-							<a href="<?php echo $loginUrl; ?>"><img class="noBorder" id="login" src="images/buttons/login.png" onmouseout="imgMouseOff('buttons', 'login')" onmouseover="imgMouseOn('buttons', 'login')" /></a>
-						<?php endif ?>
+						<?php
+							if ($user)
+							{
+								echo "<h3>Hello, " . $userInfo['name'] . "!</h3>\n";
+								echo "<img src=\"https://graph.facebook.com/" . $user . "/picture\" />\n";
+							}
+							else
+							{
+								echo "<h3>Sign in with Facebook to play!</h3>\n";
+								echo "<a href=\"" . $loginUrl . "\"><img class=\"noBorder\" id=\"login\" src=\"images/buttons/login.png\" onmouseout=\"imgMouseOff('buttons', 'login')\" onmouseover=\"imgMouseOn('buttons', 'login')\" /></a>\n";
+							}
+						?>
 					</div>
 				</div>
 				<div id="submitSettings">
