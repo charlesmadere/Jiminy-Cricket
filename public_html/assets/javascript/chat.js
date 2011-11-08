@@ -21,6 +21,7 @@ function validateMessage(message)
 	var face11 = directory + "face11-" + size + extension;
 	var face12 = directory + "face12-" + size + extension;
 	var face13 = directory + "face13-" + size + extension;
+	var face14 = directory + "face14-" + size + extension;
 
 	if (/\S/.test(message))
 	// check the string to ensure it's not just white space
@@ -78,14 +79,17 @@ function validateMessage(message)
 			// face10: ";)"
 			message = message.replace(/\;\)/g, "<img src=" + face10 + " />");
 
-			// face11: ":joe:"
+			// face11: "joe"
 			message = message.replace(/joe/gi, "<img src=" + face11 + " />");
 
-			// face12: ":pao:"
+			// face12: "pao"
 			message = message.replace(/pao/gi, "<img src=" + face12 + " />");
 
-			// face13: ":pika:"
+			// face13: "pika"
 			message = message.replace(/pika/gi, "<img src=" + face13 + " />");
+
+			// face14: "apple"
+			message = message.replace(/apple/gi, "<img src=" + face14 + " />");
 			
 			return message;
 		}

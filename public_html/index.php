@@ -112,7 +112,7 @@
 		</div>
 		<div id="contentLite">
 			<h1 style="text-align: center;">Create a game of We Paint!</h1>
-			<form action="create.php" id="settings" method="post">
+			<form action="wepaint.php" id="settings" method="post">
 				<div id="settingsLeft">
 					<div id="category">
 						<h3>Choose a Category</h3>
@@ -140,8 +140,9 @@
 					<div id="inviteFriends">
 						<h3>Invite Your Friends!</h3>
 						<?php if ($user): ?>
+							<p><?php echo $user['name']; ?></p>
 							<img src="https://graph.facebook.com/<?php echo $user; ?>/picture">
-							<?php else: ?>
+						<?php else: ?>
 							<a href="<?php echo $loginUrl; ?>"><img class="noBorder" id="login" src="images/buttons/login.png" onmouseout="imgMouseOff('buttons', 'login')" onmouseover="imgMouseOn('buttons', 'login')" /></a>
 						<?php endif ?>
 					</div>

@@ -4,7 +4,7 @@
 	// database configuration settings
 	$DB_HOST = "localhost";
 	$DB_USER = "wepaint";
-	$DB_PASS = "moose#goose#loose";
+	$DB_PASS = "xyz";
 	$DB_NAME = "wepaint_data";
 	$DB_TABLE = "testmessages";
 	$STORE_NUM = 128;
