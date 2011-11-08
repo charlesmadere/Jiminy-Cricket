@@ -7,7 +7,7 @@
 	// facebook configuration settings
 	$FB_APPID = "211936785535748";
 	$FB_APPSECRET = "760f613bc10ba7bb970b3b4df4c1ff87";
-	$FB_SCOPE = "user_about_me";
+	$FB_SCOPE = "email,publish_stream,user_about_me";
 	$FB_REDIRECT = "http://www.wepaint.us/";
 
 	require("facebook.php");
@@ -53,20 +53,47 @@
 	{
 		$userInfo = $facebook->api("/$user");
 
-		if (isset($_GET['publish']))
-		{
-			try
-			{
-				
-			}
-			catch (FacebookApiException $e)
-			{
-				d($e);
-			}
+        if (isset($_GET['publish'])){
+            try {
+                $publishStream = $facebook->api("/$user/feed", 'post', array(
+                    'message' => "I love thinkdiff.net for facebook app development tutorials. :)", 
+                    'link'    => 'http://ithinkdiff.net',
+                    'picture' => 'http://thinkdiff.net/ithinkdiff.png',
+                    'name'    => 'iOS Apps & Games',
+                    'description'=> 'Checkout iOS apps and games from iThinkdiff.net. I found some of them are just awesome!'
+                    )
+                );
+                //as $_GET['publish'] is set so remove it by redirecting user to the base url 
+            } catch (FacebookApiException $e) {
+                d($e);
+            }
+            $redirectUrl     = $fbconfig['baseurl'] . '/index.php?success=1';
+            header("Location: $redirectUrl");
+        }
 
-			$redirectUrl = $FB_REDIRECT . "index.php?success=1";
-			header("Location: $redirectUrl");
-		}
+        //update user's status using graph api
+        //http://developers.facebook.com/docs/reference/dialogs/feed/
+        if (isset($_POST['tt'])){
+            try {
+                $statusUpdate = $facebook->api("/$user/feed", 'post', array('message'=> $_POST['tt']));
+            } catch (FacebookApiException $e) {
+                d($e);
+            }
+        }
+
+        //fql query example using legacy method call and passing parameter
+        try{
+            $fql    =   "select name, hometown_location, sex, pic_square from user where uid=" . $user;
+            $param  =   array(
+                'method'    => 'fql.query',
+                'query'     => $fql,
+                'callback'  => ''
+            );
+            $fqlResult   =   $facebook->api($param);
+        }
+        catch(Exception $o){
+            d($o);
+        }
 	}
 
 
@@ -193,7 +220,7 @@
 							if ($user)
 							{
 								echo "<h3>Hello, " . $userInfo['name'] . "!</h3>\n";
-								echo "<img src=\"https://graph.facebook.com/" . $user . "/picture\" />\n";
+								echo "<a href=\"#\" onclick=\"inviteFacebookFriends()\"><img class=\"noBorder\" id=\"inviteYourFriends\" src=\"images/buttons/inviteYourFriends.png\" onmouseout=\"imgMouseOff('buttons', 'inviteYourFriends')\" onmouseover=\"imgMouseOn('buttons', 'inviteYourFriends')\" /></a>\n";
 							}
 							else
 							{
@@ -204,7 +231,7 @@
 					</div>
 				</div>
 				<div id="submitSettings">
-					<input class="noBorder" id="submit" onmouseout="imgMouseOff('buttons', 'submit')" onmouseover="imgMouseOn('buttons', 'submit')" src="images/buttons/submit.png" type="image" />
+					<input class="noBorder" id="letsPaint" onmouseout="imgMouseOff('buttons', 'letsPaint')" onmouseover="imgMouseOn('buttons', 'letsPaint')" src="images/buttons/letsPaint.png" type="image" />
 				</div>
 			</form>
 			<div id="compatLeft">

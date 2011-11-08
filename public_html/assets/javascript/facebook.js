@@ -40,4 +40,35 @@ window.fbAsyncInit = function()
 );
 
 
+function streamPublish(name, description, hrefTitle, hrefLink, hrefPicture, userPrompt)
+{
+	FB.ui
+	(
+		{
+			method: 'feed';
+			message: userPrompt,
+			link: hrefLink,
+			caption: hrefTitle,
+			picture: hrefPicture
+		}
+	);
+}
+
+
+function inviteFacebookFriends()
+{
+	var recieverUserIds = FB.ui
+	(
+		{
+			method: 'apprequests',
+			message: 'You\'ve been invited to play WePaint!',
+		},
+		function(receiverUserIds)
+		{
+			console.log("IDS : " + receiverUserIds.request_ids);
+		}
+	);
+}
+
+
 // Team Jiminy Cricket
