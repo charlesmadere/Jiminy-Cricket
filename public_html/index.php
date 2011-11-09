@@ -169,6 +169,7 @@
 		$queryString = "wepaint.php?game=" . $userHash;
 
 		echo "						<a href=\"#\" onclick=\"streamPublish('" . $queryString . "')\"><img class=\"noBorder\" id=\"inviteYourFriends\" src=\"images/buttons/inviteYourFriends.png\" onmouseout=\"imgMouseOff('buttons', 'inviteYourFriends')\" onmouseover=\"imgMouseOn('buttons', 'inviteYourFriends')\" /></a>\n";
+		echo "						<input type=\"hidden\" value=\"" . $queryString . "\" />\n";
 		echo "					</div>\n";
 		echo "				</div>\n";
 		echo "				<div id=\"submitSettings\">\n";
