@@ -162,6 +162,7 @@
 		// generate a hash using MD5 of the user's name and the system time. this
 		// will be part of the query string
 		$userHash = md5($userInfo['name'] . time());
+		echo "						<input type=\"hidden\" value=\"" . $userHash . "\" />\n";
 
 		// build the link to print out into the html. this link will, when clicked,
 		// call the streamPublish() javascript method in facebook.js. this javascript
@@ -169,7 +170,6 @@
 		$queryString = "wepaint.php?game=" . $userHash;
 
 		echo "						<a href=\"#\" onclick=\"streamPublish('" . $queryString . "')\"><img class=\"noBorder\" id=\"inviteYourFriends\" src=\"images/buttons/inviteYourFriends.png\" onmouseout=\"imgMouseOff('buttons', 'inviteYourFriends')\" onmouseover=\"imgMouseOn('buttons', 'inviteYourFriends')\" /></a>\n";
-		echo "						<input type=\"hidden\" value=\"" . $queryString . "\" />\n";
 		echo "					</div>\n";
 		echo "				</div>\n";
 		echo "				<div id=\"submitSettings\">\n";
