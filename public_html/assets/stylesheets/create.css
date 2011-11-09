@@ -95,6 +95,19 @@ div#settingsRight
 }
 
 
+div#signInToFacebook
+{
+	margin-bottom: 32px;
+	overflow: auto;
+	padding-bottom: 16px;
+	padding-left: 16px;
+	padding-right: 16px;
+	padding-top: 16px;
+	text-align: center;
+	width: 768px;
+}
+
+
 div#submitSettings
 {
 	margin-top: 16px;

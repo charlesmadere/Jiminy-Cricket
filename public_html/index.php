@@ -52,61 +52,6 @@
 	if ($user)
 	{
 		$userInfo = $facebook->api("/$user");
-
-        if (isset($_GET['publish'])){
-            try {
-                $publishStream = $facebook->api("/$user/feed", 'post', array(
-                    'message' => "I love thinkdiff.net for facebook app development tutorials. :)", 
-                    'link'    => 'http://ithinkdiff.net',
-                    'picture' => 'http://thinkdiff.net/ithinkdiff.png',
-                    'name'    => 'iOS Apps & Games',
-                    'description'=> 'Checkout iOS apps and games from iThinkdiff.net. I found some of them are just awesome!'
-                    )
-                );
-                //as $_GET['publish'] is set so remove it by redirecting user to the base url 
-            } catch (FacebookApiException $e) {
-                d($e);
-            }
-            $redirectUrl     = $fbconfig['baseurl'] . '/index.php?success=1';
-            header("Location: $redirectUrl");
-        }
-
-        //update user's status using graph api
-        //http://developers.facebook.com/docs/reference/dialogs/feed/
-        if (isset($_POST['tt'])){
-            try {
-                $statusUpdate = $facebook->api("/$user/feed", 'post', array('message'=> $_POST['tt']));
-            } catch (FacebookApiException $e) {
-                d($e);
-            }
-        }
-
-        //fql query example using legacy method call and passing parameter
-        try{
-            $fql    =   "select name, hometown_location, sex, pic_square from user where uid=" . $user;
-            $param  =   array(
-                'method'    => 'fql.query',
-                'query'     => $fql,
-                'callback'  => ''
-            );
-            $fqlResult   =   $facebook->api($param);
-        }
-        catch(Exception $o){
-            d($o);
-        }
-	}
-
-
-	function echoLoginOrLogout()
-	{
-		if ($user)
-		{
-			echo "<img src=\"https://graph.facebook.com/" . $user . "/picture\" />\n";
-		}
-		else
-		{
-			echo "<a href=\"" . $loginUrl . "\"><img class=\"noBorder\" id=\"login\" src=\"images/buttons/login.png\" onmouseout=\"imgMouseOff('buttons', 'login',)\" onmouseover=\"imgMouseOn('buttons', 'login')\" /></a>\n";
-		}
 	}
 
 
@@ -189,51 +134,64 @@
 			</a>
 		</div>
 		<div id="contentLite">
-			<h1 style="text-align: center;">Create a game of We Paint!</h1>
-			<form action="wepaint.php" id="settings" method="post">
-				<div id="settingsLeft">
-					<div id="category">
-						<h3>Choose a Category</h3>
-						<select name="category">
-							<?php findTopics(); ?>
-							<option value="10">temp</option>
-						</select>
-					</div>
+<?php
+	if ($user)
+	{
+		echo "			<h1 class=\"simpleCenter\">Create a game of We Paint!</h1>\n";
+		echo "			<form action=\"wepaint.php\" id=\"settings\" method=\"post\">\n";
+		echo "				<div id=\"settingsLeft\">\n";
+		echo "					<div id=\"category\">\n";
+		echo "						<h3>Choose a Category</h3>\n";
+		echo "						<select name=\"category\">\n";
 
-					<div id="time">
-						<h3>Pick a Time Limit</h3>
-						<select name="time">
-							<option value="30">30 seconds</option>
-							<option value="45">45 seconds</option>
-							<option value="60">1 minute</option>
-							<option value="120">2 minutes</option>
-							<option value="180">3 minutes</option>
-							<option value="240">4 minutes</option>
-							<option value="300">5 minutes</option>
-							<option value="6000">Derp</option>
-						</select>
-					</div>
-				</div>
-				<div id="settingsRight">
-					<div id="inviteFriends">
-						<?php
-							if ($user)
-							{
-								echo "<h3>Hello, " . $userInfo['name'] . "!</h3>\n";
-								echo "<a href=\"#\" onclick=\"inviteFacebookFriends()\"><img class=\"noBorder\" id=\"inviteYourFriends\" src=\"images/buttons/inviteYourFriends.png\" onmouseout=\"imgMouseOff('buttons', 'inviteYourFriends')\" onmouseover=\"imgMouseOn('buttons', 'inviteYourFriends')\" /></a>\n";
-							}
-							else
-							{
-								echo "<h3>Sign in with Facebook to play!</h3>\n";
-								echo "<a href=\"" . $loginUrl . "\"><img class=\"noBorder\" id=\"login\" src=\"images/buttons/login.png\" onmouseout=\"imgMouseOff('buttons', 'login')\" onmouseover=\"imgMouseOn('buttons', 'login')\" /></a>\n";
-							}
-						?>
-					</div>
-				</div>
-				<div id="submitSettings">
-					<input class="noBorder" id="letsPaint" onmouseout="imgMouseOff('buttons', 'letsPaint')" onmouseover="imgMouseOn('buttons', 'letsPaint')" src="images/buttons/letsPaint.png" type="image" />
-				</div>
-			</form>
+		findTopics();
+
+		echo "							<option value=\"10\">temp</option>\n";
+		echo "						</select>\n";
+		echo "					</div>\n";
+		echo "					<div id=\"time\">\n";
+		echo "						<h3>Pick a Time Limit</h3>\n";
+		echo "						<select name=\"time\">\n";
+		echo "							<option value=\"30\">30 seconds</option>\n";
+		echo "							<option value=\"45\">45 seconds</option>\n";
+		echo "							<option value=\"60\">1 minute</option>\n";
+		echo "							<option value=\"120\">2 minutes</option>\n";
+		echo "							<option value=\"180\">3 minutes</option>\n";
+		echo "							<option value=\"240\">4 minutes</option>\n";
+		echo "							<option value=\"300\">5 minutes</option>\n";
+		echo "							<option value=\"6000\">Derp</option>\n";
+		echo "						</select>\n";
+		echo "					</div>\n";
+		echo "				</div>\n";
+		echo "				<div id=\"settingsRight\">\n";
+		echo "					<div id=\"inviteFriends\">\n";
+		echo "						<h3>Hello, " . $userInfo['name'] . "!</h3>\n";
+
+		// generate a hash using MD5 of the user's name and the system time. this
+		// will be part of the query string
+		$userHash = md5($userInfo['name'] . time());
+
+		// build the link to print out into the html. this link will, when clicked,
+		// call the streamPublish() javascript method in facebook.js. this javascript
+		// method will create wall posts inviting the chosen friends to the game
+		$queryString = "wepaint.php?game=" . $userHash;
+
+		echo "						<a href=\"#\" onclick=\"streamPublish(" . $queryString . ")\"><img class=\"noBorder\" id=\"inviteYourFriends\" src=\"images/buttons/inviteYourFriends.png\" onmouseout=\"imgMouseOff('buttons', 'inviteYourFriends')\" onmouseover=\"imgMouseOn('buttons', 'inviteYourFriends')\" /></a>\n";
+		echo "					</div>\n";
+		echo "				</div>\n";
+		echo "				<div id=\"submitSettings\">\n";
+		echo "					<input class=\"noBorder\" id=\"letsPaint\" onmouseout=\"imgMouseOff('buttons', 'letsPaint')\" onmouseover=\"imgMouseOn('buttons', 'letsPaint')\" src=\"images/buttons/letsPaint.png\" type=\"image\" />\n";
+		echo "				</div>\n";
+		echo "			</form>\n";
+	}
+	else
+	{
+		echo "			<h1 class=\"simpleCenter\">Sign in with Facebook to play!</h3>\n";
+		echo "			<div id=\"signInToFacebook\">\n";
+		echo "				<a href=\"" . $loginUrl . "\"><img class=\"noBorder\" id=\"loginBig\" src=\"images/buttons/loginBig.png\" onmouseout=\"imgMouseOff('buttons', 'loginBig')\" onmouseover=\"imgMouseOn('buttons', 'loginBig')\" /></a>\n";
+		echo "			</div>\n";
+	}
+?>
 			<div id="compatLeft">
 				<img id="compatibilityImage" />
 			</div>
@@ -243,8 +201,6 @@
 		<div id="fbookLike">
 			<div class="fb-like" data-href="http://www.wepaint.us/" data-send="false" data-width="450" data-show-faces="false"></div>
 		</div>
-
-		<h3><a href="wepaint.php">Hello, Paint!</a></h3>
 
 		<script src="http://connect.facebook.net/en_US/all.js" type="text/javascript"></script>
 		<script src="assets/javascript/facebook.js" type="text/javascript"></script>

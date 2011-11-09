@@ -14,7 +14,7 @@ window.fbAsyncInit = function()
 	(
 		'auth.logout', function(response)
 		{
-			//window.location.reload();
+			window.location.reload();
 			Debugger.log("logged out");
 		}
 	);
@@ -23,7 +23,7 @@ window.fbAsyncInit = function()
 	(
 		'auth.login', function(response)
 		{
-			//window.location.reload();
+			window.location.reload();
 			Debugger.log("logged in");
 		}
 	);
@@ -40,16 +40,16 @@ window.fbAsyncInit = function()
 );
 
 
-function streamPublish(name, description, hrefTitle, hrefLink, hrefPicture, userPrompt)
+function streamPublish(queryString)
 {
 	FB.ui
 	(
 		{
-			method: 'feed';
-			message: userPrompt,
-			link: hrefLink,
-			caption: hrefTitle,
-			picture: hrefPicture
+			method: 'feed',
+			message: 'Your friend has invited you to play We Paint!',
+			link: 'http://www.wepaint.us/' + queryString,
+			caption: 'Join the Game!',
+			picture: 'http://wepaint.us/images/brush-big.png'
 		}
 	);
 }
@@ -61,7 +61,7 @@ function inviteFacebookFriends()
 	(
 		{
 			method: 'apprequests',
-			message: 'You\'ve been invited to play WePaint!',
+			message: 'Play WePaint with your friends!',
 		},
 		function(receiverUserIds)
 		{

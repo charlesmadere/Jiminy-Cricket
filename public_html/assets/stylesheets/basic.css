@@ -11,6 +11,12 @@ div.bottomBorder
 }
 
 
+.simpleCenter
+{
+	text-align: center;
+}
+
+
 div#contentLite
 /* this code centers the page */
 {
