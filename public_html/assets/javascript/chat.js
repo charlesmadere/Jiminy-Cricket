@@ -22,6 +22,7 @@ function validateMessage(message)
 	var face12 = directory + "face12-" + size + extension;
 	var face13 = directory + "face13-" + size + extension;
 	var face14 = directory + "face14-" + size + extension;
+	var face15 = directory + "face15-" + size + extension;
 
 	if (/\S/.test(message))
 	// check the string to ensure it's not just white space
@@ -90,6 +91,9 @@ function validateMessage(message)
 
 			// face14: "apple"
 			message = message.replace(/apple/gi, "<img src=" + face14 + " />");
+
+			// face15: "boo" and "ghost"
+			message = message.replace(/boo|ghost/gi, "<img src=" + face15 + " />");
 			
 			return message;
 		}
