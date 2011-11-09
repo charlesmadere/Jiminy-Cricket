@@ -44,6 +44,13 @@ input#msg
 }
 
 
+span.author
+{
+	color: #06447F;
+	font-family: "Segoe UI", sans-serif;
+}
+
+
 div#content div
 {
 	float: left;

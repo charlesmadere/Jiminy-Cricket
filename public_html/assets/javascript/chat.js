@@ -116,26 +116,39 @@ function addMessages(xml)
 {
 	timestamp = $("time", xml).text();
 
-	$("message", xml).each(function(id)
-	// 
-	{
-		message = $("message", xml).get(id);
-		$("#chatArea").append("<b>" + $("author", message).text() + "</b>: " + $("text", message).text() + "<br />");
-	});
+	$("message", xml).each
+	(
+		function(id)
+		// 
+		{
+			message = $("message", xml).get(id);
+			$("#chatArea").append
+			(
+				"<span class=\"author\">" + $("author", message).text() + "</span> " + $("text", message).text() + "<br />"
+			);
+		}
+	);
 }
 
 
 function updateMsg()
 // 
 {
-	$.post("server.php", { time: timestamp }, function(xml)
-	// 
-	{
-		$("#loading").remove();
-		addMessages(xml);
-	});
+	$.post
+	(
+		"server.php",
+		{
+			time: timestamp
+		},
+		function(xml)
+		// 
+		{
+			$("#loading").remove();
+			addMessages(xml);
+		}
+	);
 
-	setTimeout('updateMsg()', 4000);
+	setTimeout('updateMsg()', 8000);
 }
 
 
