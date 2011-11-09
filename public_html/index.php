@@ -59,15 +59,7 @@
 	// this function scans the assets/topics/ directory for json files and then prints
 	// those files to the HTML page in the form of a dropdown menu
 	{
-		
-	}
-
-
-	function d($d)
-	{
-		echo "<pre>";
-		print_r($d);
-		echo "</pre>\n";
+		echo "							<option value=\"10\">temp</option>\n";
 	}
 
 
@@ -136,6 +128,7 @@
 		<div id="contentLite">
 <?php
 	if ($user)
+	// facebook user is logged in AND has granted our application permissions
 	{
 		echo "			<h1 class=\"simpleCenter\">Create a game of We Paint!</h1>\n";
 		echo "			<form action=\"wepaint.php\" id=\"settings\" method=\"post\">\n";
@@ -146,7 +139,6 @@
 
 		findTopics();
 
-		echo "							<option value=\"10\">temp</option>\n";
 		echo "						</select>\n";
 		echo "					</div>\n";
 		echo "					<div id=\"time\">\n";
@@ -165,7 +157,7 @@
 		echo "				</div>\n";
 		echo "				<div id=\"settingsRight\">\n";
 		echo "					<div id=\"inviteFriends\">\n";
-		echo "						<h3>Hello, " . $userInfo['name'] . "!</h3>\n";
+		echo "						<h3>Hello " . $userInfo['name'] . "!</h3>\n";
 
 		// generate a hash using MD5 of the user's name and the system time. this
 		// will be part of the query string
@@ -176,7 +168,7 @@
 		// method will create wall posts inviting the chosen friends to the game
 		$queryString = "wepaint.php?game=" . $userHash;
 
-		echo "						<a href=\"#\" onclick=\"streamPublish(" . $queryString . ")\"><img class=\"noBorder\" id=\"inviteYourFriends\" src=\"images/buttons/inviteYourFriends.png\" onmouseout=\"imgMouseOff('buttons', 'inviteYourFriends')\" onmouseover=\"imgMouseOn('buttons', 'inviteYourFriends')\" /></a>\n";
+		echo "						<a href=\"#\" onclick=\"streamPublish('" . $queryString . "')\"><img class=\"noBorder\" id=\"inviteYourFriends\" src=\"images/buttons/inviteYourFriends.png\" onmouseout=\"imgMouseOff('buttons', 'inviteYourFriends')\" onmouseover=\"imgMouseOn('buttons', 'inviteYourFriends')\" /></a>\n";
 		echo "					</div>\n";
 		echo "				</div>\n";
 		echo "				<div id=\"submitSettings\">\n";
