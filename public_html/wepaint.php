@@ -1,29 +1,59 @@
 <?php
 
 
+	// make sure that all errors are reported
+	error_reporting(E_ALL);
+
+
+	if (!empty($_POST["game"]) || !empty($_GET["game"]))
+	// redirects user to index.php if they didn't follow a link or create a game
+	{
+		
+	}
+	else
+	{
+		header("Location: index.php");
+		exit;
+	}
+
+
+	// facebook configuration settings
+	$FB_APPID = "211936785535748";
+	$FB_APPSECRET = "760f613bc10ba7bb970b3b4df4c1ff87";
+	$FB_SCOPE = "email,publish_stream,user_about_me";
+	$FB_REDIRECT = "http://www.wepaint.us/";
+
 	require("facebook.php");
 
-	$facebook = new Facebook(array
+	$facebook = new Facebook
 	(
-		'appId' => '211936785535748',
-		'secret' => '760f613bc10ba7bb970b3b4df4c1ff87',
-	));
+		array
+		(
+			'appId' => $FB_APPID,
+			'secret' => $FB_APPSECRET,
+			'cookie' => true
+		)
+	);
 
-	// See if there is a user from a cookie
 	$user = $facebook->getUser();
 
 	if ($user)
 	{
 		try
 		{
-			// Proceed knowing you have a logged in user who's authenticated.
-			$user_profile = $facebook->api("/me");
+			$user_profile = $facebook->api('/me');
 		}
 		catch (FacebookApiException $e)
 		{
-			echo "<pre>" . htmlspecialchars(print_r($e, true)) . "</pre>";
+			error_log($e);
 			$user = null;
 		}
+	}
+
+
+	if ($user)
+	{
+		$userInfo = $facebook->api("/$user");
 	}
 
 

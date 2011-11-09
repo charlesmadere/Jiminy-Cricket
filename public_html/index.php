@@ -3,6 +3,9 @@
 
 	error_reporting(E_ALL);
 
+	// make sure that no browsers are caching requests
+	header("Cache-Control: no-cache");
+
 
 	// facebook configuration settings
 	$FB_APPID = "211936785535748";
@@ -162,7 +165,7 @@
 		// generate a hash using MD5 of the user's name and the system time. this
 		// will be part of the query string
 		$userHash = md5($userInfo['name'] . time());
-		echo "						<input type=\"hidden\" value=\"" . $userHash . "\" />\n";
+		echo "						<input name=\"game\" type=\"hidden\" value=\"" . $userHash . "\" />\n";
 
 		// build the link to print out into the html. this link will, when clicked,
 		// call the streamPublish() javascript method in facebook.js. this javascript
