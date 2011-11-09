@@ -1,6 +1,7 @@
 <?php
 
 
+	// make sure that all errors are reported
 	error_reporting(E_ALL);
 
 	// make sure that no browsers are caching requests
@@ -129,6 +130,7 @@
 			</a>
 		</div>
 		<div id="contentLite">
+
 <?php
 	if ($user)
 	// facebook user is logged in AND has granted our application permissions
@@ -170,7 +172,7 @@
 		// build the link to print out into the html. this link will, when clicked,
 		// call the streamPublish() javascript method in facebook.js. this javascript
 		// method will create wall posts inviting the chosen friends to the game
-		$queryString = "wepaint.php?game=" . $userHash;
+		$queryString = "entry.php?game=" . $userHash;
 
 		echo "						<a href=\"#\" onclick=\"streamPublish('" . $queryString . "')\"><img class=\"noBorder\" id=\"inviteYourFriends\" src=\"images/buttons/inviteYourFriends.png\" onmouseout=\"imgMouseOff('buttons', 'inviteYourFriends')\" onmouseover=\"imgMouseOn('buttons', 'inviteYourFriends')\" /></a>\n";
 		echo "					</div>\n";
@@ -188,6 +190,7 @@
 		echo "			</div>\n";
 	}
 ?>
+
 			<div id="compatLeft">
 				<img id="compatibilityImage" />
 			</div>

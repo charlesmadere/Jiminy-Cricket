@@ -4,6 +4,9 @@
 	// make sure that all errors are reported
 	error_reporting(E_ALL);
 
+	// make sure that no browsers are caching requests
+	header("Cache-Control: no-cache");
+
 
 	if (!empty($_POST["game"]) || !empty($_GET["game"]))
 	// redirects user to index.php if they didn't follow a link or create a game
