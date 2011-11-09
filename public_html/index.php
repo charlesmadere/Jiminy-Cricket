@@ -182,7 +182,7 @@
 	}
 	else
 	{
-		echo "			<h1 class=\"simpleCenter\">Sign in with Facebook to play!</h3>\n";
+		echo "			<h1 class=\"simpleCenter\">Sign in with Facebook to play!</h1>\n";
 		echo "			<div id=\"signInToFacebook\">\n";
 		echo "				<a href=\"" . $loginUrl . "\"><img class=\"noBorder\" id=\"loginBig\" src=\"images/buttons/loginBig.png\" onmouseout=\"imgMouseOff('buttons', 'loginBig')\" onmouseover=\"imgMouseOn('buttons', 'loginBig')\" /></a>\n";
 		echo "			</div>\n";
