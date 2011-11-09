@@ -54,7 +54,7 @@
 
 		echo "<?xml version=\"1.0\"?>\n";
 		echo "<response>\n";
-		echo "\t<status>$status_code</status>\n";
+		echo "\t<status>" . $status_code . "</status>\n";
 		echo "\t<time>" . $epochTime . "</time>\n";
 
 		if (mysql_num_rows($testmessages) != 0)
