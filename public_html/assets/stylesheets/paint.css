@@ -4,7 +4,6 @@ div#chatArea
 	border-width: 1px;
 	height: 279px;
 	overflow: auto;
-	vertical-align: middle;
 	width: 300px;
 }
 

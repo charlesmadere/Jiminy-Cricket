@@ -87,6 +87,9 @@
 				function()
 				// main method
 				{
+					// initialize paint canvas settings
+					paintCanvasInit();
+
 					timestamp = 0;
 					updateMsg();
 

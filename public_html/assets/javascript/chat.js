@@ -2,28 +2,6 @@ function validateMessage(message)
 // performs a few regular expressions on a message and if everything
 // checks out ok then true is returned
 {
-
-	var directory = "../images/emoticons/";
-	var size = "20";
-	var extension = ".png";
-
-	var face00 = directory + "face00-" + size + extension;
-	var face01 = directory + "face01-" + size + extension;
-	var face02 = directory + "face02-" + size + extension;
-	var face03 = directory + "face03-" + size + extension;
-	var face04 = directory + "face04-" + size + extension;
-	var face05 = directory + "face05-" + size + extension;
-	var face06 = directory + "face06-" + size + extension;
-	var face07 = directory + "face07-" + size + extension;
-	var face08 = directory + "face08-" + size + extension;
-	var face09 = directory + "face09-" + size + extension;
-	var face10 = directory + "face10-" + size + extension;
-	var face11 = directory + "face11-" + size + extension;
-	var face12 = directory + "face12-" + size + extension;
-	var face13 = directory + "face13-" + size + extension;
-	var face14 = directory + "face14-" + size + extension;
-	var face15 = directory + "face15-" + size + extension;
-
 	if (/\S/.test(message))
 	// check the string to ensure it's not just white space
 	{
@@ -47,53 +25,76 @@ function validateMessage(message)
 		// check again to ensure that the message actually contains
 		// some characters
 		{
+			var tagOpening = "<img src=\"";
+			var directory = "../images/emoticons/";
+			var size = "20";
+			var extension = ".png";
+			var tagClosing = "\" />";
+
+			var face00 = tagOpening + directory + "face00-" + size + extension + tagClosing;
+			var face01 = tagOpening + directory + "face01-" + size + extension + tagClosing;
+			var face02 = tagOpening + directory + "face02-" + size + extension + tagClosing;
+			var face03 = tagOpening + directory + "face03-" + size + extension + tagClosing;
+			var face04 = tagOpening + directory + "face04-" + size + extension + tagClosing;
+			var face05 = tagOpening + directory + "face05-" + size + extension + tagClosing;
+			var face06 = tagOpening + directory + "face06-" + size + extension + tagClosing;
+			var face07 = tagOpening + directory + "face07-" + size + extension + tagClosing;
+			var face08 = tagOpening + directory + "face08-" + size + extension + tagClosing;
+			var face09 = tagOpening + directory + "face09-" + size + extension + tagClosing;
+			var face10 = tagOpening + directory + "face10-" + size + extension + tagClosing;
+			var face11 = tagOpening + directory + "face11-" + size + extension + tagClosing;
+			var face12 = tagOpening + directory + "face12-" + size + extension + tagClosing;
+			var face13 = tagOpening + directory + "face13-" + size + extension + tagClosing;
+			var face14 = tagOpening + directory + "face14-" + size + extension + tagClosing;
+			var face15 = tagOpening + directory + "face15-" + size + extension + tagClosing;
+
 			// face00: ":)"
-			message = message.replace(/:\)/g, "<img src=" + face00 + " />");
+			message = message.replace(/:\)/g, face00);
 
 			// face01: ":D"
-			message = message.replace(/:D/g, "<img src=" + face01 + " />");
+			message = message.replace(/:D/g, face01);
 
 			// face02: ":("
-			message = message.replace(/:\(/g, "<img src=" + face02 + " />");
+			message = message.replace(/:\(/g, face02);
 
 			// face03: ":3"
-			message = message.replace(/:3/g, "<img src=" + face03 + " />");
+			message = message.replace(/:3/g, face03);
 
 			// face04: ":o"
-			message = message.replace(/:o/g, "<img src=" + face04 + " />");
+			message = message.replace(/:o/g, face04);
 
 			// face05: ":O"
-			message = message.replace(/:O/g, "<img src=" + face05 + " />");
+			message = message.replace(/:O/g, face05);
 
 			// face06: ":x" and "x_x"
-			message = message.replace(/:x|x_x/gi, "<img src=" + face06 + " />");
+			message = message.replace(/:x|x_x/gi, face06);
 
 			// face07: "XO"
-			message = message.replace(/XO/g, "<img src=" + face07 + " />");
+			message = message.replace(/XO/g, face07);
 
 			// face08: ":p"
-			message = message.replace(/:p/gi, "<img src=" + face08 + " />");
+			message = message.replace(/:p/gi, face08);
 
 			// face09: ":v"
-			message = message.replace(/:v/gi, "<img src=" + face09 + " />");
+			message = message.replace(/:v/gi, face09);
 
 			// face10: ";)"
-			message = message.replace(/\;\)/g, "<img src=" + face10 + " />");
+			message = message.replace(/\;\)/g, face10);
 
 			// face11: "joe"
-			message = message.replace(/joe/gi, "<img src=" + face11 + " />");
+			message = message.replace(/joe/gi, face11);
 
 			// face12: "pao"
-			message = message.replace(/pao/gi, "<img src=" + face12 + " />");
+			message = message.replace(/pao/gi, face12);
 
 			// face13: "pika"
-			message = message.replace(/pika/gi, "<img src=" + face13 + " />");
+			message = message.replace(/pika/gi, face13);
 
 			// face14: "apple"
-			message = message.replace(/apple/gi, "<img src=" + face14 + " />");
+			message = message.replace(/apple/gi, face14);
 
 			// face15: "boo" and "ghost"
-			message = message.replace(/boo|ghost/gi, "<img src=" + face15 + " />");
+			message = message.replace(/boo|ghost/gi, face15);
 			
 			return message;
 		}
