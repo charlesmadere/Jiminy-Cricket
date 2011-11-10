@@ -91,6 +91,24 @@ function canvasMouseEvent(e)
 }
 
 
+function postCanvasData()
+// 
+{
+	/*$.post
+	(
+		'/upload',
+		{
+			uid: uid,
+			img: canvas.toDataURL('image/jpeg')
+		},
+		function(data)
+		{
+			
+		}
+	);*/
+}
+
+
 function toolBrush()
 // The function for the Brush Tool on the paintArea toolbox.
 // What is the Brush Tool? The Brush Tool is pretty much just
@@ -149,6 +167,8 @@ function toolBrush()
 		{
 			currentDrawToolFunction.currentlyPainting = false;
 			currentDrawToolFunction.mousemove(e);
+
+			postCanvasData();
 		}
 	};
 }

@@ -17,6 +17,12 @@ div#chatAreaInput
 }
 
 
+img.emot
+{
+	vertical-align: middle;
+}
+
+
 div#chatForm
 {
 	margin-top: 4px;
@@ -62,7 +68,10 @@ div#content div
 
 div#currentTopic
 {
+	font-family: "Segoe UI", sans-serif;
+	font-size: 200%;
 	height: 48px;
+	text-align: center;
 	width: 300px;
 }
 
@@ -96,7 +105,7 @@ div#toolBox
 }
 
 
-div#toolBoxTable
+table#toolBoxTable
 {
 	height: 82px;
 	text-align: center;

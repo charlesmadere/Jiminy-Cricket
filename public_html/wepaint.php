@@ -58,9 +58,11 @@
 						function()
 						// 
 						{
+							var msgInput = document.getElementById("msg");
+
 							// validate the user submitted text to ensure that it's
 							// not exploitive
-							var messageToSend = validateMessage(document.getElementById("msg").value);
+							var messageToSend = validateMessage(msgInput.value);
 
 							if (messageToSend)
 							// the value of the input text field is both not blank and
@@ -68,11 +70,13 @@
 							{
 								$.post
 								(
-									"wepaintBackend.php",
+									"chatBackend.php",
 									{
 										message: messageToSend,
-										name: $("#author").val(),
 										action: "postmsg",
+<?php
+	echo "game: \"" . $_POST["game"] . "\",\n";
+?>
 										time: timestamp
 									},
 									function(xml)
@@ -85,26 +89,11 @@
 								// clear the message text field so that the user can
 								// begin typing another message without deleting their
 								// previously entered text
-								document.getElementById("msg").value = "";
+								msgInput.value = "";
 
-								// scroll to the bottom of the chat window
-								$("#chatArea").prop
-								(
-									{
-										scrollTop: $("#chatArea").prop("scrollHeight")
-									}
-								);
 							}
 
 							return false;
-						}
-					);
-
-					// scroll to the bottom of the chat window
-					$("#chatArea").prop
-					(
-						{
-							scrollTop: $("#chatArea").prop("scrollHeight")
 						}
 					);
 				}
@@ -164,7 +153,9 @@
 			</div>
 			<div id="contentRight">
 				<div class="bottomBorder" id="currentTopic">
-					currentTopic
+<?php
+	echo $_POST["category"] . " " . $_POST["game"] . "\n";
+?>
 				</div>
 				<div class="bottomBorder" id="whoIsPlaying">
 					whoIsPlaying

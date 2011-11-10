@@ -25,7 +25,7 @@ function validateMessage(message)
 		// check again to ensure that the message actually contains
 		// some characters
 		{
-			var tagOpening = "<img src=\"";
+			var tagOpening = "<img class=\"emot\" src=\"";
 			var directory = "../images/emoticons/";
 			var size = "20";
 			var extension = ".png";
@@ -47,6 +47,7 @@ function validateMessage(message)
 			var face13 = tagOpening + directory + "face13-" + size + extension + tagClosing;
 			var face14 = tagOpening + directory + "face14-" + size + extension + tagClosing;
 			var face15 = tagOpening + directory + "face15-" + size + extension + tagClosing;
+			var face16 = tagOpening + directory + "face16-" + size + extension + tagClosing;
 
 			// face00: ":)"
 			message = message.replace(/:\)/g, face00);
@@ -95,6 +96,9 @@ function validateMessage(message)
 
 			// face15: "boo" and "ghost"
 			message = message.replace(/boo|ghost/gi, face15);
+
+			// face16: "sonic" and "knuckles"
+			message = message.replace(/sonic|knuckles/gi, face16);
 			
 			return message;
 		}
@@ -125,10 +129,13 @@ function addMessages(xml)
 			message = $("message", xml).get(id);
 			$("#chatArea").append
 			(
-				"<span class=\"author\">" + $("author", message).text() + "</span> " + $("text", message).text() + "<br />"
+				"<p><span class=\"author\">" + $("author", message).text() + "</span> " + $("text", message).text() + "</p>"
 			);
 		}
 	);
+
+	// scroll to the bottom of the chat window
+	$("#chatArea").scrollTop(1000);
 }
 
 
@@ -137,7 +144,7 @@ function updateMsg()
 {
 	$.post
 	(
-		"wepaintBackend.php",
+		"chatBackend.php",
 		{
 			time: timestamp
 		},
@@ -148,6 +155,9 @@ function updateMsg()
 			addMessages(xml);
 		}
 	);
+
+	// scroll to the bottom of the chat window
+	$("#chatArea").scrollTop(1000);
 
 	setTimeout('updateMsg()', 8000);
 }
