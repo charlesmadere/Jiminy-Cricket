@@ -137,7 +137,7 @@ function updateMsg()
 {
 	$.post
 	(
-		"chatBackend.php",
+		"wepaintBackend.php",
 		{
 			time: timestamp
 		},

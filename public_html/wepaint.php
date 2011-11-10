@@ -20,46 +20,6 @@
 	}
 
 
-	// facebook configuration settings
-	$FB_APPID = "211936785535748";
-	$FB_APPSECRET = "760f613bc10ba7bb970b3b4df4c1ff87";
-	$FB_SCOPE = "email,publish_stream,user_about_me";
-	$FB_REDIRECT = "http://www.wepaint.us/";
-
-	require("facebook.php");
-
-	$facebook = new Facebook
-	(
-		array
-		(
-			'appId' => $FB_APPID,
-			'secret' => $FB_APPSECRET,
-			'cookie' => true
-		)
-	);
-
-	$user = $facebook->getUser();
-
-	if ($user)
-	{
-		try
-		{
-			$user_profile = $facebook->api('/me');
-		}
-		catch (FacebookApiException $e)
-		{
-			error_log($e);
-			$user = null;
-		}
-	}
-
-
-	if ($user)
-	{
-		$userInfo = $facebook->api("/$user");
-	}
-
-
 	// Team Jiminy Cricket
 
 
@@ -108,7 +68,7 @@
 							{
 								$.post
 								(
-									"chatBackend.php",
+									"wepaintBackend.php",
 									{
 										message: messageToSend,
 										name: $("#author").val(),
@@ -154,7 +114,6 @@
 	</head>
 
 	<body>
-		<div id="fb-root"></div>
 		<div id="header">
 			<img src="images/wepaint.png" alt="WePaint.us" />
 			<img src="images/nav/divider.png" />
@@ -220,9 +179,6 @@
 				</div>
 			</div>
 		</div>
-
-		<script src="//connect.facebook.net/en_US/all.js" type="text/javascript"></script>
-		<script src="assets/javascript/facebook.js" type="text/javascript"></script>
 	</body>
 
 </html>
