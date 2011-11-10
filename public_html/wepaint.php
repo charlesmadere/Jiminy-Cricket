@@ -80,13 +80,72 @@
 		<script src="assets/javascript/debugger.js" type="text/javascript"></script>
 		<script src="assets/javascript/basic.js" type="text/javascript"></script>
 		<script src="assets/javascript/paint.js" type="text/javascript"></script>
+		<script src="assets/javascript/chat.js" type="text/javascript"></script>
 		<script type="text/javascript">
-			$(document).ready(function()
-			// main method
-			{
-				// initialize our paint controls and functions
-				paintCanvasInit();
-			});
+			$(document).ready
+			(
+				function()
+				// main method
+				{
+					timestamp = 0;
+					updateMsg();
+
+					$("form#chatForm").submit
+					(
+						function()
+						// 
+						{
+							// validate the user submitted text to ensure that it's
+							// not exploitive
+							var messageToSend = validateMessage(document.getElementById("msg").value);
+
+							if (messageToSend)
+							// the value of the input text field is both not blank and
+							// not just filled with spaces
+							{
+								$.post
+								(
+									"chatBackend.php",
+									{
+										message: messageToSend,
+										name: $("#author").val(),
+										action: "postmsg",
+										time: timestamp
+									},
+									function(xml)
+									{
+										$("#msg").empty();
+										addMessages(xml);
+									}
+								);
+
+								// clear the message text field so that the user can
+								// begin typing another message without deleting their
+								// previously entered text
+								document.getElementById("msg").value = "";
+
+								// scroll to the bottom of the chat window
+								$("#chatArea").prop
+								(
+									{
+										scrollTop: $("#chatArea").prop("scrollHeight")
+									}
+								);
+							}
+
+							return false;
+						}
+					);
+
+					// scroll to the bottom of the chat window
+					$("#chatArea").prop
+					(
+						{
+							scrollTop: $("#chatArea").prop("scrollHeight")
+						}
+					);
+				}
+			);
 		</script>
 		<title>Let's Paint! ~ WePaint.us</title>
 	</head>
@@ -148,11 +207,13 @@
 				<div class="bottomBorder" id="whoIsPlaying">
 					whoIsPlaying
 				</div>
-				<div class="bottomBorder" id="chatArea">
-					chatArea
+				<div id="chatArea">
+					<span id="loading">Loading...</span>
 				</div>
 				<div id="chatAreaInput">
-					chatAreaInput
+					<form id="chatForm">
+						<input id="msg" maxlength="140" onclick="clearInput('msg')" size="20" type="text" value="Say hi!" />
+					</form>
 				</div>
 			</div>
 		</div>

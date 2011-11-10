@@ -25,7 +25,7 @@
 	$FB_SCOPE = "email,publish_stream,user_about_me";
 	$FB_REDIRECT = "http://www.wepaint.us/";
 
-	require("../facebook.php");
+	require("facebook.php");
 
 	$facebook = new Facebook
 	(

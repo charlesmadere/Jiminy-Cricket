@@ -136,7 +136,7 @@ function updateMsg()
 {
 	$.post
 	(
-		"server.php",
+		"chatBackend.php",
 		{
 			time: timestamp
 		},
