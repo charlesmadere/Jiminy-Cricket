@@ -8,7 +8,7 @@
 	header("Cache-Control: no-cache");
 
 
-	if (!empty($_POST["game"]) || !empty($_GET["game"]))
+	if (!empty($_POST["game"]))
 	// redirects user to index.php if they didn't follow a link or create a game
 	{
 		

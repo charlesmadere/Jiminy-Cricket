@@ -89,34 +89,37 @@
 		<script src="assets/javascript/compatibility.js" type="text/javascript"></script>
 		<script src="assets/javascript/basic.js" type="text/javascript"></script>
 		<script type="text/javascript">
-			$(document).ready(function()
-			// main method
-			{
-				var compatibilityImage = document.getElementById("compatibilityImage");
-				var compatRight = document.getElementById("compatRight");
-
-				if (compatibilityTest())
-				// browser is compatible with everything we need. this method exists in the
-				// modernizr.js file
+			$(document).ready
+			(
+				function()
+				// main method
 				{
-					compatibilityImage.src = "../images/icons/accept-64.png";
+					var compatibilityImage = document.getElementById("compatibilityImage");
+					var compatRight = document.getElementById("compatRight");
 
-					compatRight.innerHTML = "Your browser is 100% compatible with We Paint. Have fun!";
-					compatRight.style.marginTop = "24px";
-					compatRight.style.height = "64px";
-					compatRight.setAttribute("class", "acceptWithoutBorders");
-				}
-				else
-				// browser is not compatible with everything we need
-				{
-					compatibilityImage.src = "../images/icons/critical-64.png";
+					if (compatibilityTest())
+					// browser is compatible with everything we need. this method exists in the
+					// modernizr.js file
+					{
+						compatibilityImage.src = "images/icons/accept-64.png";
 
-					compatRight.innerHTML = "Sorry, but your browser is not compatible with all of the HTML5 technologies that We Paint requires. You will not be able to play until you update to a modern browser such as <a href=\"http://www.google.com/chrome\" target=\"_blank\">Google Chrome</a>, <a href=\"http://windows.microsoft.com/en-US/internet-explorer/products/ie/home target=\"_blank\">Internet Explorer 9</a>, or <a href=\"http://www.firefox.com/\" target=\"_blank\">Mozilla Firefox</a>."
-					compatRight.setAttribute("class", "errorWithoutBorders");
+						compatRight.innerHTML = "Your browser is 100% compatible with We Paint. Have fun!";
+						compatRight.style.marginTop = "24px";
+						compatRight.style.height = "64px";
+						compatRight.setAttribute("class", "acceptWithoutBorders");
+					}
+					else
+					// browser is not compatible with everything we need
+					{
+						compatibilityImage.src = "images/icons/critical-64.png";
+
+						compatRight.innerHTML = "Sorry, but your browser is not compatible with all of the HTML5 technologies that We Paint requires. You will not be able to play until you update to a modern browser such as <a href=\"http://www.google.com/chrome\" target=\"_blank\">Google Chrome</a>, <a href=\"http://windows.microsoft.com/en-US/internet-explorer/products/ie/home\" target=\"_blank\">Internet Explorer 9</a>, or <a href=\"http://www.firefox.com/\" target=\"_blank\">Mozilla Firefox</a>."
+						compatRight.setAttribute("class", "errorWithoutBorders");
+					}
 				}
-			});
+			);
 		</script>
-		<title>Create A Game ~ WePaint.us</title>
+		<title>Create a Game ~ WePaint.us</title>
 	</head>
 
 	<body>
@@ -166,7 +169,7 @@
 
 		// generate a hash using MD5 of the user's name and the system time. this
 		// will be part of the query string
-		$userHash = md5($userInfo['name'] . time());
+		$userHash = hash("crc32b", $userInfo['name'] . time());
 		echo "						<input name=\"game\" type=\"hidden\" value=\"" . $userHash . "\" />\n";
 
 		// build the link to print out into the html. this link will, when clicked,
