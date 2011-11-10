@@ -10,6 +10,7 @@
 	// make sure that no browsers are caching requests
 	header("Cache-Control: no-cache");
 
+
 	// database configuration settings
 	$DB_HOST = "localhost";
 	$DB_USER = "wepaint";
