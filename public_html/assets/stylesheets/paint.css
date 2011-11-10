@@ -3,8 +3,10 @@ div#chatArea
 	border-bottom-style: solid;
 	border-width: 1px;
 	height: 279px;
+	padding-left: 4px;
+	padding-right: 2px;
 	overflow: auto;
-	width: 300px;
+	width: 294px;
 }
 
 
