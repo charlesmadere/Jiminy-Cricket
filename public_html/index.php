@@ -63,7 +63,20 @@
 	// this function scans the assets/topics/ directory for json files and then prints
 	// those files to the HTML page in the form of a dropdown menu
 	{
-		echo "							<option value=\"10\">temp</option>\n";
+		if ($handle = opendir('/home/wepaint/public_html/assets/topics')) 
+		{
+ 			while (false !== ($file = readdir($handle))) 
+			{
+       			if ($file != "." && $file != "..")
+			 	{
+					$file1 = str_replace(".json","",$file);
+					//preg_split
+					echo "	<option value=\"$file\">$file1</option>\n";
+       			}
+			}
+ 			closedir($handle);
+		}
+
 	}
 
 

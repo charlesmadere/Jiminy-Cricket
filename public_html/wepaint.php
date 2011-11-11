@@ -18,7 +18,8 @@
 		header("Location: index.php");
 		exit;
 	}
-
+	
+	$time = $_POST["time"];
 
 	// Team Jiminy Cricket
 
@@ -41,6 +42,7 @@
 		<script src="assets/javascript/basic.js" type="text/javascript"></script>
 		<script src="assets/javascript/paint.js" type="text/javascript"></script>
 		<script src="assets/javascript/chat.js" type="text/javascript"></script>
+		<script type="text/javascript" src="/Timer.js" />
 		<script type="text/javascript">
 			$(document).ready
 			(
@@ -111,7 +113,10 @@
 		<div id="content">
 			<div id="contentLeft">
 				<div class="bottomBorder" id="currentWordAndTimeLeft">
-					currentWordAndTimeLeft
+					<!--Dynamic timer function goes here-->
+					<script type="text/javascript">
+					window.onload = CreateTimer("currentWordAndTimeLeft", <?php echo $time; ?> );
+					</script>
 				</div>
 				<div class="bottomBorder" id="paintArea">
 					<canvas id="paintCanvas" height="470" width="700"></canvas>
@@ -154,7 +159,9 @@
 			<div id="contentRight">
 				<div class="bottomBorder" id="currentTopic">
 <?php
-	echo $_POST["category"] . " " . $_POST["game"] . "\n";
+	$prettygory = str_replace(".json","",$_POST["category"]);
+	
+	echo $prettygory . " " . $_POST["game"] . "\n";
 ?>
 				</div>
 				<div class="bottomBorder" id="whoIsPlaying">
