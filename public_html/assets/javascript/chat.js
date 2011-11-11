@@ -1,3 +1,109 @@
+// 
+var timeStamp;
+
+// 
+var MESSAGE_INPUT;
+
+// 
+var USERS_FACEBOOK_NAME;
+
+// 
+var GAME_ID;
+
+// 
+var POST_FILE_CHAT_OUTPUT;
+
+// 
+var POST_FILE_CHAT_INPUT;
+
+// 
+var messageInputClicked;
+
+var initRun = true;
+
+
+function chatInit(tempUsersFacebookName, tempGameId)
+// 
+{
+	timeStamp = null;
+	MESSAGE_INPUT = document.getElementById("msg");
+	USERS_FACEBOOK_NAME = tempUsersFacebookName;
+	GAME_ID = tempGameId;
+	POST_FILE_CHAT_INPUT = "chatInput.php";
+	messageInputClicked = false;
+
+	receiveMessages();
+	$("form#chatForm").submit(sendMessage());
+}
+
+
+function clearInput()
+// the user clicked in the text field specified by id
+{
+	if (!messageInputClicked)
+	// the user has not yet clicked in the text field
+	{
+		// set the text field's value to blank. this will erase
+		// the "Say hi!" message that is in there at first
+		MESSAGE_INPUT.value = "";
+	}
+
+	// the text field has been clicked on and has had its value
+	// changed to blank so we can now set this variable to true
+	messageInputClicked = true;
+}
+
+
+function receiveMessages()
+// 
+{
+	var messageReceivedUser;
+	var messageReceivedMessage;
+
+	/*$.ajax
+	(
+		{
+			type: "POST",
+			url: POST_FILE_CHAT_OUTPUT,
+			
+		},
+		
+	);*/
+
+	setTimeout("receiveMessages()", 1000);
+}
+
+
+function sendMessage()
+// 
+{
+	if (initRun)
+	{
+		var messageToSend = validateMessage(MESSAGE_INPUT.value);
+
+		if (messageToSend)
+		{
+			$.post
+			(
+				POST_FILE_CHAT_INPUT,
+				{
+					user: USERS_FACEBOOK_NAME,
+					message: messageToSend,
+					game: GAME_ID
+				}
+			);
+
+			Debugger.log(messageToSend);
+			MESSAGE_INPUT.value = "";
+		}
+	}
+	else
+	{
+		initRun = false;
+	}
+}
+
+
 function validateMessage(message)
 // performs a few regular expressions on a message and if everything
 // checks out ok then true is returned
@@ -160,28 +266,6 @@ function updateMsg()
 	$("#chatArea").scrollTop(1000);
 
 	setTimeout('updateMsg()', 8000);
-}
-
-
-// has the user clicked in the text field yet? defaults to false
-// because it hasn't been clicked yet
-var formClicked = false;
-
-
-function clearInput(id)
-// the user clicked in the text field specified by id
-{
-	if (!formClicked)
-	// the user has not yet clicked in the text field
-	{
-		// set the text field's value to blank. this will erase
-		// the "Say hi!" message that is in there at first
-		document.getElementById(id).value = "";
-	}
-
-	// the text field has been clicked on and has had its value
-	// changed to blank so we can now set this variable to true
-	formClicked = true;
 }
 
 
