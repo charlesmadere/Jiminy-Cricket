@@ -75,7 +75,7 @@ function receiveMessages()
 {
 	// scroll to the bottom of the chat window
 	$("#chatArea").scrollTop(10000);
-	Debugger.log("receive: " + lastMessageId);
+
 	$.ajax
 	(
 		{
