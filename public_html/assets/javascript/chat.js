@@ -8,10 +8,28 @@ var USERS_FACEBOOK_NAME;
 var GAME_ID;
 
 // 
+var POST_FILE_CHAT_INPUT;
+
+// 
 var POST_FILE_CHAT_OUTPUT;
 
 // 
-var POST_FILE_CHAT_INPUT;
+var lastMessageTime;
+
+//
+var lastMessageId;
+
+// 
+var lastMessageTimeSubmit;
+
+// 
+var lastMessage;
+
+// 
+var lastMessageUser;
+
+// 
+var lastMessageText;
 
 // 
 var messageInputClicked;
@@ -25,6 +43,10 @@ function chatInit(tempUsersFacebookName, tempGameId)
 	GAME_ID = tempGameId;
 	POST_FILE_CHAT_INPUT = "chatInput.php";
 	POST_FILE_CHAT_OUTPUT = "chatOutput.php";
+	lastMessageId = -1;
+	lastMessageTimeSubmit = findBigEpoch();
+	lastMessageUser = "";
+	lastMessageText = "";
 	messageInputClicked = false;
 
 	receiveMessages();
@@ -51,6 +73,9 @@ function clearInput()
 function receiveMessages()
 // 
 {
+	// scroll to the bottom of the chat window
+	$("#chatArea").scrollTop(10000);
+	Debugger.log("receive: " + lastMessageId);
 	$.ajax
 	(
 		{
@@ -58,56 +83,85 @@ function receiveMessages()
 			url: POST_FILE_CHAT_OUTPUT,
 			data:
 			{
-				game: GAME_ID
+				game: GAME_ID,
+				id: lastMessageId
 			},
 			success: function(data)
 			{
-				var message = jQuery.parseJSON(data);
-				$("#loading").remove();
-				$("#chatArea").append
-				(
-					"<p><span class=\"author\">" + message.user + "</span> " + message.message + "</p>"
-				);
+				if (isNaN(data))
+				{
+					var AJAXReturn = jQuery.parseJSON(data);
+					$("#loading").remove();
+
+					for (var i in AJAXReturn)
+					// 
+					{
+						lastMessageId = AJAXReturn[i]["id"];
+
+						$("#chatArea").append
+						(
+							"<p><span class=\"author\">" + AJAXReturn[i]["user"] + "</span> " + AJAXReturn[i]["message"] + "</p>"
+						);
+					}
+				}
+				else
+				{
+					lastMessageId = parseInt(data);
+				}
 			}
 		}
 	);
 
 	// scroll to the bottom of the chat window
-	$("#chatArea").scrollTop(1000);
+	$("#chatArea").scrollTop(10000);
 
-	setTimeout("receiveMessages()", 8000);
+	setTimeout("receiveMessages()", 1400);
 }
 
 
 function sendMessage()
 // 
 {
-	var messageToSend = validateMessage(MESSAGE_INPUT.value);
-
-	if (messageToSend)
+	if (findBigEpoch() - lastMessageTimeSubmit > 1000)
 	{
-		$.ajax
-		(
-			{
-				type: "POST",
-				url: POST_FILE_CHAT_INPUT,
-				data:
-				{
-					user: USERS_FACEBOOK_NAME,
-					message: messageToSend,
-					game: GAME_ID
-				},
-				success: function()
-				{
-					// clear the text input
-					MESSAGE_INPUT.value = "";
+		// scroll to the bottom of the chat window
+		$("#chatArea").scrollTop(10000);
 
-					// scroll to the bottom of the chat window
-					$("#chatArea").scrollTop(1000);
+		var messageToSend = validateMessage(MESSAGE_INPUT.value);
+
+		if (messageToSend)
+		{
+			lastMessageTimeSubmit = findBigEpoch();
+
+			$.ajax
+			(
+				{
+					type: "POST",
+					url: POST_FILE_CHAT_INPUT,
+					data:
+					{
+						user: USERS_FACEBOOK_NAME,
+						message: messageToSend,
+						game: GAME_ID
+					},
+					success: function(data)
+					{
+						// 
+						lastMessageId = data;
+
+						// clear the text input
+						MESSAGE_INPUT.value = "";
+
+						// scroll to the bottom of the chat window
+						$("#chatArea").scrollTop(10000);
+					}
 				}
-			}
-		);
+			);
+		}
 	}
+
+	// scroll to the bottom of the chat window
+	$("#chatArea").scrollTop(10000);
 
 	return false;
 }
@@ -163,6 +217,12 @@ function validateMessage(message)
 			var face14 = tagOpening + directory + "face14-" + size + extension + tagClosing;
 			var face15 = tagOpening + directory + "face15-" + size + extension + tagClosing;
 			var face16 = tagOpening + directory + "face16-" + size + extension + tagClosing;
+			var face17 = tagOpening + directory + "face17-" + size + extension + tagClosing;
+			var face18 = tagOpening + directory + "face18-" + size + extension + tagClosing;
+			var face19 = tagOpening + directory + "face19-" + size + extension + tagClosing;
+			var face20 = tagOpening + directory + "face20-" + size + extension + tagClosing;
+			var face21 = tagOpening + directory + "face21-" + size + extension + tagClosing;
+			var face22 = tagOpening + directory + "face22-" + size + extension + tagClosing;
 
 			// face00: ":)"
 			message = message.replace(/:\)/g, face00);
@@ -214,6 +274,24 @@ function validateMessage(message)
 
 			// face16: "sonic" and "knuckles"
 			message = message.replace(/sonic|knuckles/gi, face16);
+
+			// face17: "brush"
+			message = message.replace(/brush/gi, face17);
+
+			// face18: "bucket"
+			message = message.replace(/bucket/gi, face18);
+
+			// face19: "eraser"
+			message = message.replace(/eraser/gi, face19);
+
+			// face20: "nuke"
+			message = message.replace(/nuke/gi, face20);
+
+			// face21: "pencil"
+			message = message.replace(/pencil/gi, face21);
+
+			// face22: "undo"
+			message = message.replace(/undo/gi, face22);
 			
 			return message;
 		}
@@ -228,53 +306,6 @@ function validateMessage(message)
 	{
 		return false;
 	}
-}
-
-
-function addMessages(xml)
-// 
-{
-	timestamp = $("time", xml).text();
-
-	$("message", xml).each
-	(
-		function(id)
-		// 
-		{
-			message = $("message", xml).get(id);
-			$("#chatArea").append
-			(
-				"<p><span class=\"author\">" + $("author", message).text() + "</span> " + $("text", message).text() + "</p>"
-			);
-		}
-	);
-
-	// scroll to the bottom of the chat window
-	$("#chatArea").scrollTop(1000);
-}
-
-
-function updateMsg()
-// 
-{
-	$.post
-	(
-		"chatBackend.php",
-		{
-			time: timestamp
-		},
-		function(xml)
-		// 
-		{
-			$("#loading").remove();
-			addMessages(xml);
-		}
-	);
-
-	// scroll to the bottom of the chat window
-	$("#chatArea").scrollTop(1000);
-
-	setTimeout('updateMsg()', 8000);
 }
 
 

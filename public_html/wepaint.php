@@ -18,8 +18,48 @@
 		header("Location: index.php");
 		exit;
 	}
-	
+
 	$time = $_POST["time"];
+
+
+	// facebook configuration settings
+	$FB_APPID = "211936785535748";
+	$FB_APPSECRET = "760f613bc10ba7bb970b3b4df4c1ff87";
+	$FB_SCOPE = "email,publish_stream,user_about_me";
+	$FB_REDIRECT = "http://www.wepaint.us/";
+
+	require("facebook.php");
+
+	$facebook = new Facebook
+	(
+		array
+		(
+			'appId' => $FB_APPID,
+			'secret' => $FB_APPSECRET,
+			'cookie' => true
+		)
+	);
+
+	$user = $facebook->getUser();
+
+	if ($user)
+	{
+		try
+		{
+			$user_profile = $facebook->api('/me');
+		}
+		catch (FacebookApiException $e)
+		{
+			error_log($e);
+			$user = null;
+		}
+	}
+
+	if ($user)
+	{
+		$userInfo = $facebook->api("/$user");
+	}
+
 
 	// Team Jiminy Cricket
 
@@ -42,62 +82,16 @@
 		<script src="assets/javascript/basic.js" type="text/javascript"></script>
 		<script src="assets/javascript/paint.js" type="text/javascript"></script>
 		<script src="assets/javascript/chat.js" type="text/javascript"></script>
-		<script type="text/javascript" src="/Timer.js" />
+		<script src="timer.js" type="text/javascript"></script>
 		<script type="text/javascript">
 			$(document).ready
 			(
 				function()
-				// main method
 				{
-					// initialize paint canvas settings
+					// 
 					paintCanvasInit();
 
-					timestamp = 0;
-					updateMsg();
-
-					$("form#chatForm").submit
-					(
-						function()
-						// 
-						{
-							var msgInput = document.getElementById("msg");
-
-							// validate the user submitted text to ensure that it's
-							// not exploitive
-							var messageToSend = validateMessage(msgInput.value);
-
-							if (messageToSend)
-							// the value of the input text field is both not blank and
-							// not just filled with spaces
-							{
-								$.post
-								(
-									"chatBackend.php",
-									{
-										message: messageToSend,
-										action: "postmsg",
-<?php
-	echo "game: \"" . $_POST["game"] . "\",\n";
-?>
-										time: timestamp
-									},
-									function(xml)
-									{
-										$("#msg").empty();
-										addMessages(xml);
-									}
-								);
-
-								// clear the message text field so that the user can
-								// begin typing another message without deleting their
-								// previously entered text
-								msgInput.value = "";
-
-							}
-
-							return false;
-						}
-					);
+					chatInit(<?php echo "\"" . $userInfo["name"] . "\", \"" . $_POST["game"] . "\"" ?>);
 				}
 			);
 		</script>
@@ -115,7 +109,7 @@
 				<div class="bottomBorder" id="currentWordAndTimeLeft">
 					<!--Dynamic timer function goes here-->
 					<script type="text/javascript">
-					window.onload = CreateTimer("currentWordAndTimeLeft", <?php echo $time; ?> );
+						window.onload = CreateTimer("currentWordAndTimeLeft", <?php echo $time; ?> );
 					</script>
 				</div>
 				<div class="bottomBorder" id="paintArea">
@@ -171,8 +165,8 @@
 					<span id="loading">Loading...</span>
 				</div>
 				<div id="chatAreaInput">
-					<form id="chatForm">
-						<input id="msg" maxlength="140" onclick="clearInput('msg')" size="20" type="text" value="Say hi!" />
+					<form id="chatForm" onsubmit="return sendMessage()">
+						<input id="msg" maxlength="140" onclick="clearInput()" size="20" type="text" value="Say hi!" />
 					</form>
 				</div>
 			</div>

@@ -25,18 +25,39 @@
 		$user = mysql_real_escape_string($_POST["user"]);
 		$message = mysql_real_escape_string($_POST["message"]);
 		$game = mysql_real_escape_string($_POST["game"]);
-
-		// gets the unix epoch time (number of seconds since january 1st 1970)
-		$epochTime = time();
+		$time = time();
 
 		// select the database to operate on
 		mysql_select_db($DB_NAME, $DB_CONNECTION);
 
 		// construct a query to perform on the database
-		$databaseQuery = "INSERT INTO " . $DB_TABLE . " (user, message, time, game) VALUES ('" . $user . "', '" . $message . "', '" . $epochTime . "', '" . $game . "')";
+		$databaseQuery = "INSERT INTO " . $DB_TABLE . " (user, message, time, game) VALUES ('" . $user . "', '" . $message . "', '" . $time . "', '" . $game . "')";
 
 		// perform the query constructed above on the database
 		mysql_query($databaseQuery, $DB_CONNECTION);
+
+		// 
+		$databaseQuery = "SELECT id FROM " . $DB_TABLE . " WHERE game = '" . $game . "'";
+
+		// 
+		$databaseResult = mysql_query($databaseQuery, $DB_CONNECTION);
+
+		$AJAXReturn = 0;
+		
+		while ($databaseRow = mysql_fetch_array($databaseResult))
+		// 
+		{
+			$temp = intval($databaseRow["id"]);
+
+			if ($temp > $AJAXReturn)
+			{
+				$AJAXReturn = $temp;
+			}
+		}
+
+		echo $AJAXReturn;
+		
+		mysql_close($DB_CONNECTION);
 	}
 
 

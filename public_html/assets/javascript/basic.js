@@ -14,4 +14,16 @@ function imgMouseOff(folder, id)
 }
 
 
+function findEpoch()
+{
+	return Math.round((new Date()).getTime() / 1000);
+}
+
+
+function findBigEpoch()
+{
+	return Math.round((new Date()).getTime());
+}
+
+
 // Team Jiminy Cricket
