@@ -1,7 +1,4 @@
 // 
-var timeStamp;
-
-// 
 var MESSAGE_INPUT;
 
 // 
@@ -19,21 +16,18 @@ var POST_FILE_CHAT_INPUT;
 // 
 var messageInputClicked;
 
-var initRun = true;
-
 
 function chatInit(tempUsersFacebookName, tempGameId)
 // 
 {
-	timeStamp = null;
 	MESSAGE_INPUT = document.getElementById("msg");
 	USERS_FACEBOOK_NAME = tempUsersFacebookName;
 	GAME_ID = tempGameId;
 	POST_FILE_CHAT_INPUT = "chatInput.php";
+	POST_FILE_CHAT_OUTPUT = "chatOutput.php";
 	messageInputClicked = false;
 
 	receiveMessages();
-	$("form#chatForm").submit(sendMessage());
 }
 
 
@@ -57,50 +51,65 @@ function clearInput()
 function receiveMessages()
 // 
 {
-	var messageReceivedUser;
-	var messageReceivedMessage;
-
-	/*$.ajax
+	$.ajax
 	(
 		{
 			type: "POST",
 			url: POST_FILE_CHAT_OUTPUT,
-			
-		},
-		
-	);*/
+			data:
+			{
+				game: GAME_ID
+			},
+			success: function(data)
+			{
+				var message = jQuery.parseJSON(data);
+				$("#loading").remove();
+				$("#chatArea").append
+				(
+					"<p><span class=\"author\">" + message.user + "</span> " + message.message + "</p>"
+				);
+			}
+		}
+	);
 
-	setTimeout("receiveMessages()", 1000);
+	// scroll to the bottom of the chat window
+	$("#chatArea").scrollTop(1000);
+
+	setTimeout("receiveMessages()", 8000);
 }
 
 
 function sendMessage()
 // 
 {
-	if (initRun)
-	{
-		var messageToSend = validateMessage(MESSAGE_INPUT.value);
+	var messageToSend = validateMessage(MESSAGE_INPUT.value);
 
-		if (messageToSend)
-		{
-			$.post
-			(
-				POST_FILE_CHAT_INPUT,
+	if (messageToSend)
+	{
+		$.ajax
+		(
+			{
+				type: "POST",
+				url: POST_FILE_CHAT_INPUT,
+				data:
 				{
 					user: USERS_FACEBOOK_NAME,
 					message: messageToSend,
 					game: GAME_ID
-				}
-			);
+				},
+				success: function()
+				{
+					// clear the text input
+					MESSAGE_INPUT.value = "";
 
-			Debugger.log(messageToSend);
-			MESSAGE_INPUT.value = "";
-		}
+					// scroll to the bottom of the chat window
+					$("#chatArea").scrollTop(1000);
+				}
+			}
+		);
 	}
-	else
-	{
-		initRun = false;
-	}
+
+	return false;
 }
 
 

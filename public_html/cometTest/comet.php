@@ -93,7 +93,7 @@
 					<span id="loading">Loading...</span>
 				</div>
 				<div id="chatAreaInput">
-					<form id="chatForm">
+					<form id="chatForm" onsubmit="return sendMessage()">
 						<input id="msg" maxlength="140" onclick="clearInput()" size="20" type="text" value="Say hi!" />
 					</form>
 				</div>

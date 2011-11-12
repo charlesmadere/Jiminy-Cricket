@@ -15,7 +15,6 @@
 	$DB_NAME = "wepaint_data";
 	$DB_TABLE = "wepaint_chat";
 
-
 	// establish a database connection using our settings above
 	$DB_CONNECTION = mysql_connect($DB_HOST, $DB_USER, $DB_PASS);
 
@@ -38,9 +37,8 @@
 
 		// perform the query constructed above on the database
 		mysql_query($databaseQuery, $DB_CONNECTION);
-
-		mysql_close($DB_CONNECTION);
 	}
+
 
 	// Team Jiminy Cricket
 
