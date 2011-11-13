@@ -34,6 +34,12 @@ var CANVAS_HEIGHT = 470;
 // the width of the canvas (paintCanvas)
 var CANVAS_WIDTH = 700;
 
+// 
+var POST_FILE_CANVAS_INPUT = "canvasInput.php";
+
+// 
+var POST_FILE_CANVAS_OUTPUT = "canvasOutput.php";
+
 
 function paintCanvasInit()
 // the "main method" for this file. this initializes our different paint
@@ -94,16 +100,20 @@ function canvasMouseEvent(e)
 function postCanvasData()
 // 
 {
-	/*$.post
+	/*$.ajax
 	(
-		'/upload',
 		{
-			uid: uid,
-			img: canvas.toDataURL('image/jpeg')
-		},
-		function(data)
-		{
-			
+			type: "POST",
+			url: POST_FILE_CANVAS_OUTPUT,
+			data:
+			{
+				game: GAME_ID,
+				id: lastCanvasId
+			},
+			success: function(data)
+			{
+				
+			}
 		}
 	);*/
 }

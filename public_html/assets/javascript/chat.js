@@ -8,31 +8,19 @@ var USERS_FACEBOOK_NAME;
 var GAME_ID;
 
 // 
-var POST_FILE_CHAT_INPUT;
+var POST_FILE_CHAT_INPUT = "chatInput.php";
 
 // 
-var POST_FILE_CHAT_OUTPUT;
-
-// 
-var lastMessageTime;
+var POST_FILE_CHAT_OUTPUT = "chatOutput.php";
 
 //
-var lastMessageId;
+var lastMessageId = -1;
 
 // 
 var lastMessageTimeSubmit;
 
 // 
-var lastMessage;
-
-// 
-var lastMessageUser;
-
-// 
-var lastMessageText;
-
-// 
-var messageInputClicked;
+var messageInputClicked = false;
 
 
 function chatInit(tempUsersFacebookName, tempGameId)
@@ -41,13 +29,8 @@ function chatInit(tempUsersFacebookName, tempGameId)
 	MESSAGE_INPUT = document.getElementById("msg");
 	USERS_FACEBOOK_NAME = tempUsersFacebookName;
 	GAME_ID = tempGameId;
-	POST_FILE_CHAT_INPUT = "chatInput.php";
-	POST_FILE_CHAT_OUTPUT = "chatOutput.php";
 	lastMessageId = -1;
 	lastMessageTimeSubmit = findBigEpoch();
-	lastMessageUser = "";
-	lastMessageText = "";
-	messageInputClicked = false;
 
 	receiveMessages();
 }
