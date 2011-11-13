@@ -23,6 +23,12 @@ var lastMessageTimeSubmit;
 var messageInputClicked = false;
 
 
+var lastMessageUser = "";
+
+
+var whoIsPlaying = new Array();
+
+
 function chatInit(tempUsersFacebookName, tempGameId)
 // 
 {
@@ -80,11 +86,26 @@ function receiveMessages()
 					// 
 					{
 						lastMessageId = parseInt(AJAXReturn[i]["id"]);
+						lastMessageUser = AJAXReturn[i]["user"];
 
 						$("#chatArea").append
 						(
 							"<p><span class=\"author\">" + AJAXReturn[i]["user"] + "</span> " + AJAXReturn[i]["message"] + "</p>"
 						);
+						
+						if (jQuery.inArray(lastMessageUser, whoIsPlaying) == -1)
+						{
+							whoIsPlaying.push(lastMessageUser);
+							
+							$("#whoIsPlaying").append
+							(
+									"<p><span class=\"author\">" + lastMessageUser + "</span> </p>"
+							);
+						}
+						else
+						{
+							
+						}
 					}
 				}
 				else
