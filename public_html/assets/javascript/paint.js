@@ -42,6 +42,8 @@ var POST_FILE_CANVAS_OUTPUT = "canvasOutput.php";
 var PAINT_USERS_FACEBOOK_NAME;
 var PAINT_GAME_ID;
 
+var lastCanvasId = -1;
+
 
 function paintCanvasInit(tempUsersFacebookName, tempGameId)
 // the "main method" for this file. this initializes our different paint
@@ -59,6 +61,8 @@ function paintCanvasInit(tempUsersFacebookName, tempGameId)
 		// clear the paintCanvas by placing a white rectangle on the
 		// area of it
 		clearPaintCanvas();
+
+		receiveCanvas();
 
 		canvas.addEventListener("mousedown", canvasMouseEvent, false);
 		canvas.addEventListener("mousemove", canvasMouseEvent, false);
@@ -105,14 +109,14 @@ function canvasMouseEvent(e)
 function receiveCanvas()
 // 
 {
-	/*$.ajax
+	$.ajax
 	(
 		{
 			type: "POST",
-			url: POST_FILE_CHAT_OUTPUT,
+			url: POST_FILE_CANVAS_OUTPUT,
 			data:
 			{
-				game: GAME_ID,
+				game: PAINT_GAME_ID,
 				id: lastCanvasId
 			},
 			success: function(data)
@@ -121,16 +125,19 @@ function receiveCanvas()
 				{
 					var AJAXReturn = jQuery.parseJSON(data);
 
-					for (var i in AJAXReturn)
+					if (AJAXReturn[0]["user"] != PAINT_USERS_FACEBOOK_NAME)
 					{
-						lastCanvasId = parseInt(AJAXReturn[i]["id"]);
-
-						var img = new Image();
-						img.onload = function()
+						for (var i in AJAXReturn)
 						{
-							canvasContext.drawImage(this, 0, 0);
+							lastCanvasId = parseInt(AJAXReturn[i]["id"]);
+
+							var img = new Image();
+							img.onload = function()
+							{
+								canvasContext.drawImage(this, 0, 0);
+							}
+							//img.src = base64EncodedData;
 						}
-						img.src = base64EncodedData;
 					}
 				}
 				else
@@ -139,7 +146,7 @@ function receiveCanvas()
 				}
 			}
 		}
-	);*/
+	);
 
 	setTimeout("receiveCanvas()", 1400);
 }
@@ -149,7 +156,7 @@ function sendCanvas()
 // 
 {
 	//var canvasToSend = canvasContext.getImageData(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-	var canvasToSend = canvasContext.toDataURL("image/png");
+	var canvasToSend = canvas.toDataURL("image/png");
 
 	$.ajax
 	(
@@ -158,7 +165,7 @@ function sendCanvas()
 			url: POST_FILE_CANVAS_INPUT,
 			data:
 			{
-				user: USERS_FACEBOOK_NAME,
+				user: PAINT_USERS_FACEBOOK_NAME,
 				canvas: canvasToSend,
 				game: GAME_ID
 			},
@@ -230,7 +237,7 @@ function toolBrush()
 			currentDrawToolFunction.currentlyPainting = false;
 			currentDrawToolFunction.mousemove(e);
 
-			postCanvasData();
+			sendCanvas();
 		}
 	};
 }
