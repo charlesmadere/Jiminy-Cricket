@@ -64,14 +64,9 @@
 			while ($databaseRow = mysql_fetch_array($databaseResult))
 			// 
 			{
-				// 
-				$tempMessage = array();
-				$tempMessage["id"] = intval($databaseRow["id"]) + 1;
-				$tempMessage["user"] = $databaseRow["user"];
-				$tempMessage["canvas"] = $databaseRow["canvas"];
-
-				// 
-				$AJAXReturn[] = $tempMessage;
+				$AJAXReturn["id"] = intval($databaseRow["id"]) + 1;
+				$AJAXReturn["user"] = $databaseRow["user"];
+				$AJAXReturn["canvas"] = $databaseRow["canvas"];
 			}
 
 			echo json_encode($AJAXReturn);

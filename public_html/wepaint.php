@@ -88,9 +88,8 @@
 			(
 				function()
 				{
-					// 
-					paintCanvasInit();
-
+					// initialize the paint canvas and the chat system
+					paintCanvasInit(<?php echo "\"" . $userInfo["name"] . "\", \"" . $_POST["game"] . "\"" ?>);
 					chatInit(<?php echo "\"" . $userInfo["name"] . "\", \"" . $_POST["game"] . "\"" ?>);
 				}
 			);

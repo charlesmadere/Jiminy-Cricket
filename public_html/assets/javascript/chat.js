@@ -79,7 +79,7 @@ function receiveMessages()
 					for (var i in AJAXReturn)
 					// 
 					{
-						lastMessageId = AJAXReturn[i]["id"];
+						lastMessageId = parseInt(AJAXReturn[i]["id"]);
 
 						$("#chatArea").append
 						(

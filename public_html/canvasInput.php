@@ -23,7 +23,7 @@
 	{
 		// sanitize user input
 		$user = mysql_real_escape_string($_POST["user"]);
-		$message = mysql_real_escape_string($_POST["message"]);
+		$canvas = mysql_real_escape_string($_POST["canvas"]);
 		$game = mysql_real_escape_string($_POST["game"]);
 		$time = time();
 

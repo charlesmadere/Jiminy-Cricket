@@ -34,20 +34,25 @@ var CANVAS_HEIGHT = 470;
 // the width of the canvas (paintCanvas)
 var CANVAS_WIDTH = 700;
 
-// 
+// input and output file for our canvas ajax
 var POST_FILE_CANVAS_INPUT = "canvasInput.php";
-
-// 
 var POST_FILE_CANVAS_OUTPUT = "canvasOutput.php";
 
+// 
+var PAINT_USERS_FACEBOOK_NAME;
+var PAINT_GAME_ID;
 
-function paintCanvasInit()
+
+function paintCanvasInit(tempUsersFacebookName, tempGameId)
 // the "main method" for this file. this initializes our different paint
 // tools and their settings.
 {
 	if (Modernizr.canvas)
 	// if the browser has canvas support continue running
 	{
+		PAINT_USERS_FACEBOOK_NAME = tempUsersFacebookName;
+		PAINT_GAME_ID = tempGameId;
+
 		canvas = document.getElementById("paintCanvas");
 		canvasContext = canvas.getContext("2d");
 
@@ -97,14 +102,14 @@ function canvasMouseEvent(e)
 }
 
 
-function postCanvasData()
+function receiveCanvas()
 // 
 {
 	/*$.ajax
 	(
 		{
 			type: "POST",
-			url: POST_FILE_CANVAS_OUTPUT,
+			url: POST_FILE_CHAT_OUTPUT,
 			data:
 			{
 				game: GAME_ID,
@@ -112,10 +117,57 @@ function postCanvasData()
 			},
 			success: function(data)
 			{
-				
+				if (isNaN(data))
+				{
+					var AJAXReturn = jQuery.parseJSON(data);
+
+					for (var i in AJAXReturn)
+					{
+						lastCanvasId = parseInt(AJAXReturn[i]["id"]);
+
+						var img = new Image();
+						img.onload = function()
+						{
+							canvasContext.drawImage(this, 0, 0);
+						}
+						img.src = base64EncodedData;
+					}
+				}
+				else
+				{
+					lastCanvasId = parseInt(data);
+				}
 			}
 		}
 	);*/
+
+	setTimeout("receiveCanvas()", 1400);
+}
+
+
+function sendCanvas()
+// 
+{
+	//var canvasToSend = canvasContext.getImageData(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+	var canvasToSend = canvasContext.toDataURL("image/png");
+
+	$.ajax
+	(
+		{
+			type: "POST",
+			url: POST_FILE_CANVAS_INPUT,
+			data:
+			{
+				user: USERS_FACEBOOK_NAME,
+				canvas: canvasToSend,
+				game: GAME_ID
+			},
+			success: function(data)
+			{
+				lastCanvasId = parseInt(data);
+			}
+		}
+	);
 }
 
 
