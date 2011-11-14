@@ -121,7 +121,7 @@
 		echo "				}\n";
 		echo "			);\n";
 		echo "		</script>\n";
-		echo "		<title>Create a Game ~ WePaint.us</title>\n";
+		echo "		<title>Paint with your Friends! ~ WePaint.us</title>\n";
 		echo "	</head>\n";
 		echo "	<body>\n";
 		echo "		<div id=\"fb-root\"></div>\n";
@@ -129,7 +129,7 @@
 		echo "			<img src=\"images/wepaint.png\" alt=\"WePaint.us\" />\n";
 		echo "			<img src=\"images/nav/divider.png\" />\n";
 		echo "			<img src=\"images/nav/spacer.png\" />\n";
-		echo "			<a href=\"about.html\">\n";
+		echo "			<a href=\"#\" onclick=\"aboutPage()\">\n";
 		echo "				<img src=\"images/nav/about.png\" alt=\"About\" class=\"noBorder\" id=\"about\" onmouseout=\"imgMouseOff('nav', 'about')\" onmouseover=\"imgMouseOn('nav', 'about')\" />\n";
 		echo "			</a>\n";
 		echo "		</div>\n";
