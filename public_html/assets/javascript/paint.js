@@ -29,7 +29,7 @@ var canvasUndoStates = new Array();
 var DRAW_TOOL_OFFSET = 49;
 
 // the height of the canvas (paintCanvas)
-var CANVAS_HEIGHT = 470;
+var CANVAS_HEIGHT = 519;
 
 // the width of the canvas (paintCanvas)
 var CANVAS_WIDTH = 700;

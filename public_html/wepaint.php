@@ -82,7 +82,6 @@
 		<script src="assets/javascript/basic.js" type="text/javascript"></script>
 		<script src="assets/javascript/paint.js" type="text/javascript"></script>
 		<script src="assets/javascript/chat.js" type="text/javascript"></script>
-		<script src="timer.js" type="text/javascript"></script>
 		<script type="text/javascript">
 			$(document).ready
 			(
@@ -102,17 +101,22 @@
 			<img src="images/wepaint.png" alt="WePaint.us" />
 			<img src="images/nav/divider.png" />
 			<img src="images/nav/spacer.png" />
+			<a href="#" onclick="inviteFriends('<?php echo $userInfo["name"]; ?>')">
+				<img src="images/nav/invite.png" alt="Invite Friends" class="noBorder" id="invite" onmouseout="imgMouseOff('nav', 'invite')" onmouseover="imgMouseOn('nav', 'invite')" />
+			</a>
+			<img src="images/nav/spacer.png" />
+			<a href="#" onclick="downloadPainting()">
+				<img src="images/nav/downloadPaint.png" alt="Download your Painting" class="noBorder" id="downloadPaint" onmouseout="imgMouseOff('nav', 'downloadPaint')" onmouseover="imgMouseOn('nav', 'downloadPaint')" />
+			</a>
+			<img src="images/nav/spacer.png" />
+			<a href="about.html" target="_blank">
+				<img src="images/nav/about.png" alt="About" class="noBorder" id="about" onmouseout="imgMouseOff('nav', 'about')" onmouseover="imgMouseOn('nav', 'about')" />
+			</a>
 		</div>
 		<div id="content">
 			<div id="contentLeft">
-				<div class="bottomBorder" id="currentWordAndTimeLeft">
-					<!--Dynamic timer function goes here-->
-					<script type="text/javascript">
-						window.onload = CreateTimer("currentWordAndTimeLeft", <?php echo $time; ?> );
-					</script>
-				</div>
 				<div class="bottomBorder" id="paintArea">
-					<canvas id="paintCanvas" height="470" width="700"></canvas>
+					<canvas id="paintCanvas" height="519" width="700"></canvas>
 				</div>
 				<div id="toolBox">
 					<table id="toolBoxTable">
@@ -150,15 +154,8 @@
 				</div>
 			</div>
 			<div id="contentRight">
-				<div class="bottomBorder" id="currentTopic">
-<?php
-	$prettygory = str_replace(".json","",$_POST["category"]);
-	
-	echo $prettygory . " " . $_POST["game"] . "\n";
-?>
-				</div>
 				<div class="bottomBorder" id="whoIsPlaying">
-					whoIsPlaying
+					<h2 class="whosPlayin">Painters</h2>
 				</div>
 				<div id="chatArea">
 					<span id="loading">Loading...</span>
