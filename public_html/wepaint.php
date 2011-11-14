@@ -19,8 +19,6 @@
 		exit;
 	}
 
-	$time = $_POST["time"];
-
 
 	// facebook configuration settings
 	$FB_APPID = "211936785535748";
@@ -101,7 +99,7 @@
 			<img src="images/wepaint.png" alt="WePaint.us" />
 			<img src="images/nav/divider.png" />
 			<img src="images/nav/spacer.png" />
-			<a href="#" onclick="inviteFriends('<?php echo $userInfo["name"]; ?>')">
+			<a href="#" onclick="inviteFriends('<?php echo $_POST["game"] ?>')">
 				<img src="images/nav/invite.png" alt="Invite Friends" class="noBorder" id="invite" onmouseout="imgMouseOff('nav', 'invite')" onmouseover="imgMouseOn('nav', 'invite')" />
 			</a>
 			<img src="images/nav/spacer.png" />
@@ -109,7 +107,7 @@
 				<img src="images/nav/downloadPaint.png" alt="Download your Painting" class="noBorder" id="downloadPaint" onmouseout="imgMouseOff('nav', 'downloadPaint')" onmouseover="imgMouseOn('nav', 'downloadPaint')" />
 			</a>
 			<img src="images/nav/spacer.png" />
-			<a href="about.html" target="_blank">
+			<a href="#" onclick="aboutPage()">
 				<img src="images/nav/about.png" alt="About" class="noBorder" id="about" onmouseout="imgMouseOff('nav', 'about')" onmouseover="imgMouseOn('nav', 'about')" />
 			</a>
 		</div>

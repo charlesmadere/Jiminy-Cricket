@@ -82,16 +82,20 @@ div#compatRight
 div#settingsLeft
 {
 	float: left;
+	height: 140px;
 	text-align: center;
-	width: 284px;
+	vertical-align: middle;
+	width: 370px;
 }
 
 
 div#settingsRight
 {
 	float: left;
+	height: 140px;
 	text-align: center;
-	width: 484px;
+	vertical-align: middle;
+	width: 370px;
 }
 
 
@@ -126,6 +130,8 @@ form#settings
 	padding-left: 16px;
 	padding-right: 16px;
 	padding-top: 16px;
+	text-align: center;
+	vertical-align: middle;
 	width: 768px;
 }
 

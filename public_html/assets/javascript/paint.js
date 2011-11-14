@@ -26,7 +26,7 @@ var canvasUndoStates = new Array();
 // the Y axis offset for the drawing tool. This number
 // is subtracted from the e._y variable in our mouse
 // button listeners
-var DRAW_TOOL_OFFSET = 49;
+var DRAW_TOOL_OFFSET = 0;
 
 // the height of the canvas (paintCanvas)
 var CANVAS_HEIGHT = 519;
@@ -1131,6 +1131,23 @@ function getRGBACode(colorString)
 	}
 
 	return RGBAArray;
+}
+
+
+function inviteFriends(tempGameId)
+// pops open a window that gives the user a url that can be shared with friends so that
+// people can join the current paint session
+{
+	var popupWindow = window.open("", "invite", "menubar=no, width=440, height=120, toolbar=no");
+	popupWindow.document.write("<head><link href=\"assets/stylesheets/basic.css\" rel=\"stylesheet\" type=\"text/css\" /></head><body><div id=\"headerLite\"></div><div style=\"margin: 16px;\"><h3>Invite your friends by sending them this link!</h3>http://www.wepaint.us/entry.php?game=" + tempGameId + "</p></body>");
+}
+
+
+function downloadPainting()
+{
+	var downloadedImage = canvas.toDataURL("image/png");
+	var popupWindow = window.open("", "download", "menubar=no, width=720, height=540, toolbar=no");
+	popupWindow.document.write("<img src=\"" + downloadedImage + "\" />");
 }
 
 

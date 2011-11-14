@@ -14,6 +14,12 @@ function imgMouseOff(folder, id)
 }
 
 
+function aboutPage()
+{
+	window.open("about.html", "about", "menubar=no, width=800, height=400, toolbar=no");
+}
+
+
 function findEpoch()
 {
 	return Math.round((new Date()).getTime() / 1000);

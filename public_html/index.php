@@ -131,7 +131,7 @@
 				}
 			);
 		</script>
-		<title>Create a Game ~ WePaint.us</title>
+		<title>Paint with your Friends! ~ WePaint.us</title>
 	</head>
 
 	<body>
@@ -140,7 +140,7 @@
 			<img src="images/wepaint.png" alt="WePaint.us" />
 			<img src="images/nav/divider.png" />
 			<img src="images/nav/spacer.png" />
-			<a href="about.html">
+			<a href="#" onclick="aboutPage()">
 				<img src="images/nav/about.png" alt="About" class="noBorder" id="about" onmouseout="imgMouseOff('nav', 'about')" onmouseover="imgMouseOn('nav', 'about')" />
 			</a>
 		</div>
@@ -150,9 +150,13 @@
 	if ($user)
 	// facebook user is logged in AND has granted our application permissions
 	{
-		echo "			<h1 class=\"simpleCenter\">Create a game of We Paint!</h1>\n";
+		echo "			<h1 class=\"simpleCenter\">Paint with your friends!</h1>\n";
 		echo "			<form action=\"wepaint.php\" id=\"settings\" method=\"post\">\n";
+<<<<<<< HEAD
 		echo "				<div id=\"settingsRight\">\n";
+=======
+		echo "				<div id=\"settingsLeft\">\n";
+>>>>>>> 5340c6e9b8689db993f6a774d2c35cc8632d0980
 		echo "					<div id=\"inviteFriends\">\n";
 		echo "						<h3>Hello " . $userInfo['name'] . "!</h3>\n";
 
@@ -169,14 +173,14 @@
 		echo "						<a href=\"#\" onclick=\"streamPublish('" . $queryString . "')\"><img class=\"noBorder\" id=\"inviteYourFriends\" src=\"images/buttons/inviteYourFriends.png\" onmouseout=\"imgMouseOff('buttons', 'inviteYourFriends')\" onmouseover=\"imgMouseOn('buttons', 'inviteYourFriends')\" /></a>\n";
 		echo "					</div>\n";
 		echo "				</div>\n";
-		echo "				<div id=\"submitSettings\">\n";
+		echo "				<div id=\"settingsRight\">\n";
 		echo "					<input class=\"noBorder\" id=\"letsPaint\" onmouseout=\"imgMouseOff('buttons', 'letsPaint')\" onmouseover=\"imgMouseOn('buttons', 'letsPaint')\" src=\"images/buttons/letsPaint.png\" type=\"image\" />\n";
 		echo "				</div>\n";
 		echo "			</form>\n";
 	}
 	else
 	{
-		echo "			<h1 class=\"simpleCenter\">Sign in with Facebook to play!</h1>\n";
+		echo "			<h1 class=\"simpleCenter\">Sign in with Facebook to paint!</h1>\n";
 		echo "			<div id=\"signInToFacebook\">\n";
 		echo "				<a href=\"" . $loginUrl . "\"><img class=\"noBorder\" id=\"loginBig\" src=\"images/buttons/loginBig.png\" onmouseout=\"imgMouseOff('buttons', 'loginBig')\" onmouseover=\"imgMouseOn('buttons', 'loginBig')\" /></a>\n";
 		echo "			</div>\n";
