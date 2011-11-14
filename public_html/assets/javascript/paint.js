@@ -1143,8 +1143,11 @@ function inviteFriends(tempGameId)
 
 
 function downloadPainting()
+// opens a popup window that allows the user to download their painting
 {
-	
+	var downloadedImage = canvas.toDataURL("image/png");
+	var popupWindow = window.open("", "download", "menubar=no, width=720, height=540, toolbar=no");
+	popupWindow.document.write("<img src=\"" + downloadedImage + "\" />");
 }
 
 

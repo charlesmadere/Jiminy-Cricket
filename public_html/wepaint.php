@@ -19,8 +19,6 @@
 		exit;
 	}
 
-	$time = $_POST["time"];
-
 
 	// facebook configuration settings
 	$FB_APPID = "211936785535748";
