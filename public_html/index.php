@@ -70,7 +70,6 @@
        			if ($file != "." && $file != "..")
 			 	{
 					$file1 = str_replace(".json","",$file);
-					//preg_split
 					echo "	<option value=\"$file\">$file1</option>\n";
        			}
 			}
@@ -153,29 +152,6 @@
 	{
 		echo "			<h1 class=\"simpleCenter\">Create a game of We Paint!</h1>\n";
 		echo "			<form action=\"wepaint.php\" id=\"settings\" method=\"post\">\n";
-		echo "				<div id=\"settingsLeft\">\n";
-		echo "					<div id=\"category\">\n";
-		echo "						<h3>Choose a Category</h3>\n";
-		echo "						<select name=\"category\">\n";
-
-		findTopics();
-
-		echo "						</select>\n";
-		echo "					</div>\n";
-		echo "					<div id=\"time\">\n";
-		echo "						<h3>Pick a Time Limit</h3>\n";
-		echo "						<select name=\"time\">\n";
-		echo "							<option value=\"30\">30 seconds</option>\n";
-		echo "							<option value=\"45\">45 seconds</option>\n";
-		echo "							<option value=\"60\">1 minute</option>\n";
-		echo "							<option value=\"120\">2 minutes</option>\n";
-		echo "							<option value=\"180\">3 minutes</option>\n";
-		echo "							<option value=\"240\">4 minutes</option>\n";
-		echo "							<option value=\"300\">5 minutes</option>\n";
-		echo "							<option value=\"6000\">Derp</option>\n";
-		echo "						</select>\n";
-		echo "					</div>\n";
-		echo "				</div>\n";
 		echo "				<div id=\"settingsRight\">\n";
 		echo "					<div id=\"inviteFriends\">\n";
 		echo "						<h3>Hello " . $userInfo['name'] . "!</h3>\n";

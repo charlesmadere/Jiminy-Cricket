@@ -101,7 +101,7 @@
 			<img src="images/wepaint.png" alt="WePaint.us" />
 			<img src="images/nav/divider.png" />
 			<img src="images/nav/spacer.png" />
-			<a href="#" onclick="inviteFriends('<?php echo $userInfo["name"]; ?>')">
+			<a href="#" onclick="inviteFriends('<?php echo $_POST["game"] ?>')">
 				<img src="images/nav/invite.png" alt="Invite Friends" class="noBorder" id="invite" onmouseout="imgMouseOff('nav', 'invite')" onmouseover="imgMouseOn('nav', 'invite')" />
 			</a>
 			<img src="images/nav/spacer.png" />

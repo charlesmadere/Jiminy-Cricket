@@ -26,7 +26,7 @@ var canvasUndoStates = new Array();
 // the Y axis offset for the drawing tool. This number
 // is subtracted from the e._y variable in our mouse
 // button listeners
-var DRAW_TOOL_OFFSET = 49;
+var DRAW_TOOL_OFFSET = 0;
 
 // the height of the canvas (paintCanvas)
 var CANVAS_HEIGHT = 519;
@@ -1131,6 +1131,20 @@ function getRGBACode(colorString)
 	}
 
 	return RGBAArray;
+}
+
+
+function inviteFriends(tempGameId)
+// pops open a window that gives the user a url that can be shared with friends so that
+// people can join the current paint session
+{
+	window.open("invite.html", "invite", "menubar=no, width=320, height=460, toolbar=no");
+}
+
+
+function downloadPainting()
+{
+	
 }
 
 
