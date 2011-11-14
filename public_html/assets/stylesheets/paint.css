@@ -116,6 +116,9 @@ table#toolBoxTable
 div#whoIsPlaying
 {
 	height: 224px;
+	overflow: auto;
+	padding-left: 4px;
+	padding-right: 2px;
 	width: 300px;
 }
 

@@ -124,20 +124,16 @@ function receiveCanvas()
 				if (isNaN(data))
 				{
 					var AJAXReturn = jQuery.parseJSON(data);
+					lastCanvasId = parseInt(AJAXReturn["id"]);
 
-					if (AJAXReturn[0]["user"] != PAINT_USERS_FACEBOOK_NAME)
+					if (AJAXReturn["user"] != PAINT_USERS_FACEBOOK_NAME)
 					{
-						for (var i in AJAXReturn)
+						var img = new Image();
+						img.onload = function()
 						{
-							lastCanvasId = parseInt(AJAXReturn[i]["id"]);
-
-							var img = new Image();
-							img.onload = function()
-							{
-								canvasContext.drawImage(this, 0, 0);
-							}
-							//img.src = base64EncodedData;
+							canvasContext.drawImage(img, 0, 0);
 						}
+						img.src = AJAXReturn["canvas"];
 					}
 				}
 				else
@@ -155,7 +151,6 @@ function receiveCanvas()
 function sendCanvas()
 // 
 {
-	//var canvasToSend = canvasContext.getImageData(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 	var canvasToSend = canvas.toDataURL("image/png");
 
 	$.ajax
@@ -167,7 +162,7 @@ function sendCanvas()
 			{
 				user: PAINT_USERS_FACEBOOK_NAME,
 				canvas: canvasToSend,
-				game: GAME_ID
+				game: PAINT_GAME_ID
 			},
 			success: function(data)
 			{
@@ -493,6 +488,8 @@ function toolBucket()
 		// apply our changes to the paintArea canvas
 		canvasContext.putImageData(canvasContextImageData, 0, 0);
 
+		sendCanvas();
+
 		function checkColorsForMatch(cell)
 		// compare the colors in oldColorArray to the colors in the current
 		// cell. if they are equal this function will return true
@@ -579,6 +576,8 @@ function toolEraser()
 		{
 			currentDrawToolFunction.currentlyPainting = false;
 			currentDrawToolFunction.mousemove(e);
+
+			sendCanvas();
 		}
 	};
 }
@@ -635,6 +634,8 @@ function toolPencil()
 		{
 			currentDrawToolFunction.currentlyPainting = false;
 			currentDrawToolFunction.mousemove(e);
+
+			sendCanvas();
 		}
 	};
 }
@@ -649,6 +650,8 @@ function clearPaintCanvas()
 	
 	// clear the undo states
 	canvasUndoStates = [];
+
+	sendCanvas();
 }
 
 

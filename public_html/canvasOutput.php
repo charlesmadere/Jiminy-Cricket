@@ -23,7 +23,9 @@
 	{
 		// sanitize user input
 		$game = mysql_real_escape_string($_POST["game"]);
+		//$game = "4ee46831";
 		$id = intval($_POST["id"]);
+		//$id = 1;
 
 		// select the database to operate on
 		mysql_select_db($DB_NAME, $DB_CONNECTION);
