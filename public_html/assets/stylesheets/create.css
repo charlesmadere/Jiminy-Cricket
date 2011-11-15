@@ -121,9 +121,6 @@ div#submitSettings
 
 form#settings
 {
-	border-color: #000000;
-	border-style: solid;
-	border-width: 1px;
 	margin-bottom: 32px;
 	overflow: auto;
 	padding-bottom: 16px;
