@@ -227,6 +227,7 @@ function validateMessage(message)
 			var face20 = tagOpening + directory + "face20-" + size + extension + tagClosing;
 			var face21 = tagOpening + directory + "face21-" + size + extension + tagClosing;
 			var face22 = tagOpening + directory + "face22-" + size + extension + tagClosing;
+			var face23 = tagOpening + directory + "face23-" + size + extension + tagClosing;
 
 			// face00: ":)"
 			message = message.replace(/:\)/g, face00);
@@ -296,6 +297,9 @@ function validateMessage(message)
 
 			// face22: "undo"
 			message = message.replace(/undo/gi, face22);
+
+			// face23: "charles"
+			message = message.replace(/charles/gi, face23);
 			
 			return message;
 		}
