@@ -228,6 +228,8 @@ function validateMessage(message)
 			var face21 = tagOpening + directory + "face21-" + size + extension + tagClosing;
 			var face22 = tagOpening + directory + "face22-" + size + extension + tagClosing;
 			var face23 = tagOpening + directory + "face23-" + size + extension + tagClosing;
+			var face24 = tagOpening + directory + "face24-" + size + extension + tagClosing;
+			var face25 = tagOpening + directory + "face25-" + size + extension + tagClosing;
 
 			// face00: ":)"
 			message = message.replace(/:\)/g, face00);
@@ -300,6 +302,12 @@ function validateMessage(message)
 
 			// face23: "charles"
 			message = message.replace(/charles/gi, face23);
+
+			// face24: "geo"
+			message = message.replace(/geo/gi, face24);
+
+			// face25: "jarrad"
+			message = message.replace(/jarrad/gi, face25);
 			
 			return message;
 		}
