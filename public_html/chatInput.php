@@ -10,8 +10,8 @@
 
 	// database configuration settings
 	$DB_HOST = "localhost";
-	$DB_USER = "wepaint";
-	$DB_PASS = "moose#goose#loose";
+	$DB_USER = "user";
+	$DB_PASS = "pass";
 	$DB_NAME = "wepaint_data";
 	$DB_TABLE = "wepaint_chat";
 
