@@ -44,6 +44,8 @@ var PAINT_GAME_ID;
 
 var lastCanvasId = -1;
 
+var LOCAL_ONLY = false;
+
 
 function paintCanvasInit(tempUsersFacebookName, tempGameId)
 // the "main method" for this file. this initializes our different paint
@@ -58,11 +60,18 @@ function paintCanvasInit(tempUsersFacebookName, tempGameId)
 		canvas = document.getElementById("paintCanvas");
 		canvasContext = canvas.getContext("2d");
 
-		// clear the paintCanvas by placing a white rectangle on the
-		// area of it
-		clearPaintCanvas();
+		if (testForEmptyString(tempUsersFacebookName) && testForEmptyString(tempGameId))
+		{
+			LOCAL_ONLY = true;
+		}
+		else
+		{
+			// clear the paintCanvas by placing a white rectangle on the
+			// area of it
+			clearPaintCanvas();
 
-		receiveCanvas();
+			receiveCanvas();
+		}
 
 		canvas.addEventListener("mousedown", canvasMouseEvent, false);
 		canvas.addEventListener("mousemove", canvasMouseEvent, false);
@@ -72,7 +81,7 @@ function paintCanvasInit(tempUsersFacebookName, tempGameId)
 	else
 	// the user's browser does not have canvas support
 	{
-		
+		alert("Your web browser is not compatible with the HTML5 canvas tag! Please upgrade your web browser.");
 	}
 }
 
@@ -151,25 +160,28 @@ function receiveCanvas()
 function sendCanvas()
 // 
 {
-	var canvasToSend = canvas.toDataURL("image/png");
+	if (!LOCAL_ONLY)
+	{
+		var canvasToSend = canvas.toDataURL("image/png");
 
-	$.ajax
-	(
-		{
-			type: "POST",
-			url: POST_FILE_CANVAS_INPUT,
-			data:
+		$.ajax
+		(
 			{
-				user: PAINT_USERS_FACEBOOK_NAME,
-				canvas: canvasToSend,
-				game: PAINT_GAME_ID
-			},
-			success: function(data)
-			{
-				lastCanvasId = parseInt(data);
+				type: "POST",
+				url: POST_FILE_CANVAS_INPUT,
+				data:
+				{
+					user: PAINT_USERS_FACEBOOK_NAME,
+					canvas: canvasToSend,
+					game: PAINT_GAME_ID
+				},
+				success: function(data)
+				{
+					lastCanvasId = parseInt(data);
+				}
 			}
-		}
-	);
+		);
+	}
 }
 
 
@@ -680,6 +692,9 @@ function addToUndo()
 }
 
 
+var directoryImagesPaint = "images/paint/";
+
+
 function paintColorOnMouseOut(id)
 // when the user's cursor is no longer on top of a color image
 {
@@ -688,7 +703,7 @@ function paintColorOnMouseOut(id)
 	// perform an onmouseout image change event
 	{
 		// change the id's image src
-		document.getElementById(id).src = "../../images/paint/colors/" + id + ".png";
+		document.getElementById(id).src = directoryImagesPaint + "colors/" + id + ".png";
 	}
 }
 
@@ -701,7 +716,7 @@ function paintColorOnMouseOver(id)
 	// perform an onmouseover image change event
 	{
 		// change the id's image src
-		document.getElementById(id).src = "../../images/paint/colors/" + id + "-on.png";
+		document.getElementById(id).src = directoryImagesPaint + "colors/" + id + "-on.png";
 	}
 }
 
@@ -714,13 +729,13 @@ function paintColorOnClick(id)
 		previousDrawColor = currentDrawColor;
 
 		// change the old color's image src to the regular style image
-		document.getElementById(currentDrawColor).src = "../../images/paint/colors/" + currentDrawColor + ".png";
+		document.getElementById(currentDrawColor).src = directoryImagesPaint + "colors/" + currentDrawColor + ".png";
 	}
 
 	currentDrawColor = id;
 
 	// change the id's image src to the active style image
-	document.getElementById(currentDrawColor).src = "../../images/paint/colors/" + currentDrawColor + "-active.png";
+	document.getElementById(currentDrawColor).src = directoryImagesPaint + "colors/" + currentDrawColor + "-active.png";
 
 	if (currentDrawTool == "null")
 	// if the user chose a color but has not yet chosen a tool
@@ -826,7 +841,7 @@ function paintToolOnMouseOut(id)
 	// perform an onmouseout image change event
 	{
 		// change the id's image src
-		document.getElementById(id).src = "../../images/paint/tools/" + id + ".png";
+		document.getElementById(id).src = directoryImagesPaint + "tools/" + id + ".png";
 	}
 }
 
@@ -839,7 +854,7 @@ function paintToolOnMouseOver(id)
 	// perform an onmouseover image change event
 	{
 		// change the id's image src
-		document.getElementById(id).src = "../../images/paint/tools/" + id + "-on.png";
+		document.getElementById(id).src = directoryImagesPaint + "tools/" + id + "-on.png";
 	}
 }
 
@@ -854,13 +869,13 @@ function paintToolOnClick(id)
 		previousDrawTool = currentDrawTool;
 
 		// change the id's image src to the regular style image
-		document.getElementById(currentDrawTool).src = "../../images/paint/tools/" + currentDrawTool + ".png";
+		document.getElementById(currentDrawTool).src = directoryImagesPaint + "tools/" + currentDrawTool + ".png";
 	}
 
 	currentDrawTool = id;
 
 	// change the id's image src to the active style image
-	document.getElementById(currentDrawTool).src = "../../images/paint/tools/" + currentDrawTool + "-active.png";
+	document.getElementById(currentDrawTool).src = directoryImagesPaint + "tools/" + currentDrawTool + "-active.png";
 
 	if (currentDrawTool != "toolEraser" && previousDrawTool == "toolEraser" && previousDrawColor != "null")
 	// make it easier for the user to switch between tools by saving

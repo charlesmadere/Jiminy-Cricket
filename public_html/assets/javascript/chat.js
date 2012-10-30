@@ -28,6 +28,8 @@ var lastMessageUser = "";
 
 var whoIsPlaying = new Array();
 
+var CHAT_LOCAL_ONLY = false;
+
 
 function chatInit(tempUsersFacebookName, tempGameId)
 // 
@@ -38,7 +40,16 @@ function chatInit(tempUsersFacebookName, tempGameId)
 	lastMessageId = -1;
 	lastMessageTimeSubmit = findBigEpoch();
 
-	receiveMessages();
+	if (testForEmptyString(tempUsersFacebookName) && testForEmptyString(tempGameId))
+	{
+		CHAT_LOCAL_ONLY = true;
+		USERS_FACEBOOK_NAME = "WePaint";
+		$("#loading").remove();
+	}
+	else
+	{
+		receiveMessages();
+	}
 }
 
 
@@ -137,30 +148,53 @@ function sendMessage()
 		{
 			lastMessageTimeSubmit = findBigEpoch();
 
-			$.ajax
-			(
-				{
-					type: "POST",
-					url: POST_FILE_CHAT_INPUT,
-					data:
+			if (!CHAT_LOCAL_ONLY)
+			{
+				$.ajax
+				(
 					{
-						user: USERS_FACEBOOK_NAME,
-						message: messageToSend,
-						game: GAME_ID
-					},
-					success: function(data)
-					{
-						// 
-						lastMessageId = data;
+						type: "POST",
+						url: POST_FILE_CHAT_INPUT,
+						data:
+						{
+							user: USERS_FACEBOOK_NAME,
+							message: messageToSend,
+							game: GAME_ID
+						},
+						success: function(data)
+						{
+							// 
+							lastMessageId = data;
 
-						// clear the text input
-						MESSAGE_INPUT.value = "";
+							// clear the text input
+							MESSAGE_INPUT.value = "";
 
-						// scroll to the bottom of the chat window
-						$("#chatArea").scrollTop(10000);
+							// scroll to the bottom of the chat window
+							$("#chatArea").scrollTop(10000);
+						}
 					}
+				);
+			}
+			else
+			{
+				// clear the text input
+				MESSAGE_INPUT.value = "";
+
+				$("#chatArea").append
+				(
+					"<p><span class=\"author\">" + USERS_FACEBOOK_NAME + "</span> " + messageToSend + "</p>"
+				);
+				
+				if (jQuery.inArray(USERS_FACEBOOK_NAME, whoIsPlaying) == -1)
+				{
+					whoIsPlaying.push(USERS_FACEBOOK_NAME);
+					
+					$("#whoIsPlaying").append
+					(
+							"<p><span class=\"author\">" + USERS_FACEBOOK_NAME + "</span> </p>"
+					);
 				}
-			);
+			}
 		}
 	}
 
@@ -199,7 +233,7 @@ function validateMessage(message)
 		// some characters
 		{
 			var tagOpening = "<img class=\"emot\" src=\"";
-			var directory = "../images/emoticons/";
+			var directory = "images/emoticons/";
 			var size = "20";
 			var extension = ".png";
 			var tagClosing = "\" />";
