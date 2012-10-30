@@ -1,6 +1,13 @@
 Welcome to the GitHub for We Paint!
 http://www.wepaint.us/
 
+You can now download We Paint and run it locally! Get it here:
+https://github.com/ScootrNova/Jiminy-Cricket/blob/master/wepaint-local.zip
+Installation Directions:
+ 1. Uncompress. This will create a `wepaint-local` directory.
+ 2. Open the `wepaint-local` directory. In it you'll find an index.html file.
+ 3. Open the index.html file in an HTML5 compatible browser and you're playing!
+
 Main folder descriptions follow:
 
 /defunct/
