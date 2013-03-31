@@ -1,0 +1,135 @@
+div#chatArea
+{
+	border-bottom-style: solid;
+	border-width: 1px;
+	height: 328px;
+	padding-left: 4px;
+	padding-right: 2px;
+	overflow: auto;
+	width: 294px;
+}
+
+
+div#chatAreaInput
+{
+	height: 48px;
+	width: 300px;
+}
+
+
+img.emot
+{
+	vertical-align: middle;
+}
+
+
+div#chatForm
+{
+	margin-top: 4px;
+	margin-bottom: 1px;
+}
+
+
+div#content
+/* this code centers the page */
+{
+	height: 605px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 12px;
+	position: relative;
+	width: 1024px;
+}
+
+
+input#msg
+{
+	border-width: 0px;
+	font-family: "Segoe UI Light", "Segoe UI", sans-serif;
+	font-size: 154%;
+	height: 42px;
+	margin-top: 2px;
+	outline: none;
+}
+
+
+span.author
+{
+	color: #06447F;
+	font-family: "Segoe UI", sans-serif;
+}
+
+
+div#content div
+{
+	float: left;
+}
+
+
+div#currentTopic
+{
+	font-family: "Segoe UI", sans-serif;
+	font-size: 200%;
+	height: 48px;
+	text-align: center;
+	width: 300px;
+}
+
+
+div#currentWordAndTimeLeft
+{
+	height: 48px;
+	width: 700px;
+}
+
+
+div#linkToInvite
+{
+	height: 64px;
+	width: 300px;
+}
+
+
+div#paintArea
+{
+	cursor: crosshair;
+	height: 519px;
+	width: 700px;
+}
+
+
+div#toolBox
+{
+	height: 82px;
+	width: 700px;
+}
+
+
+table#toolBoxTable
+{
+	height: 82px;
+	text-align: center;
+	width: 700px;
+}
+
+
+div#whoIsPlaying
+{
+	height: 224px;
+	overflow: auto;
+	padding-left: 4px;
+	padding-right: 2px;
+	width: 294px;
+}
+
+
+h2.whosPlayin
+{
+	font-family: "Segoe UI", sans-serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-align: center;
+}
+
+
+/* Team Jiminy Cricket */

@@ -1,0 +1,192 @@
+div.bottomBorder
+{
+	border-bottom-style: solid;
+	border-width: 1px;
+}
+
+
+.noBorder
+{
+	border: 0;
+}
+
+
+.simpleCenter
+{
+	text-align: center;
+}
+
+
+div#contentLite
+/* this code centers the page */
+{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 32px;
+	position: relative;
+	width: 800px;
+}
+
+
+div#contentLiteLeft
+{
+	float: left;
+	height: 160px;
+	margin-left: 32px;
+	margin-top: 32px;
+	text-align: center;
+	width: 256px;
+}
+
+
+div#contentLiteRight
+{
+	float: left;
+	height: 128px;
+	margin-left: 24px;
+	margin-right: 16px;
+	margin-top: 64px;
+	text-align: left;
+	width: 472px;
+}
+
+
+div#contentLiteBottom
+{
+	margin-left: 24px;
+	margin-right: 24px;
+	width: 752px;
+}
+
+
+div#contentLeft
+{
+	border-style: solid;
+	border-width: 1px;
+	width: 700px;
+}
+
+
+div#contentRight
+{
+	border-bottom-style: solid;
+	border-right-style: solid;
+	border-top-style: solid;
+	border-width: 1px;
+	width: 300px;
+}
+
+
+div#header
+{
+	background-image: url('../../images/nav/header.png');
+	background-repeat: repeat-x;
+	height: 92px;
+	width: 100%;
+}
+
+
+div#headerLite
+{
+	background-image: url('../../images/barHigh.png');
+	background-repeat: repeat-x;
+	height: 12px;
+	width: 100%;
+}
+
+
+a:active
+{
+	color: #FFA82A;
+	text-decoration: none;
+}
+
+
+a:hover
+{
+	color: #D58C23;
+	text-decoration: underline;
+}
+
+
+a:link
+{
+	color: #FF9700;
+	text-decoration: none;
+}
+
+
+a:visited
+{
+	color: #C47400;
+	text-decoration: none;
+}
+
+
+body
+{
+	font-family: Calibri, Arial, sans-serif;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+}
+
+
+h1
+{
+	font-family: "Segoe UI Semibold", "Segoe UI", sans-serif;
+	font-weight: normal;
+	margin-top: 4px;
+}
+
+
+h2
+{
+	font-family: "Segoe UI", sans-serif;
+	font-weight: normal;
+}
+
+
+h3
+{
+	font-family: "Segoe UI Light", "Segoe UI", sans-serif;
+	font-weight: normal;
+	margin-bottom: 8px;
+	margin-top: 0px;
+}
+
+
+h4
+{
+	font-family: "Segoe UI Light", "Segoe UI", sans-serif;
+	font-weight: normal;
+}
+
+
+p
+{
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+
+form
+{
+	font-family: "Segoe UI Light", "Segoe UI", sans-serif;
+	font-weight: normal;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+
+table
+{
+	margin-bottom: 0px;
+	margin-top: 0px;
+	padding-bottom: 0px;
+	padding-top: 0px;
+}
+
+
+/* Team Jiminy Cricket */
