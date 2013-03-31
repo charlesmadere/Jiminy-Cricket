@@ -1,5 +1,5 @@
 Welcome to the GitHub for We Paint!
-http://www.wepaint.us/
+http://scootrnova.github.com/Jiminy-Cricket/
 
 You can now download We Paint and run it locally! Get it here:
 https://github.com/ScootrNova/Jiminy-Cricket/blob/master/wepaint-local.zip
@@ -32,7 +32,8 @@ our website and nothing more. This file is the only exception to that rule. If
 you put a file in here then it should be pretty much immediately uploaded via
 SFTP to the server's public_html folder and if a file exists on the server then
 it should also definitely be in here. Our website can be found at
-http://www.wepaint.us/
+http://www.wepaint.us/ (used to be that <=, it's now this
+=>) http://scootrnova.github.com/Jiminy-Cricket/
 
 /resources/
 The resources directory is primarily for the source files to some of our custom
